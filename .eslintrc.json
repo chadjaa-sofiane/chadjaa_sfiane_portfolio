@@ -1,3 +1,10 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals", "eslint:recommended"],
+  "rules": {
+    "no-unused-vars": "warn",
+    "no-func-assign": "warn",
+    "block-scoped-var": "warn",
+    "camelcase": "warn",
+    "eqeqeq": "warn"
+  }
 }

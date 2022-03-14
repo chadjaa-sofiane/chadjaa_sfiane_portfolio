@@ -1,0 +1,10 @@
+@mixin fonts {
+  --Oldenburg-font: "Oldenburg", cursive, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  --Sans-font: "Open Sans", "Helvetica Neue", sans-serif;
+  --fs-xl: 4rem;
+  --fs-lg: 3.5rem;
+  --fs-md: 2rem;
+  --fs-sm: 1.5rem;
+  --fs-xs: 1.25rem;
+}
