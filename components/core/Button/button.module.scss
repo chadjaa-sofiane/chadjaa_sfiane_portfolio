@@ -1,0 +1,26 @@
+.button {
+  --opacity: 1;
+  outline: none;
+  border: none;
+  font-family: var(--button-font);
+  font-size: var(--fs-xs);
+  font-weight: bold;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  text-transform: uppercase;
+  &--field {
+    color: #fff;
+    background-color: hsl(var(--primary-400) / var(--opacity));
+  }
+  &--outlined {
+    color: var(--primary-300);
+    background-color: hsl(var(--primary-400) / calc(1 - var(--opacity)));
+    border: 0.1em solid hsl(var(--primary-400) / var(--opacity));
+  }
+  &--large {
+    font-size: var(--fs-sm);
+  }
+  &:hover {
+    --opacity: 0.8;
+  }
+}
