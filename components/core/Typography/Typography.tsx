@@ -18,5 +18,7 @@ export const Title4 = ({ children }: props) => (
   <h4 className={styles["title4"]}>{children}</h4>
 );
 
-export const Paragraph = ({ children }: props) => <p>{children}</p>;
+export const Paragraph = ({ children }: props) => (
+  <p className={styles["paragraph"]}>{children}</p>
+);
 export const LargeParagraph = ({ children }: props) => <p>{children}</p>;

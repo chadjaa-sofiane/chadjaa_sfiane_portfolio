@@ -17,4 +17,14 @@
   font-family: var(--Sans-font);
   color: hsl(var(--primary-400));
   font-size: var(--fs-sm);
+  text-transform: capitalize;
+}
+
+.paragraph {
+  font-size: var(--fs-xs);
+  line-height: 30px;
+  text-align: justify;
+  color: hsl(var(--primary-400));
+  letter-spacing: 0.1em;
+  font-family: "Pavanam", sans-serif;
 }
