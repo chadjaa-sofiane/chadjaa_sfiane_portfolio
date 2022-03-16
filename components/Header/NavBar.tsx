@@ -1,0 +1,27 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { Tabs, Tab } from "@components/core/Tabs";
+import styles from "./header.module.scss";
+
+const NavBar = () => {
+  const { pathname } = useRouter();
+  console.log(pathname);
+
+  return (
+    <nav className={styles["navBar"]}>
+      <Tabs defaultValue={pathname}>
+        <Tab name="/">
+          <Link href="/">Home</Link>
+        </Tab>
+        <Tab name="/projects">
+          <Link href="/projects">projects</Link>
+        </Tab>
+        <Tab name="/contact">
+          <Link href="/">Home</Link>
+        </Tab>
+      </Tabs>
+    </nav>
+  );
+};
+
+export default NavBar;

@@ -8,7 +8,11 @@ interface IProps {
 }
 
 const Tabs = ({ children, defaultValue = "" }: IProps) => {
-  return <TabsProvider defaultValue={defaultValue}>{children}</TabsProvider>;
+  return (
+    <TabsProvider defaultValue={defaultValue}>
+      <div className={styles["tabs"]}>{children}</div>
+    </TabsProvider>
+  );
 };
 
 interface ItabProps {

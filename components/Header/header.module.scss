@@ -1,0 +1,27 @@
+.header {
+  &--light {
+    --bg: #fff;
+    --color: hsl(var(--primary-400));
+  }
+  &--dark {
+    --bg: hsl(var(--primary-400));
+    --color: #fff;
+  }
+  width: 100%;
+  display: flex;
+  background-color: var(--bg);
+  color: var(--color);
+  padding: 0 8em;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: var(--fs-md);
+  font-family: var(--Sans-font);
+  font-weight: bold;
+}
+
+.navBar {
+  width: 35em;
+}
