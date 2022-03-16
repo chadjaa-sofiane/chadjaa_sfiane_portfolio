@@ -1,5 +1,7 @@
 import type { NextPage } from "next";
+import { HeroSection } from "containers/Home/HeroSection";
 import Head from "next/head";
+import Container from "@components/core/Container";
 
 const Home: NextPage = () => {
   return (
@@ -7,9 +9,9 @@ const Home: NextPage = () => {
       <Head>
         <title> Home Page </title>
       </Head>
-      <div>
-        <h1> Home page</h1>
-      </div>
+      <Container>
+        <HeroSection />
+      </Container>
     </div>
   );
 };

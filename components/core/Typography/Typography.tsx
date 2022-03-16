@@ -21,4 +21,6 @@ export const Title4 = ({ children }: props) => (
 export const Paragraph = ({ children }: props) => (
   <p className={styles["paragraph"]}>{children}</p>
 );
-export const LargeParagraph = ({ children }: props) => <p>{children}</p>;
+export const LargeParagraph = ({ children }: props) => (
+  <p className={styles["large__paragraph"]}>{children}</p>
+);

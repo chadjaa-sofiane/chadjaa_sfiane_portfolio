@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import Container from "@components/core/Container";
 
 const Projects = () => {
   return (
@@ -7,7 +7,9 @@ const Projects = () => {
       <Head>
         <title> Projects </title>
       </Head>
-      <h1>Projects</h1>
+      <Container>
+        <h1>Projects</h1>
+      </Container>
     </div>
   );
 };

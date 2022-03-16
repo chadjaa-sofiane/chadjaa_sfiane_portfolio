@@ -11,13 +11,13 @@ const NavBar = () => {
     <nav className={styles["navBar"]}>
       <Tabs defaultValue={pathname}>
         <Tab name="/">
-          <Link href="/">Home</Link>
+          <Link href="/">home</Link>
         </Tab>
         <Tab name="/projects">
           <Link href="/projects">projects</Link>
         </Tab>
         <Tab name="/contact">
-          <Link href="/">Home</Link>
+          <Link href="/">contact</Link>
         </Tab>
       </Tabs>
     </nav>

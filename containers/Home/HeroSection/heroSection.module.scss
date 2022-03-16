@@ -1,0 +1,26 @@
+.hero__section {
+  &__container {
+    display: flex;
+    align-items: center;
+    padding: 2.5em 0;
+    margin-top: 6em;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 8em;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex: 1 1 34em;
+    row-gap: 1em;
+  }
+  &__hero__illustration {
+    width: max-content;
+    max-width: 100%;
+    svg {
+      width: 100%;
+    }
+  }
+}

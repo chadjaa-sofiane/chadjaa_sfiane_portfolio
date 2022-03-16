@@ -7,11 +7,9 @@
     --bg: hsl(var(--primary-400));
     --color: #fff;
   }
-  width: 100%;
   display: flex;
   background-color: var(--bg);
   color: var(--color);
-  padding: 0 8em;
   justify-content: space-between;
   align-items: center;
 }
@@ -24,4 +22,5 @@
 
 .navBar {
   width: 35em;
+  text-transform: uppercase;
 }

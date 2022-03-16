@@ -22,9 +22,17 @@
 
 .paragraph {
   font-size: var(--fs-xs);
+  font-family: "Pavanam", sans-serif;
   line-height: 30px;
-  text-align: justify;
   color: hsl(var(--primary-400));
   letter-spacing: 0.1em;
-  font-family: "Pavanam", sans-serif;
+  text-align: justify;
+}
+
+.large__paragraph {
+  font-size: var(--fs-md);
+  font-family: var(--Sans-font);
+  line-height: 1.5em;
+  color: hsl(var(--primary-400));
+  letter-spacing: 0.1em;
 }
