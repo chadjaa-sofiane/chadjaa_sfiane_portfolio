@@ -1,6 +1,10 @@
 .container {
-  width: 1440px;
+  width: 82em;
   max-width: 100%;
   margin: 0 auto;
-  padding: 0 8em;
+  padding: 0 2em;
+  --container-color: hsl(var(--primary-400));
+  &--dark {
+    --container-color: #fff;
+  }
 }

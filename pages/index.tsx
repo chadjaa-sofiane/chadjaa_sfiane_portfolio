@@ -1,18 +1,19 @@
 import type { NextPage } from "next";
 import { HeroSection } from "containers/Home/HeroSection";
 import Head from "next/head";
-import Container from "@components/core/Container";
+import { BackendSection } from "containers/Home/sections";
+import FrontendSection from "containers/Home/sections/FrontEndSection";
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <>
       <Head>
         <title> Home Page </title>
       </Head>
-      <Container>
-        <HeroSection />
-      </Container>
-    </div>
+      <HeroSection />
+      <BackendSection />
+      <FrontendSection />
+    </>
   );
 };
 

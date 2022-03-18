@@ -1,4 +1,4 @@
-.hero__section {
+.section {
   &__container {
     display: flex;
     align-items: center;
@@ -16,7 +16,7 @@
     flex: 1 1 34em;
     row-gap: 1em;
   }
-  &__hero__illustration {
+  &__illustration {
     width: max-content;
     max-width: 100%;
     svg {

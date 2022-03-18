@@ -1,8 +1,17 @@
 import styles from "./container.module.scss";
 
-// eslint-disable-next-line no-undef
-const container = ({ children }: { children: React.ReactNode }) => (
-  <div className={styles["container"]}>{children}</div>
-);
+interface Props {
+  // eslint-disable-next-line no-undef
+  children: React.ReactNode;
+  variant?: "dark" | "light";
+}
+
+const container = ({ children, variant = "light" }: Props) => {
+  const classes = [
+    styles["container"],
+    variant === "dark" ? styles["container--dark"] : "",
+  ];
+  return <div className={classes.join(" ")}>{children}</div>;
+};
 
 export default container;

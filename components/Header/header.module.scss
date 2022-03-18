@@ -1,4 +1,9 @@
 .header {
+  &__wrapper {
+    position: absolute;
+    width: 100%;
+    left: 0;
+  }
   &--light {
     --bg: #fff;
     --color: hsl(var(--primary-400));

@@ -12,12 +12,14 @@ const Header = ({ color = "light" }: IProps) => {
     color === "light" ? styles["header--light"] : styles["header--dark"],
   ];
   return (
-    <Container>
-      <div className={classes.join(" ")}>
-        <div className={styles["logo"]}> softfolio </div>
-        <NavBar />
-      </div>
-    </Container>
+    <div className={styles["header__wrapper"]}>
+      <Container>
+        <div className={classes.join(" ")}>
+          <div className={styles["logo"]}> softfolio </div>
+          <NavBar />
+        </div>
+      </Container>
+    </div>
   );
 };
 
