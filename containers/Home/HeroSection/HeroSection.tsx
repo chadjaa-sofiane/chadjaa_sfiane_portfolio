@@ -1,8 +1,8 @@
 import HeroContent from "./HeroContent";
 import styles from "./heroSection.module.scss";
-import HeroIllustration from "@svg/hero_illustration.svg";
 import Wrapper from "@components/core/Wrapper";
 import Container from "@components/core/Container";
+import HeroIllustration from "./HeroIllustration";
 
 const HeroSection = () => {
   return (
@@ -10,9 +10,7 @@ const HeroSection = () => {
       <Container>
         <div className={styles["hero__section__container"]}>
           <HeroContent />
-          <div className={styles["hero__section__hero__illustration"]}>
-            <HeroIllustration />
-          </div>
+          <HeroIllustration />
         </div>
       </Container>
     </Wrapper>
