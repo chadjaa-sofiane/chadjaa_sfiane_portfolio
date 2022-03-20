@@ -14,7 +14,6 @@ const HeroIllustration = () => {
       const monitor = current.querySelector("#hero_illustration_svg__monitor");
       const person = current.querySelector("#hero_illustration_svg__person");
       const laptop = current.querySelector("#hero_illustration_svg__laptop");
-
       const mug = current.querySelector("#hero_illustration_svg__mug");
       const curtains = current.querySelector(
         "#hero_illustration_svg__curtains"
