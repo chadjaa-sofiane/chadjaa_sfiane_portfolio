@@ -1,0 +1,12 @@
+.footer {
+  &__wrapper {
+    scroll-snap-align: start;
+    background-color: hsl(var(--primary-400));
+  }
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    --container-color: #fff;
+    padding: 1em 0;
+  }
+}
