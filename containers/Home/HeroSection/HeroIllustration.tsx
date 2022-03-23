@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import HeroIllustrationSvg from "@svg/hero_illustration.svg";
 import { gsap } from "gsap";
-import styles from "./HeroSection.module.scss";
+import { SectionIllustration } from "@components/Section";
 
 const HeroIllustration = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -50,9 +50,9 @@ const HeroIllustration = () => {
   }, []);
 
   return (
-    <div ref={ref} className={styles["hero__section__hero__illustration"]}>
+    <SectionIllustration ref={ref}>
       <HeroIllustrationSvg />
-    </div>
+    </SectionIllustration>
   );
 };
 

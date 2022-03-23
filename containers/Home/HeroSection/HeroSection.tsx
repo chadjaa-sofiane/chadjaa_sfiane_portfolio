@@ -1,19 +1,17 @@
-import HeroContent from "./HeroContent";
-import Wrapper from "@components/core/Wrapper";
-import Container from "@components/core/Container";
 import HeroIllustration from "./HeroIllustration";
-import styles from "./HeroSection.module.scss";
+import { Section, SectionContent } from "@components/Section";
+import { Button } from "@components/core/Button";
 
 const HeroSection = () => {
   return (
-    <Wrapper>
-      <Container>
-        <div className={styles["hero__section__container"]}>
-          <HeroContent />
-          <HeroIllustration />
-        </div>
-      </Container>
-    </Wrapper>
+    <Section>
+      <SectionContent
+        title=" welcome in sotfolio "
+        description="welcome in chadjaa sofiane world, here I describe myself."
+        button={<Button> welcome in sotfolio </Button>}
+      />
+      <HeroIllustration />
+    </Section>
   );
 };
 

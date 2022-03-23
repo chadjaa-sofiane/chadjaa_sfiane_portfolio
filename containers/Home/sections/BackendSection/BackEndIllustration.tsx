@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import BackendIllustration from "@svg/backend_illustration.svg";
 import { gsap } from "gsap";
-import styles from "../Sections.module.scss";
+import { SectionIllustration } from "@components/Section";
 
 const BackEndIllustration = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -40,9 +40,9 @@ const BackEndIllustration = () => {
   }, []);
 
   return (
-    <div ref={ref} className={styles["section__illustration"]}>
+    <SectionIllustration ref={ref}>
       <BackendIllustration />
-    </div>
+    </SectionIllustration>
   );
 };
 
