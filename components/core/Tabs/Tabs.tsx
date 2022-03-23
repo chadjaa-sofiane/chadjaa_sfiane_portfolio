@@ -1,5 +1,5 @@
-import TabsProvider, { useTabsContext } from "./TabsContext";
-import styles from "./tabs.module.scss";
+import TabsProvider, { useTabsContext } from "./Tabs.context";
+import styles from "./Tabs.module.scss";
 
 interface IProps {
   // eslint-disable-next-line no-undef

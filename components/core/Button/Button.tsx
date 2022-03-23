@@ -1,4 +1,4 @@
-import styles from "./button.module.scss";
+import styles from "./Button.module.scss";
 
 interface props {
   // eslint-disable-next-line no-undef

@@ -1,4 +1,4 @@
-import styles from "./container.module.scss";
+import styles from "./Container.module.scss";
 
 interface Props {
   // eslint-disable-next-line no-undef

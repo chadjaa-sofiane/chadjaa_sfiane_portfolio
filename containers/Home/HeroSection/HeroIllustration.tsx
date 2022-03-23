@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import HeroIllustrationSvg from "@svg/hero_illustration.svg";
 import { gsap } from "gsap";
-import styles from "./heroSection.module.scss";
+import styles from "./HeroSection.module.scss";
 
 const HeroIllustration = () => {
   const ref = useRef<HTMLDivElement>(null);

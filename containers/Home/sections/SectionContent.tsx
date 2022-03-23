@@ -1,5 +1,5 @@
 import { LargeParagraph, Title1 } from "@components/core/Typography";
-import styles from "./sections.module.scss";
+import styles from "./Sections.module.scss";
 
 interface Props {
   title: string;

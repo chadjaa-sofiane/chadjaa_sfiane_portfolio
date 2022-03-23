@@ -3,7 +3,7 @@ import { LargeParagraph, Title1 } from "@components/core/Typography";
 import { Button } from "@components/core/Button";
 import Wrapper from "@components/core/Wrapper";
 import Container from "@components/core/Container";
-import styles from "./aboutMe.module.scss";
+import styles from "./AboutMe.module.scss";
 
 const AboutMe = () => {
   return (

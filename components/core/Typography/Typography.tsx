@@ -1,4 +1,4 @@
-import styles from "./typography.module.scss";
+import styles from "./Typography.module.scss";
 
 interface props {
   // eslint-disable-next-line no-undef

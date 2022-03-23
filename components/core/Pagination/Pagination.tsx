@@ -1,6 +1,6 @@
 import PaginationButton from "./PaginationButton";
-import styles from "./pagination.module.scss";
-import PaginationProvider from "./PaginationContext";
+import styles from "./Pagination.module.scss";
+import PaginationProvider from "./Pagination.context";
 
 interface props {
   count: number;

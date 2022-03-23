@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import BackendIllustration from "@svg/backend_illustration.svg";
 import { gsap } from "gsap";
-import styles from "../sections.module.scss";
+import styles from "../Sections.module.scss";
 
 const BackEndIllustration = () => {
   const ref = useRef<HTMLDivElement>(null);

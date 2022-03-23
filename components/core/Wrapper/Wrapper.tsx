@@ -1,4 +1,4 @@
-import styles from "./wrapper.module.scss";
+import styles from "./Wrapper.module.scss";
 
 interface Props {
   // eslint-disable-next-line no-undef

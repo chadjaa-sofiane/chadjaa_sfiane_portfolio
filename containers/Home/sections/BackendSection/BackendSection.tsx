@@ -1,8 +1,8 @@
 import SectionContent from "../SectionContent";
 import Wrapper from "@components/core/Wrapper";
 import Container from "@components/core/Container";
-import styles from "../sections.module.scss";
 import BackEndIllustration from "./BackEndIllustration";
+import styles from "../Sections.module.scss";
 
 //backend_illustration
 

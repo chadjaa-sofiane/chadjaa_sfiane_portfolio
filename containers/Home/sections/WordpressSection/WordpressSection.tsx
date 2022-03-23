@@ -2,7 +2,7 @@ import SectionContent from "../SectionContent";
 import WordPressIllustration from "@svg/wordpress_illustration.svg";
 import Wrapper from "@components/core/Wrapper";
 import Container from "@components/core/Container";
-import styles from "../sections.module.scss";
+import styles from "../Sections.module.scss";
 
 //backend_illustration
 

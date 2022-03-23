@@ -1,6 +1,6 @@
 import Container from "@components/core/Container";
 import { Paragraph } from "@components/core/Typography";
-import styles from "./footer.module.scss";
+import styles from "./Footer.module.scss";
 
 const Footer = () => {
   return (

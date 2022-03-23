@@ -1,6 +1,6 @@
-import styles from "./heroSection.module.scss";
 import { LargeParagraph, Title1 } from "@components/core/Typography";
 import { Button } from "@components/core/Button";
+import styles from "./HeroSection.module.scss";
 
 const HeroContent = () => {
   return (

@@ -1,7 +1,7 @@
 import PrevIcon from "@svg/prev.svg";
 import NextIcon from "@svg/next.svg";
-import styles from "./pagination.module.scss";
-import { usePaginationContext } from "./PaginationContext";
+import styles from "./Pagination.module.scss";
+import { usePaginationContext } from "./Pagination.context";
 
 type Rendertype = number | "next" | "prev";
 
