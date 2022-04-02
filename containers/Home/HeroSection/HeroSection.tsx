@@ -8,7 +8,7 @@ const HeroSection = () => {
       <SectionContent
         title=" welcome in sotfolio "
         description="welcome in chadjaa sofiane world, here I describe myself."
-        button={<Button> welcome in sotfolio </Button>}
+        button={<Button> about me </Button>}
       />
       <HeroIllustration />
     </Section>

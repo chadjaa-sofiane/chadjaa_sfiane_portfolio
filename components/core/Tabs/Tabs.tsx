@@ -5,12 +5,13 @@ interface IProps {
   // eslint-disable-next-line no-undef
   children: React.ReactNode;
   defaultValue?: string;
+  className?: string;
 }
 
-const Tabs = ({ children, defaultValue = "" }: IProps) => {
+const Tabs = ({ children, defaultValue = "", className = "" }: IProps) => {
   return (
     <TabsProvider defaultValue={defaultValue}>
-      <div className={styles["tabs"]}>{children}</div>
+      <div className={`${styles["tabs"]} ${className}`}>{children}</div>
     </TabsProvider>
   );
 };

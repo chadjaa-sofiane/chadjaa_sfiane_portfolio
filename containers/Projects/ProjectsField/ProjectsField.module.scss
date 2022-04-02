@@ -1,0 +1,19 @@
+.projects {
+  &__field {
+    --color: hsl(var(--primary-400));
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  &__tabs {
+    justify-content: center;
+    column-gap: 4em;
+  }
+  &__cards__field {
+    margin-top: 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 8em;
+  }
+}

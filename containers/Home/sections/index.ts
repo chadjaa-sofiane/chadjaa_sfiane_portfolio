@@ -1,2 +1,3 @@
-export { default as BackendSection } from "./BackendSection/BackendSection";
-export { default as FrontEndSection } from "./FrontEndSection/FrontendSection";
+export { default as BackendSection } from "./BackendSection";
+export { default as FrontendSection } from "./FrontEndSection";
+export { default as WordpressSection } from "./WordpressSection";

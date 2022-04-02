@@ -6,25 +6,24 @@ import styles from "./Card.module.scss";
 interface props {
   // eslint-disable-next-line no-undef
   title: string;
+  body: string;
+  imageSrc?: string;
 }
 
-const Card = ({ title }: props) => {
+const Card = ({ title, body, imageSrc }: props) => {
   return (
     <div className={styles["card__wrapper"]}>
       <div className={styles["card__image__field"]}>
         <Image
           className={styles["card__image"]}
-          src="/images/test.png"
+          src={imageSrc || "/images/test.png"}
           alt="bowowo"
           layout="fill"
         />
       </div>
       <div className={styles["card__content"]}>
         <Title4> {title} </Title4>
-        <Paragraph>
-          this is the project description where I describe what the shit I have
-          built here
-        </Paragraph>
+        <Paragraph>{body}</Paragraph>
         <Button variant="outlined">View Project</Button>
       </div>
     </div>

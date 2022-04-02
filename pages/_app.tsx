@@ -1,12 +1,14 @@
-import { Header } from "@components/Header";
+import { useRouter } from "next/router";
 import type { AppProps } from "next/app";
-import "@styles/index.scss";
+import { Header } from "@components/Header";
 import Footer from "@components/Footer";
+import "@styles/index.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const { pathname } = useRouter();
   return (
     <>
-      <Header />
+      <Header color={pathname === "/projects" ? "dark" : "light"} />
       <Component {...pageProps} />
       <Footer />
     </>
