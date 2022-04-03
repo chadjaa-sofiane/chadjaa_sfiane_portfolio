@@ -1,0 +1,35 @@
+.contact {
+  &__container {
+    width: 60em;
+    max-width: 100%;
+    display: flex;
+    margin: auto;
+    margin-top: 2em;
+    flex-wrap: wrap;
+  }
+  &__form {
+    max-width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em 2em;
+    row-gap: 0.5em;
+    & > div {
+      width: 100%;
+    }
+  }
+  &__name__field {
+    display: flex;
+    column-gap: 1em;
+    & > div {
+      flex: 1 1 1em;
+    }
+  }
+  &__meesage__svg__field {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    background-color: hsl(var(--primary-400));
+  }
+}

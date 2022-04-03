@@ -1,5 +1,5 @@
-import { ProjectsField, ProjectsHero } from "containers/Projects";
 import Head from "next/head";
+import { ProjectsField, ProjectsHero } from "containers/Projects";
 
 const Projects = () => {
   return (
