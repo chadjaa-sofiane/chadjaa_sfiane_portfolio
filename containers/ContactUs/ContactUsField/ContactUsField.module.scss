@@ -6,6 +6,7 @@
     margin: auto;
     margin-top: 2em;
     flex-wrap: wrap;
+    box-shadow: 0px 0px 8px 4px hsl(var(--primary-400) / 0.1);
   }
   &__form {
     max-width: 100%;
@@ -23,7 +24,7 @@
     display: flex;
     column-gap: 1em;
     & > div {
-      flex: 1 1 1em;
+      flex: 1;
     }
   }
   &__meesage__svg__field {
