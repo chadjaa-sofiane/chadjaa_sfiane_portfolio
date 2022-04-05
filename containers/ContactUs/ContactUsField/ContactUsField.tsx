@@ -1,13 +1,20 @@
 import { Section } from "@components/Section";
-import styles from "./ContactUsField.module.scss";
 import ContactUsForm from "./ContactUsForm";
 import ContactUsIllustration from "./ContactUsIllustration";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "@services/firebase";
+import ContactFieldProvider, { useContactFieldContext } from "./ContactField.context";
+import { startAnimation } from "./ContactField.animation";
+import styles from "./ContactUsField.module.scss";
 
-styles;
+const messagesCollectionRef = collection(db, "messages");
 
 const ContactUsField = () => {
-  const submitAction = (userData: any) => {
-    console.log(userData);
+  const refs = useContactFieldContext();
+
+  const submitAction = async (userData: any) => {
+    await addDoc(messagesCollectionRef, userData);
+    startAnimation(refs!);
   };
   return (
     <Section>
@@ -19,4 +26,10 @@ const ContactUsField = () => {
   );
 };
 
-export default ContactUsField;
+const widthProvider = () => {
+  return <ContactFieldProvider>
+    <ContactUsField />
+  </ContactFieldProvider>
+}
+
+export default widthProvider;

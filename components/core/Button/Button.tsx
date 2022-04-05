@@ -6,14 +6,16 @@ interface props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   variant?: "outlined" | "field";
   size?: "large" | "normal";
+  color?: "primary" | "secondary";
 }
 
-const Button = ({ children, variant, size, ...rest }: props) => {
+const Button = ({ children, variant, size, color = "primary", ...rest }: props) => {
   const styelArray = [
     styles["button"],
     variant === "outlined"
       ? styles["button--outlined"]
       : styles["button--field"],
+    color === "secondary" ? styles["button--secondary"] : styles["button--primary"],
     size === "large" ? styles["button--large"] : "",
   ];
 

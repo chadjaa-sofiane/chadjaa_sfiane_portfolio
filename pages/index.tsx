@@ -1,5 +1,6 @@
 import Head from "next/head";
 import type { NextPage } from "next";
+import { app } from "../services/firebase";
 
 import {
   HeroSection,

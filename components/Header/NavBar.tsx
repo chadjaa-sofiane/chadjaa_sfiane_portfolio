@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Tabs, Tab } from "@components/core/Tabs";
-import styles from "./header.module.scss";
+import styles from "./Header.module.scss";
 
 const NavBar = () => {
   const { pathname } = useRouter();
