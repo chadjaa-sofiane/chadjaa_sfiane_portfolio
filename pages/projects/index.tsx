@@ -12,7 +12,4 @@ const Projects = () => {
     </>
   );
 };
-
-Projects.headerColor = "dark";
-
 export default Projects;

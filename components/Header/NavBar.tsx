@@ -5,7 +5,6 @@ import styles from "./Header.module.scss";
 
 const NavBar = () => {
   const { pathname } = useRouter();
-
   return (
     <nav className={styles["navBar"]}>
       <Tabs defaultValue={pathname}>

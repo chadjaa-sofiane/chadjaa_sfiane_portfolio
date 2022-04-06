@@ -1,12 +1,80 @@
+@use "../../styles/mixins/" as *;
+
 .footer {
   &__wrapper {
+    width: 100%;
+    display: flex;
     scroll-snap-align: start;
     background-color: hsl(var(--primary-400));
+    gap: 2em;
+    flex-wrap: wrap;
   }
   &__content {
+    flex: 1 1 20em;
     display: flex;
-    justify-content: space-between;
-    --container-color: #fff;
+    flex-direction: column;
+    row-gap: 2em;
     padding: 1em 0;
+    span{
+      font-weight: bold;
+    }  
+  }
+  &__socialMedia {
+    &__container {
+      flex: 1 1 30em;
+      display: flex;
+      flex-direction: column;
+      gap: 3em;
+      padding: 0 2em;
+      h2 {
+        color: #fff;
+      }
+      & > div {
+        width: 100%;
+        display: flex;
+        gap: 3em;
+        flex-wrap: wrap;
+      }
+    }
+    &__card {
+      --box-shadow-color: hsl(var(--primary-300));
+      padding: 1em;
+      box-shadow: 0 0 1em 0.05em var(--box-shadow-color);
+      border-radius: 0.5em;
+      transition: box-shadow 100ms ease-in, transform 100ms ease-in-out;
+      svg {
+        width: 6em;
+        height: 6em;
+        path {
+          stroke: #fff;
+          fill: #fff;
+          transition: stroke 100ms ease-in, fill 100ms ease-in;
+        }
+      }
+      cursor: pointer;
+      &:hover > svg path {
+        stroke: var(--color);
+        fill: var(--color);
+      }
+      &:hover {
+        transform: scale(1.01);
+        --box-shadow-color: var(--color);
+      }
+    }
+  }
+}
+
+.icon {
+  &--white {
+    --color: #fff;
+  }
+  &--twitter {
+    --color: #1da1f2;
+  }
+  &--linkedIn {
+    --color: #0077b5;
+  }
+  &--github {
+    --color: #4a4a4a;
   }
 }

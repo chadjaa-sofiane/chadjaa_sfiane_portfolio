@@ -12,15 +12,18 @@ interface IProps {
   defaultValue?: string;
 }
 
-const TabsContext = createContext<IContext | null>(null);
+const TabsContext = createContext<IContext>({
+  active: "",
+  setActive: () => { },
+});
 
 const TabsProvider = ({ children, defaultValue = "" }: IProps) => {
   const [active, setActive] = useState("");
   useEffect(() => {
     setActive(defaultValue);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   return (
     <TabsContext.Provider value={{ active, setActive }}>
       {children}

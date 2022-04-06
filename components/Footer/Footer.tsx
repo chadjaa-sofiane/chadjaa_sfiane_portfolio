@@ -1,17 +1,22 @@
-import Container from "@components/core/Container";
-import { Paragraph } from "@components/core/Typography";
+import { Paragraph, Title2 } from "@components/core/Typography";
+import { Section } from "@components/Section";
 import styles from "./Footer.module.scss";
+import SocialMediaContainer from "./SocialMediaContainer";
 
 const Footer = () => {
   return (
-    <div className={styles["footer__wrapper"]}>
-      <Container>
+    <Section variant="dark">
+      <div className={styles["footer__wrapper"]}>
+        <SocialMediaContainer />
         <div className={styles["footer__content"]}>
-          <Paragraph>©chadjaa sofiane;</Paragraph>
-          <Paragraph>2022</Paragraph>
+          <Title2> about me </Title2>
+          <Paragraph><span> chadjaa sofiane </span>, a full-stack javascript developer</Paragraph>
+          <Paragraph><span> front end </span> : react - next - svelte</Paragraph>
+          <Paragraph><span> back end </span>: node js - express </Paragraph>
+          <Paragraph><span> my email </span>: chadjaasofiane@gmail.com</Paragraph>
         </div>
-      </Container>
-    </div>
+      </div>
+    </Section>
   );
 };
 
