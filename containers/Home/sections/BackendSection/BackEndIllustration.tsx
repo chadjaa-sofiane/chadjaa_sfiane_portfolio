@@ -2,6 +2,9 @@ import { useEffect, useRef } from "react";
 import BackendIllustration from "@svg/backend_illustration.svg";
 import { gsap } from "gsap";
 import { SectionIllustration } from "@components/Section";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const BackEndIllustration = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -9,7 +12,14 @@ const BackEndIllustration = () => {
   useEffect(() => {
     const { current } = ref;
     if (current) {
-      const tl = gsap.timeline({ duration: 0.5 });
+      const tl = gsap.timeline({
+        defaults: {
+          duration: 0.5
+        },
+        scrollTrigger: {
+          trigger: current,
+        }
+      });
       const serverBg = current.querySelector(
         "#backend_illustration_svg__background"
       );
