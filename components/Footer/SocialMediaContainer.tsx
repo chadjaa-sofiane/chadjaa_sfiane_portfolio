@@ -21,8 +21,8 @@ function SocialMediaContainer() {
     )
 }
 
-const TwitterIconWrapper = () => (<SocialMediaCard color="twitter"> <TwitterIcon /> </SocialMediaCard>)
-const LinkedInIconWrapper = () => (<SocialMediaCard color="linkedIn"> <LinkedInIcon /> </SocialMediaCard>)
-const GitHubIconWrapper = () => (<SocialMediaCard color="github"> <GithubIcon /> </SocialMediaCard>)
+const TwitterIconWrapper = () => (<SocialMediaCard url="https://twitter.com/ChadjaaSofiane" color="twitter"> <TwitterIcon /> </SocialMediaCard>)
+const LinkedInIconWrapper = () => (<SocialMediaCard url="https://www.linkedin.com/in/chadjaa-sofiane-749045217/" color="linkedIn"> <LinkedInIcon /> </SocialMediaCard>)
+const GitHubIconWrapper = () => (<SocialMediaCard url="https://www.github.com/chadjaa-sofiane" color="github"> <GithubIcon /> </SocialMediaCard>)
 
 export default SocialMediaContainer

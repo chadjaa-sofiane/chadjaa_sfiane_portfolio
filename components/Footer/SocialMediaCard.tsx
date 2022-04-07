@@ -3,17 +3,20 @@ import styles from "./Footer.module.scss"
 interface Props {
     // eslint-disable-next-line no-undef
     children: React.ReactNode;
-    color?: string
+    color?: string;
+    url?: string;
 }
 
-const SocialMediaCard = ({ children, color = "white" }: Props) => {
+const SocialMediaCard = ({ children, color = "white", url = "" }: Props) => {
     const classes = [
         styles[`icon--${color}`],
         styles["footer__socialMedia__card"]
     ]
     return (
         <div className={classes.join(" ")}>
-            {children}
+            <a href={url} target="_blank" rel="noopener noreferrer">
+                {children}
+            </a>
         </div>
     )
 }

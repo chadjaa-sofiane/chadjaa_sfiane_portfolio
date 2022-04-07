@@ -4,6 +4,9 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    h2{
+      text-align: center;
+    }
   }
   &__tabs {
     justify-content: center;

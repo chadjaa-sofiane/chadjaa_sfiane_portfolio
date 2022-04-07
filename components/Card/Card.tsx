@@ -8,9 +8,10 @@ interface props {
   title: string;
   body: string;
   imageSrc?: string;
+  url?: string;
 }
 
-const Card = ({ title, body, imageSrc }: props) => {
+const Card = ({ title, body, imageSrc, url = "" }: props) => {
   return (
     <div className={styles["card__wrapper"]}>
       <div className={styles["card__image__field"]}>
@@ -24,7 +25,11 @@ const Card = ({ title, body, imageSrc }: props) => {
       <div className={styles["card__content"]}>
         <Title4> {title} </Title4>
         <Paragraph>{body}</Paragraph>
-        <Button variant="outlined">View Project</Button>
+        <Button variant="outlined">
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            View Project
+          </a>
+        </Button>
       </div>
     </div>
   );
