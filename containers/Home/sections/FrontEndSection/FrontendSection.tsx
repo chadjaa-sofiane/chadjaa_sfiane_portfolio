@@ -1,9 +1,8 @@
-import FrontendIllustration from "@svg/froneend_illustration.svg";
 import {
   Section,
   SectionContent,
-  SectionIllustration,
 } from "@components/Section";
+import FrontEndIllustration from "./FrontEndIllustration";
 
 //backend_illustration
 
@@ -14,9 +13,7 @@ const FrontendSection = () => {
         title="a designer can build your world"
         description="a nodeJs develoer.I will build and maintain your servers."
       />
-      <SectionIllustration>
-        <FrontendIllustration />
-      </SectionIllustration>
+      <FrontEndIllustration />
     </Section>
   );
 };

@@ -1,5 +1,6 @@
+import { useRef, useEffect } from "react"
+import { appearAnimation } from "./Wrapper.animation";
 import styles from "./Wrapper.module.scss";
-
 interface Props {
   // eslint-disable-next-line no-undef
   children: React.ReactNode;
@@ -7,8 +8,16 @@ interface Props {
 }
 
 const Wrapper = ({ children, variant = "light" }: Props) => {
+  const ref = useRef(null)
   const classes = [styles["wrapper"], variant === "dark" ? styles["wrapper--dark"] : ""];
-  return <div className={classes.join(" ")}>{children}</div>;
+
+  useEffect(() => {
+    if (ref.current) {
+      appearAnimation(ref);
+    }
+  }, [])
+
+  return <div ref={ref} className={classes.join(" ")}>{children}</div>;
 };
 
 export default Wrapper;
