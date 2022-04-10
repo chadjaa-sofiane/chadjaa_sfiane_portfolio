@@ -1,9 +1,9 @@
 import {
   Section,
   SectionContent,
-  SectionIllustration,
 } from "@components/Section";
-import ProjectsIllustrationSvg from "@svg/projects_illustration.svg";
+
+import ProjectsHeroIllustration from "./ProjectsHeroIllustration"
 
 const ProjectsHero = () => {
   return (
@@ -12,9 +12,7 @@ const ProjectsHero = () => {
         title="My Projects"
         description="hi there, here I can show you all my previeus works, and if you didn't like it, just through yourself in the closest hole"
       />
-      <SectionIllustration>
-        <ProjectsIllustrationSvg />
-      </SectionIllustration>
+      <ProjectsHeroIllustration />
     </Section>
   );
 };
