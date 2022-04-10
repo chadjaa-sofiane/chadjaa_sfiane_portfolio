@@ -1,19 +1,15 @@
-import WordPressIllustration from "@svg/wordpress_illustration.svg";
 import {
   Section,
   SectionContent,
-  SectionIllustration,
 } from "@components/Section";
+import WordPressIllustration from "./WordPressIllustration";
 
 //backend_illustration
 
 const WordpressSection = () => {
   return (
     <Section variant="dark">
-      <SectionIllustration>
-        <WordPressIllustration />
-      </SectionIllustration>
-
+      <WordPressIllustration />
       <SectionContent
         title="a wordpress manager"
         description="I can build and manage wordpress templates."

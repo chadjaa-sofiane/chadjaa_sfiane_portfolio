@@ -1,5 +1,11 @@
 {
-  "extends": ["next/core-web-vitals", "eslint:recommended"],
+  "parser": "@typescript-eslint/parser",
+  // add typescript to the extends array
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "rules": {
     "no-unused-vars": "warn",
     "no-func-assign": "warn",
