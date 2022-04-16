@@ -1,13 +1,14 @@
+import { forwardRef } from "react";
 import styles from "./Typography.module.scss";
 
 interface props {
-  // eslint-disable-next-line no-undef
   children: React.ReactNode;
 }
 
-export const Title1 = ({ children }: props) => (
-  <h1 className={styles["title1"]}>{children}</h1>
-);
+// eslint-disable-next-line react/display-name
+export const Title1 = forwardRef<HTMLDivElement, props>(
+  ({ children }, ref) => <h1 ref={ref} className={styles["title1"]}>{children}</h1>);
+
 export const Title2 = ({ children }: props) => (
   <h2 className={styles["title2"]}>{children}</h2>
 );

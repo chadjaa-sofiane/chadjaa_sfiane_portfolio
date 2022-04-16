@@ -12,11 +12,16 @@ export const startAnimation = (refs: TRefs) => {
     tl.play();
     return;
   }
-  const { formRef, MessageRef } = refs;
-  tl.to(formRef!?.current, { opacity: 0, scale: 0.9 }).to(
-    MessageRef!?.current,
-    { visibility: "visible", opacity: 1, scale: 1 }
-  );
+  const { formRef, MessageRef, MessageSvgRef } = refs;
+
+  if (!formRef || !MessageRef || !MessageSvgRef?.current) return;
+  const papper = MessageSvgRef.current?.querySelector("#message_svg__papper");
+  const open = MessageSvgRef.current?.querySelector("#message_svg__open");
+
+  tl.to(formRef?.current, { opacity: 0, scale: 0.9 })
+    .to(MessageRef?.current, { visibility: "visible", opacity: 1, scale: 1 })
+    .to(papper, { y: 50, opacity: 0 }, "-=0.5")
+    .to(open, { rotateX: "90deg", transformOrigin: "top center" });
 };
 
 export const reverseAnimation = () => {

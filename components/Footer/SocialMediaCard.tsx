@@ -1,7 +1,6 @@
 import styles from "./Footer.module.scss"
 
 interface Props {
-    // eslint-disable-next-line no-undef
     children: React.ReactNode;
     color?: string;
     url?: string;

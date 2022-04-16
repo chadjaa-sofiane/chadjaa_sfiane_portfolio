@@ -3,7 +3,6 @@ import Wrapper from "@components/core/Wrapper";
 import styles from "./Section.module.scss";
 
 interface Props {
-  // eslint-disable-next-line no-undef
   children: React.ReactNode;
   variant?: "dark" | "light";
 }

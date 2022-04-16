@@ -18,7 +18,7 @@ const PaginationButton = ({ render }: props) => {
 
   const onClickAvtion = (value: Rendertype) => {
     if (typeof value !== "number") return;
-    setActiveNumber(value);
+    if (setActiveNumber) setActiveNumber(value);
   };
 
   const children =

@@ -11,7 +11,10 @@ interface props {
   children: React.ReactNode;
 }
 
-const PaginationContext = createContext<IContext | null>(null);
+const PaginationContext = createContext<IContext>({
+  activeNumber: 1,
+  setActiveNumber: () => null
+});
 
 const PaginationProvider = ({ children }: props) => {
   const [activeNumber, setActiveNumber] = useState(1);

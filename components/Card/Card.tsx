@@ -4,7 +4,6 @@ import { Paragraph, Title4 } from "@components/core/Typography";
 import styles from "./Card.module.scss";
 
 interface props {
-  // eslint-disable-next-line no-undef
   title: string;
   body: string;
   imageSrc?: string;
