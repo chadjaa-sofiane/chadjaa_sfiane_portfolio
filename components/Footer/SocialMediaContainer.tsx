@@ -1,4 +1,4 @@
-import { Title2 } from "@components/core/Typography";
+import { AnimationText } from "@components/AnimationText";
 import SocialMediaCard from "./SocialMediaCard";
 import TwitterIcon from "@svg/twitter.svg";
 import LinkedInIcon from "@svg/linked_in.svg";
@@ -9,7 +9,7 @@ import styles from "./Footer.module.scss";
 function SocialMediaContainer() {
     return (
         <div className={styles["footer__socialMedia__container"]}>
-            <Title2>contact me</Title2>
+            <AnimationText>contact me</AnimationText>
             <div>
                 <TwitterIconWrapper />
                 <LinkedInIconWrapper />
