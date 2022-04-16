@@ -7,6 +7,7 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
+    "react-hooks/exhaustive-deps": "off",
     "no-unused-vars": "warn",
     "no-func-assign": "warn",
     "block-scoped-var": "warn",
