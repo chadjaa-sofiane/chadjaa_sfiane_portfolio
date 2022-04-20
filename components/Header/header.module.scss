@@ -36,7 +36,7 @@
   &__list {
     width: min(35em, 100%);
     @include breakpoint(medium) {
-      position: fixed;
+      position: absolute;
       left: 0;
       top: 0;
       flex-direction: column;

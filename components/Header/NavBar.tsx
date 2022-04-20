@@ -8,9 +8,10 @@ import styles from "./Header.module.scss";
 const NavBar = () => {
   const { pathname } = useRouter();
   const [open, setOpen] = useState(false);
+  const closeMenu = () => setOpen(false);
   return (
     <nav className={styles["navBar"]}>
-      <Tabs className={`${styles["navBar__list"]} ${open ? styles["navBar__list--open"] : ""}`} defaultValue={pathname}>
+      <Tabs handleAction={closeMenu} className={`${styles["navBar__list"]} ${open ? styles["navBar__list--open"] : ""}`} defaultValue={pathname}>
         <Tab name="/">
           <Link href="/">home</Link>
         </Tab>
