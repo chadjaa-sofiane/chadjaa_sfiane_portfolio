@@ -6,11 +6,12 @@ interface IProps {
   children: React.ReactNode;
   defaultValue?: string;
   className?: string;
+  handleAction?: () => void;
 }
 
-const Tabs = ({ children, defaultValue = "", className = "" }: IProps) => {
+const Tabs = ({ children, defaultValue = "", className = "", handleAction = () => null }: IProps) => {
   return (
-    <TabsProvider defaultValue={defaultValue}>
+    <TabsProvider defaultValue={defaultValue} handleAction={handleAction}>
       <div className={`${styles["tabs"]} ${className}`}>{children}</div>
     </TabsProvider>
   );
@@ -23,9 +24,10 @@ interface ItabProps {
 }
 
 export const Tab = ({ children, name }: ItabProps) => {
-  const { active, setActive } = useTabsContext();
+  const { active, setActive, handleAction } = useTabsContext();
   const onClickAction = (name: string) => {
     setActive(name);
+    handleAction();
   };
 
   const classes = [styles["tab"], active === name ? styles["tab--active"] : ""];
