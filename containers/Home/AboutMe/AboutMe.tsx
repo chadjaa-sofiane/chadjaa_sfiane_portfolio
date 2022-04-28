@@ -6,7 +6,7 @@ import Wrapper from "@components/core/Wrapper";
 import Container from "@components/core/Container";
 import styles from "./AboutMe.module.scss";
 
-const AboutMe = () => {
+const AboutMe = ({ profileImage }: any) => {
   return (
     <Wrapper>
       <Container>
@@ -20,7 +20,7 @@ const AboutMe = () => {
             <Button variant="outlined"> download my cv </Button>
           </div>
           <div className={styles["aboutMe__image__field"]}>
-            <Image src="/images/my_avatar.png" alt="my photo" layout="fill" />
+            <Image src={profileImage || ""} alt="my photo" layout="fill" />
           </div>
         </div>
       </Container>

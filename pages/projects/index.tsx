@@ -1,8 +1,9 @@
 import Head from "next/head";
 import { ProjectsField, ProjectsHero } from "containers/Projects";
 import { db, storage } from "@services/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore/dist/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
+
 
 const ProjectsRef = collection(db, "projects");
 const getImageRef = (id: string) => ref(storage, `projects/${id}`);
@@ -29,7 +30,7 @@ const getImageSrc = async (id: string) => {
 export const getServerSideProps = async () => {
   const data = await getDocs(ProjectsRef);
   const projects = await Promise.all(data.docs.map(async project => {
-    const imageUrl = await getImageSrc(project.data().imageName)
+    const imageUrl = await getImageSrc(project.data().imageName);
     return {
       ...project.data(),
       id: project.id,

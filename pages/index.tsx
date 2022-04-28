@@ -1,7 +1,6 @@
 import Head from "next/head";
-import type { NextPage } from "next";
-import { app } from "../services/firebase";
-
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from "@services/firebase";
 import {
   HeroSection,
   BackendSection,
@@ -10,7 +9,9 @@ import {
   AboutMe,
 } from "containers/Home";
 
-const Home: NextPage = () => {
+
+
+const Home = ({ profileImage }: any) => {
   return (
     <>
       <Head>
@@ -20,9 +21,20 @@ const Home: NextPage = () => {
       <BackendSection />
       <FrontendSection />
       <WordpressSection />
-      <AboutMe />
+      <AboutMe profileImage={profileImage} />
     </>
   );
 };
+
+export const getServerSideProps = async () => {
+  const imageRef = ref(storage, "profileImage.jpg");
+  const profileImage = await getDownloadURL(imageRef);
+  console.log(profileImage);
+  return {
+    props: {
+      profileImage
+    }
+  }
+}
 
 export default Home;
