@@ -21,7 +21,7 @@ export const startAnimation = (refs: TRefs) => {
   tl.to(formRef?.current, { opacity: 0, scale: 0.9 })
     .to(MessageRef?.current, { visibility: "visible", opacity: 1, scale: 1 })
     .to(papper, { y: 50, opacity: 0 }, "-=0.5")
-    .to(open, { rotateX: "90deg", transformOrigin: "top center" });
+    .to(open, { opacity: 0 }, "-=0.5");
 };
 
 export const reverseAnimation = () => {
