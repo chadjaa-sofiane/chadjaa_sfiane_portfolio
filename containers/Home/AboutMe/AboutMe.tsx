@@ -6,6 +6,15 @@ import Wrapper from "@components/core/Wrapper";
 import Container from "@components/core/Container";
 import styles from "./AboutMe.module.scss";
 
+const downloadCv = () => {
+  const a: HTMLAnchorElement = document.createElement("a");
+  a.href = "/resume.pdf";
+  a.download = "chadjaa_sofiane_resume";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+};
+
 const AboutMe = ({ profileImage }: any) => {
   return (
     <Wrapper>
@@ -17,7 +26,7 @@ const AboutMe = ({ profileImage }: any) => {
               my name is chadjaa sofiane and I can build your dreams and hobs
               and bring you with me to the hell.
             </LargeParagraph>
-            <Button variant="outlined"> download my cv </Button>
+            <Button variant="outlined" onClick={downloadCv}> download my cv </Button>
           </div>
           <div className={styles["aboutMe__image__field"]}>
             <Image src={profileImage || ""} alt="my photo" layout="fill" />
