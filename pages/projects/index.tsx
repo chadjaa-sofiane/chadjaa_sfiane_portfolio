@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { ProjectsField, ProjectsHero } from "containers/Projects";
 import { db, storage } from "@services/firebase";
-import { collection, getDocs } from "firebase/firestore/dist/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
+import { collection, getDocs } from "firebase/firestore";
 
 
 const ProjectsRef = collection(db, "projects");
