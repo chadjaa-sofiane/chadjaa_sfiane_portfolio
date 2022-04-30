@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Button } from "@components/core/Button";
-import { Paragraph, Title4 } from "@components/core/Typography";
 import styles from "./Card.module.scss";
+import { Paragraph, Title4 } from "@components/core/Typography";
 
 interface props {
   title: string;

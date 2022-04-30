@@ -1,8 +1,8 @@
 import { Paragraph } from "@components/core/Typography";
 import { AnimationText } from "@components/AnimationText";
 import { Section } from "@components/Section";
-import SocialMediaContainer from "./SocialMediaContainer";
 import styles from "./Footer.module.scss";
+import SocialMediaContainer from "./SocialMediaContainer";
 
 
 const Footer = () => {

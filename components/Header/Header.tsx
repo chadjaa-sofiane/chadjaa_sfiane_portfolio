@@ -1,6 +1,6 @@
 import NavBar from "./NavBar";
-import Container from "@components/core/Container";
 import styles from "./Header.module.scss";
+import Container from "@components/core/Container";
 
 interface IProps {
   color?: "dark" | "light";
