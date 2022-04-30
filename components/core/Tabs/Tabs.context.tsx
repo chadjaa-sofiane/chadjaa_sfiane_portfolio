@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 interface IContext {
   active: string;
+  // eslint-disable-next-line no-unused-vars
   setActive: (active: string) => void;
   handleAction: () => void;
 }
