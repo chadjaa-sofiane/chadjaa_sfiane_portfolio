@@ -1,3 +1,4 @@
+@use "../../../styles/mixins/index.scss" as *;
 .projects {
   &__field {
     --color: hsl(var(--primary-400));
@@ -6,13 +7,25 @@
     flex-direction: column;
     // padding-bottom: 10em;
     margin-bottom: 15em;
-    h2{
+    h2 {
       text-align: center;
     }
   }
   &__tabs {
     justify-content: center;
-    column-gap: 4em;
+    column-gap: 8em;
+    margin-top: 2em;
+    background-color: hsl(var(--primary-400) / 0.14);
+    @include breakpoint(medium) {
+      column-gap: 2em;
+    }
+    @include breakpoint(small) {
+      overflow-x: scroll;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
   }
   &__cards__field {
     margin-top: 4em;

@@ -1,14 +1,22 @@
 import Head from "next/head";
+import { useEffect } from "react"
 import { ProjectsField, ProjectsHero } from "containers/Projects";
 import { db, storage } from "@services/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
 import { collection, getDocs } from "firebase/firestore";
+import { cardProps } from "@components/Card"
 
 
 const ProjectsRef = collection(db, "projects");
 const getImageRef = (id: string) => ref(storage, `projects/${id}`);
 
-const Projects = ({ projects }: any) => {
+const Projects = ({ projects }: { projects: cardProps[] }) => {
+  useEffect(() => {
+    document.documentElement.style.scrollSnapType = "y proximity";
+    return () => {
+      document.documentElement.style.scrollSnapType = "y mandatory";
+    }
+  }, []);
   return (
     <>
       <Head>

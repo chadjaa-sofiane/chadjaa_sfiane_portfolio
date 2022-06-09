@@ -21,4 +21,26 @@
       flex: 1;
     }
   }
+  &__modal {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      padding: 2em;
+      row-gap: 2em;
+    }
+    &__header {
+      padding: 1em 2em;
+    }
+    &__githubIcon {
+      width: max-content;
+      transform-origin: center center;
+      transition: 200ms transform ease-in;
+      path {
+        fill: #4a4a4a;
+      }
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
 }

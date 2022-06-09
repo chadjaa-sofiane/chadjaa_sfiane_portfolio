@@ -4,12 +4,14 @@ interface IContext {
   active: string;
   // eslint-disable-next-line no-unused-vars
   setActive: (active: string) => void;
-  handleAction: () => void;
+  // eslint-disable-next-line no-unused-vars
+  handleAction: (name:string) => void;
 }
 interface IProps {
   children: React.ReactNode;
   defaultValue?: string;
-  handleAction?: () => void;
+  // eslint-disable-next-line no-unused-vars
+  handleAction?: (name:string) => void;
 }
 
 const TabsContext = createContext<IContext>({

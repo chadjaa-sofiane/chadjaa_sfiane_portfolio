@@ -6,7 +6,8 @@ interface IProps {
   children: React.ReactNode;
   defaultValue?: string;
   className?: string;
-  handleAction?: () => void;
+  // eslint-disable-next-line no-unused-vars
+  handleAction?: (name: string) => void;
 }
 
 const Tabs = ({ children, defaultValue = "", className = "", handleAction = () => null }: IProps) => {
@@ -27,7 +28,7 @@ export const Tab = ({ children, name }: ItabProps) => {
   const { active, setActive, handleAction } = useTabsContext();
   const onClickAction = (name: string) => {
     setActive(name);
-    handleAction();
+    handleAction(name);
   };
 
   const classes = [styles["tab"], active === name ? styles["tab--active"] : ""];
