@@ -1,15 +1,14 @@
 import BackEndIllustration from "./BackEndIllustration";
 import { Section, SectionContent } from "@components/Section";
-
-//backend_illustration
+import { HightlightedText } from "@components/core/Typography";
 
 const BackendSection = () => {
   return (
     <Section variant="dark">
       <BackEndIllustration />
       <SectionContent
-        title="a back-end developer"
-        description="a nodeJs develoer.I will build and maintain your servers."
+        title="backend"
+        description={<>I can maintain and build backend servers using <HightlightedText>node-js</HightlightedText></>}
       />
     </Section>
   );

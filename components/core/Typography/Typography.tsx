@@ -25,3 +25,6 @@ export const Paragraph = ({ children }: props) => (
 export const LargeParagraph = ({ children }: props) => (
   <p className={styles["large__paragraph"]}>{children}</p>
 );
+export const HightlightedText = ({ children }: props) => (
+  <span className={styles["highlighted__text"]}>{children}</span>
+);

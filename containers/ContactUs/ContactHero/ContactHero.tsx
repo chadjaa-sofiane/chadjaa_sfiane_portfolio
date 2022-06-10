@@ -9,10 +9,9 @@ const ContactHero = () => {
         <Section>
             <SectionContent
                 title="My Projects"
-                description="hi there, here I can show you all my previeus works, and if you didn't like it, just through yourself in the closest hole"
+                description="contact me, I&apos;m always open to new opportunities."
                 button={<CoppyButton />}
             />
-
             <ContactHeroIllustration />
         </Section>
     )

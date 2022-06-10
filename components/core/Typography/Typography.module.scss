@@ -36,3 +36,10 @@
   color: var(--container-color);
   letter-spacing: 0.1em;
 }
+.highlighted__text {
+  font-family: var(--Sans-font);
+  color: hsl(var(--secondary-300));
+  font-size: var(--fs-md);
+  text-transform: capitalize;
+  font-weight: bold;
+}

@@ -10,7 +10,7 @@ const ProjectsHero = () => {
     <Section variant="dark">
       <SectionContent
         title="My Projects"
-        description="hi there, here I can show you all my previeus works, and if you didn't like it, just through yourself in the closest hole"
+        description="here when you can find my projects, my experiemets, and anything new I&apos;ve learned."
       />
       <ProjectsHeroIllustration />
     </Section>

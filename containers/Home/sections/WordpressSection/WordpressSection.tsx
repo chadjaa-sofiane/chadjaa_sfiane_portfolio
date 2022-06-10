@@ -1,3 +1,4 @@
+import { HightlightedText } from "@components/core/Typography";
 import {
   Section,
   SectionContent,
@@ -12,7 +13,7 @@ const WordpressSection = () => {
       <WordPressIllustration />
       <SectionContent
         title="a wordpress manager"
-        description="I can build and manage wordpress templates."
+        description={<>I can manage <HightlightedText> wordpress </HightlightedText>sites and plugins.</>}
       />
     </Section>
   );

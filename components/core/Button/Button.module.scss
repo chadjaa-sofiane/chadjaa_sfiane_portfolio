@@ -9,6 +9,7 @@
   cursor: pointer;
   text-transform: uppercase;
   display: flex;
+  justify-content: center;
   align-items: center;
   &--primary {
     --color: var(--primary-400);
