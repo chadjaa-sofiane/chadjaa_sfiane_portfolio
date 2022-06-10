@@ -14,10 +14,14 @@ interface CardContextState extends cardProps {
 const CardContext = createContext<CardContextState>({
     isOpen: false,
     handleOpen: () => null,
+    id: "",
     title: "",
     body: "",
     imageSrc: "",
-    url: ""
+    url: "",
+    githubUrl: "",
+    type: "",
+    description: ""
 })
 
 const CardContextProvider = ({ children, ...rest }: CardContextProps) => {

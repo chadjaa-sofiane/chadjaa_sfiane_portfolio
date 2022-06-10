@@ -27,11 +27,20 @@
       }
     }
   }
-  &__cards__field {
-    margin-top: 4em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 8em;
+  &__cards {
+    &__field {
+      margin-top: 4em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 8em;
+    }
+    &__empty {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 10em;
+      background-color: hsl(var(--primary-400) / 0.15);
+    }
   }
 }
