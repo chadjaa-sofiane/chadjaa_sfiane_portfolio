@@ -12,6 +12,7 @@ export interface cardProps {
   url?: string;
   githubUrl?: string;
   type?: string;
+  description?: string;
 }
 
 const Card = (props: cardProps) => {

@@ -6,7 +6,7 @@ import GithubIcon from "@svg/github.svg";
 import styles from "./Card.module.scss";
 
 const ProjectDetailsModal = () => {
-    const { isOpen, handleOpen, title, url, githubUrl } = useCardContext();
+    const { isOpen, handleOpen, title, url, githubUrl, description } = useCardContext();
     return (
         <Modal isOpen={isOpen} setOpen={handleOpen}>
             <div className={styles["card__modal__header"]}>
@@ -14,7 +14,7 @@ const ProjectDetailsModal = () => {
             </div>
             <div className={styles["card__modal__container"]}>
                 <Paragraph>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, est! Nihil odit, quam id quo magnam quae cum aliquid modi, deleniti ea sed sapiente rerum, officiis amet maiores minus odio!
+                    {description || "no description"}
                 </Paragraph>
                 {githubUrl && <Title4> Source code : </Title4>}
                 <div>

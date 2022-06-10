@@ -18,9 +18,6 @@ const CardButtons = () => {
     const { handleOpen } = useCardContext();
     return (
         <Button variant="outlined" onClick={() => handleOpen(true)}>
-            {/* <a href={url} target="_blank" rel="noopener noreferrer">
-              View Project
-            </a> */}
             view details
         </Button>)
 }
