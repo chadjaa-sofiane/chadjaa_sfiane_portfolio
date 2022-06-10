@@ -1,4 +1,5 @@
 import { ContactUsField } from "containers/ContactUs";
+import { ContactHero } from "containers/ContactUs/ContactHero";
 import Head from "next/head";
 
 const Contact = () => {
@@ -7,6 +8,7 @@ const Contact = () => {
       <Head>
         <title> Projects </title>
       </Head>
+      <ContactHero />
       <ContactUsField />
     </>
   );

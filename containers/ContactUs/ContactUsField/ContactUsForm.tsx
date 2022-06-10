@@ -10,10 +10,11 @@ import { useContactFieldRef } from "./ContactField.context";
 
 interface props {
   // eslint-disable-next-line no-unused-vars
-  submitAction?: (userData?: any) => Promise<void>;
+  submitAction?: (userData?: unknown) => Promise<void>;
 }
 
-const ContactUsForm = ({ submitAction = async () => { } }: props) => {
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const ContactUsForm = ({ submitAction = async () => {} }: props) => {
   const ref = useContactFieldRef("formRef");
   const [loading, setLoading] = useState(false);
   // clean up the form after submission is complete (reset form) 

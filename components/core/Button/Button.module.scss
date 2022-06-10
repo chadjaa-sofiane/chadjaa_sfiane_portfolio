@@ -8,6 +8,8 @@
   padding: 0.5em 1em;
   cursor: pointer;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
   &--primary {
     --color: var(--primary-400);
   }

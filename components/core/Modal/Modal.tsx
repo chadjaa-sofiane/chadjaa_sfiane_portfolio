@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import styles from "./Modal.module.scss";
-styles;
 
 interface Props {
     isOpen: boolean;
