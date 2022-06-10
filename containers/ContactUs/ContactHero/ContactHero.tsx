@@ -8,7 +8,7 @@ const ContactHero = () => {
     return (
         <Section>
             <SectionContent
-                title="My Projects"
+                title="Contact Me"
                 description="contact me, I&apos;m always open to new opportunities."
                 button={<CoppyButton />}
             />
