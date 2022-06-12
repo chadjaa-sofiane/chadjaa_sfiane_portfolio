@@ -42,5 +42,8 @@
         transform: scale(1.1);
       }
     }
+    &__buttonsField {
+      display: flex;
+    }
   }
 }

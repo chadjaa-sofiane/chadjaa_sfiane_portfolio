@@ -1,4 +1,4 @@
-import { Button } from "@components/core/Button";
+import { AnchorButton } from "@components/core/Button";
 import { Modal } from "@components/core/Modal"
 import { Title3, Paragraph, Title4 } from "@components/core/Typography";
 import { useCardContext } from "./Card.context"
@@ -20,12 +20,10 @@ const ProjectDetailsModal = () => {
                 <div>
                     {githubUrl && <GitHubIconButton url={githubUrl} />}
                 </div>
-                <div>
-                    <Button>
-                        <a href={url} target="_blank" rel="noopener noreferrer">
-                            View Project
-                        </a>
-                    </Button>
+                <div className={styles["card__modal__buttonsField"]}>
+                    <AnchorButton role="button" href={url} target="_blank" rel="noopener noreferrer">
+                        View Project
+                    </AnchorButton>
                 </div>
             </div>
         </Modal>

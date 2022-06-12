@@ -9,7 +9,7 @@ interface props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color?: "primary" | "secondary";
 }
 
-const Button = ({ children, variant, size, color = "primary", ...rest }: props) => {
+export const Button = ({ children, variant, size, color = "primary", ...rest }: props) => {
   const styelArray = [
     styles["button"],
     variant === "outlined"
@@ -26,4 +26,17 @@ const Button = ({ children, variant, size, color = "primary", ...rest }: props) 
   );
 };
 
-export default Button;
+interface AnchorButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  children: React.ReactNode;
+}
+
+export const AnchorButton = ({ children, ...rest }: AnchorButtonProps) => {
+  const clasess = [
+    styles["button"],
+    styles["button--field"],
+    styles["button--primary"]
+  ].join(" ")
+  return (
+    <a {...rest} role="button" className={clasess}> {children} </a>
+  )
+}
