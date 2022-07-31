@@ -22,7 +22,7 @@ const AnimationText = ({ children }: Props) => {
             gsap.set(letters, { autoAlpha: 0, position: "relative", left: 10, top: -40 });
             gsap.to(letters, {
                 scrollTrigger: current,
-                duration: 0.5,
+                duration: 0.35,
                 autoAlpha: 1,
                 top: 0,
                 left: 0,
