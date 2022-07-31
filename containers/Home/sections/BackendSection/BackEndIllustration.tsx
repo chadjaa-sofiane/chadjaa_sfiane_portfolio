@@ -14,7 +14,7 @@ const BackEndIllustration = () => {
     if (current) {
       const tl = gsap.timeline({
         defaults: {
-          duration: 0.5
+          duration: 0.4
         },
         scrollTrigger: {
           trigger: current,

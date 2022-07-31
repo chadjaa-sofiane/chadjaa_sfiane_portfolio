@@ -18,12 +18,12 @@ const FrontEndIllustration = () => {
             const c2 = document.querySelector("#froneend_illustration_svg__canvas_2");
             const flower = document.querySelector("#froneend_illustration_svg__flower");
             const tl = gsap.timeline({
-                defaults: { duration: 1, ease: "power2.inOut" },
+                defaults: { duration: 0.6, ease: "power2.inOut" },
                 scrollTrigger: current
             })
             tl.from(c1, { opacity: 0, x: 100 }).
                 from(c2, { opacity: 0, x: 100 }).
-                from(monitor, { opacity: 0, x: 100 }).
+                from(monitor, { opacity: 0, x: 100, ease: "bounce.out" }).
                 from(girl, { opacity: 0, y: -10 }).
                 from(flower, { opacity: 0 })
         }

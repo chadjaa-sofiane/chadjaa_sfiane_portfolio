@@ -19,7 +19,9 @@ const HeroIllustration = () => {
         "#hero_illustration_svg__curtains"
       );
 
-      const tl = gsap.timeline({ duration: 0.5 });
+      const tl = gsap.timeline({
+        defaults: { duration: 0.4 },
+      });
       tl.from(bg, {
         opacity: 0,
       })

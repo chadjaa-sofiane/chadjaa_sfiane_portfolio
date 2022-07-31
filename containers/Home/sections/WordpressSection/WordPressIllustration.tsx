@@ -17,7 +17,7 @@ const WordPressIllustration = () => {
                     trigger: current
                 },
                 defaults: {
-                    duration: 1,
+                    duration: 0.6,
                     ease: "power3.inOut",
                 }
             })

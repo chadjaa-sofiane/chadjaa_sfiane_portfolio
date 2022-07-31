@@ -2,49 +2,45 @@
 
 .footer {
   &__wrapper {
-    width: 100%;
-    display: flex;
-    scroll-snap-align: start;
     background-color: hsl(var(--primary-400));
-    gap: 2em;
-    flex-wrap: wrap;
+    scroll-snap-align: start;
   }
-  &__content {
-    flex: 1 1 20em;
+  &__container {
     display: flex;
-    flex-direction: column;
-    row-gap: 2em;
-    padding: 1em 0;
-    span{
-      font-weight: bold;
-    }  
+    padding: 1em;
+    flex-wrap: wrap;
+    gap: 2em;
+  }
+  &__text {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 2em;
   }
   &__socialMedia {
     &__container {
-      flex: 1 1 30em;
+      flex: 1 1 35em;
       display: flex;
-      flex-direction: column;
-      gap: 3em;
+      gap: 2em;
       padding: 0 2em;
       h2 {
         color: #fff;
       }
-      & > div {
-        width: 100%;
-        display: flex;
-        gap: 3em;
-        flex-wrap: wrap;
-      }
     }
     &__card {
       --box-shadow-color: hsl(var(--primary-300));
+      display: grid;
+      place-items: center;
+      width: max-content;
       padding: 1em;
+      aspect-ratio: 1/1;
       box-shadow: 0 0 1em 0.05em var(--box-shadow-color);
       border-radius: 0.5em;
       transition: box-shadow 100ms ease-in, transform 100ms ease-in-out;
       svg {
-        width: 6em;
-        height: 6em;
+        width: 4em;
+        height: 4em;
         path {
           stroke: #fff;
           fill: #fff;
