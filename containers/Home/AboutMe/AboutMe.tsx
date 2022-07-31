@@ -27,9 +27,6 @@ const AboutMe = ({ profileImage }: { profileImage: string }) => {
             <LargeParagraph>
               my name is chadjaa sofiane. I&apos;am a <HightlightedText>full-stack</HightlightedText> developer.
               <br />
-              I have a bachelor degree in computer science.
-              <br />
-              I&apos;m a self-taught developer and I&apos;m always learning new things.
             </LargeParagraph>
             <Button variant="outlined" onClick={downloadCv}> download my cv </Button>
           </div>

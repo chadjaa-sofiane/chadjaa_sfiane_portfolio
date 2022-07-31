@@ -7,7 +7,7 @@ const BackendSection = () => {
     <Section variant="dark">
       <BackEndIllustration />
       <SectionContent
-        title="backend"
+        title="a back end developer"
         description={<>I can maintain and build backend servers using <HightlightedText>node-js</HightlightedText></>}
       />
     </Section>

@@ -12,7 +12,7 @@ const FrontendSection = () => {
     <Section>
       <SectionContent
         title="a front end developer"
-        description={<>I can build responsive websites and applications. with the power of <HightlightedText>React</HightlightedText>, <HightlightedText>Racst-native</HightlightedText> and <HightlightedText>Next</HightlightedText> </>}
+        description={<>I can build responsive websites and applications. with the power of <HightlightedText>React</HightlightedText>, <HightlightedText>React-native</HightlightedText> and <HightlightedText>Next</HightlightedText> </>}
       />
       <FrontEndIllustration />
     </Section>
