@@ -10,7 +10,7 @@ specifiers:
   cypress: ^9.5.4
   eslint: 8.11.0
   eslint-config-next: 12.1.0
-  firebase: ^9.6.10
+  firebase: ^9.9.1
   formik: ^2.2.9
   gsap: ^3.9.1
   next: ^12.1.1-canary.10
