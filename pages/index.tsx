@@ -9,9 +9,7 @@ import {
   AboutMe,
 } from "containers/Home";
 
-
-
-const Home = ({ profileImage }: any) => {
+const Home = ({ profileImage }: { profileImage: string }) => {
   return (
     <>
       <Head>
@@ -32,9 +30,9 @@ export const getServerSideProps = async () => {
   console.log(profileImage);
   return {
     props: {
-      profileImage
-    }
-  }
-}
+      profileImage,
+    },
+  };
+};
 
 export default Home;
