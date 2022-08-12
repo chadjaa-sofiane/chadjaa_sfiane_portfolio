@@ -10,7 +10,7 @@ import { cardProps } from "@components/Card"
 const ProjectsRef = collection(db, "projects");
 const getImageRef = (id: string) => ref(storage, `projects/${id}`);
 
-const Projects = ({ projects }: { projects: cardProps[] }) => {
+const Projects = ({ projects = [] }: { projects: cardProps[] }) => {
   useEffect(() => {
     document.documentElement.style.scrollSnapType = "y proximity";
     return () => {

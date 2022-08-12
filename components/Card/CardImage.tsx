@@ -10,7 +10,7 @@ const CardImage = () => {
             <Image
                 className={styles["card__image"]}
                 src={imageSrc || ""}
-                alt="bowowo"
+                alt="project card"
                 layout="fill"
             />
         </div>

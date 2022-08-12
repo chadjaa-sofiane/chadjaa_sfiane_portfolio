@@ -24,7 +24,7 @@ const Home = ({ profileImage }: { profileImage: string }) => {
   );
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const imageRef = ref(storage, "profileImage.jpg");
   const profileImage = await getDownloadURL(imageRef);
   console.log(profileImage);
