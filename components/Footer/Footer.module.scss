@@ -2,10 +2,12 @@
 
 .footer {
   &__wrapper {
+    width: min(100%, 100vh);
     background-color: hsl(var(--primary-400));
     scroll-snap-align: start;
   }
   &__container {
+    width: 100%;
     display: flex;
     padding: 1em;
     flex-wrap: wrap;
@@ -38,6 +40,10 @@
       box-shadow: 0 0 1em 0.05em var(--box-shadow-color);
       border-radius: 0.5em;
       transition: box-shadow 100ms ease-in, transform 100ms ease-in-out;
+      @include breakpoint(medium) {
+        width: max-content;
+        padding: 0.5em;
+      }
       svg {
         width: 4em;
         height: 4em;

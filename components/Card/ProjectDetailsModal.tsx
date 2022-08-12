@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { AnchorButton } from "@components/core/Button";
 import { Modal } from "@components/core/Modal";
 import { Title3, Paragraph, Title4 } from "@components/core/Typography";
