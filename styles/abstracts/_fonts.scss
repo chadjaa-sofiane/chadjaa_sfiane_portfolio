@@ -1,3 +1,5 @@
+@use "../mixins/" as *;
+
 @mixin fonts {
   --Oldenburg-font: "Oldenburg", cursive, "Open Sans", "Helvetica Neue",
     sans-serif;
@@ -9,4 +11,12 @@
   --fs-md: 2rem;
   --fs-sm: 1.5rem;
   --fs-xs: 1.25rem;
+
+  @include breakpoint(medium) {
+    --fs-xl: 3rem;
+    --fs-lg: 2.5rem;
+    --fs-md: 2rem;
+    --fs-sm: 1.5rem;
+    --fs-xs: 1.25rem;
+  }
 }
