@@ -2,7 +2,7 @@
 
 .footer {
   &__wrapper {
-    width: min(100%, 100vh);
+    width: 100vw;
     background-color: hsl(var(--primary-400));
     scroll-snap-align: start;
   }
