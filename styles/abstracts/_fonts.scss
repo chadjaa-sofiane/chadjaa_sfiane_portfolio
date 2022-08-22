@@ -4,6 +4,8 @@
   --Oldenburg-font: "Oldenburg", cursive, "Open Sans", "Helvetica Neue",
     sans-serif;
   --Sans-font: "Open Sans", "Helvetica Neue", sans-serif;
+
+  --header-font: "Open Sans", sans-serif;
   --button-font: "Poppins", sans-serif;
 
   --fs-xl: 4rem;
@@ -14,9 +16,9 @@
 
   @include breakpoint(medium) {
     --fs-xl: 3rem;
-    --fs-lg: 2.5rem;
-    --fs-md: 2rem;
-    --fs-sm: 1.5rem;
-    --fs-xs: 1.25rem;
+    --fs-lg: 2.65rem;
+    --fs-md: 1.5rem;
+    --fs-sm: 1.25rem;
+    --fs-xs: 0.9375rem;
   }
 }
