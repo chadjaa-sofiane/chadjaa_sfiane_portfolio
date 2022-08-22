@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { LargeParagraph } from "@components/core/Typography";
+import { LargeParagraph, Title2 } from "@components/core/Typography";
 import { Button } from "@components/core/Button";
 import Wrapper from "@components/core/Wrapper";
 import Container from "@components/core/Container";
@@ -9,7 +9,7 @@ import GithubIcon from "@svg/github.svg";
 import styles from "./AboutMe.module.scss";
 
 import { HightlightedText } from "@components/core/Typography";
-import { AnimationText } from "@components/AnimationText";
+// import { Title2 } from "@components/AnimationText";
 import { useSectionsProgress } from "@components/SectionsProgress";
 
 const downloadCv = () => {
@@ -34,7 +34,7 @@ const AboutMe = ({ profileImage }: { profileImage: string }) => {
               <GitHub />
             </div>
             <div className={styles["aboutMe__content"]}>
-              <AnimationText> Chadjaa Sofiane </AnimationText>
+              <Title2> Chadjaa Sofiane </Title2>
               <LargeParagraph>
                 my name is chadjaa sofiane. I&apos;am a
                 <HightlightedText> full-stack </HightlightedText> developer.
