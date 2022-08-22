@@ -8,10 +8,11 @@ import {
   WordpressSection,
   AboutMe,
 } from "containers/Home";
+import { SectionsProgressProvider } from "@components/SectionsProgress";
 
 const Home = ({ profileImage }: { profileImage: string }) => {
   return (
-    <>
+    <SectionsProgressProvider>
       <Head>
         <title> Home Page </title>
       </Head>
@@ -20,7 +21,7 @@ const Home = ({ profileImage }: { profileImage: string }) => {
       <FrontendSection />
       <WordpressSection />
       <AboutMe profileImage={profileImage} />
-    </>
+    </SectionsProgressProvider>
   );
 };
 

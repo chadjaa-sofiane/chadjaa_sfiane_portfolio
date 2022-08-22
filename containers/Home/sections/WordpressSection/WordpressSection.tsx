@@ -3,13 +3,15 @@ import {
   Section,
   SectionContent,
 } from "@components/Section";
+import { useSectionsProgress } from "@components/SectionsProgress";
 import WordPressIllustration from "./WordPressIllustration";
 
 //backend_illustration
 
 const WordpressSection = () => {
+  const { ref } = useSectionsProgress();
   return (
-    <Section variant="dark">
+    <Section ref={ref} variant="dark">
       <WordPressIllustration />
       <SectionContent
         title="a wordpress manager"
