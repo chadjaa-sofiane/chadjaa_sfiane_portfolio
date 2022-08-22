@@ -36,25 +36,25 @@
   &__list {
     width: min(35em, 100%);
     justify-content: space-around;
-    @include breakpoint(medium) {
-      position: absolute;
-      left: 0;
-      top: 0;
-      flex-direction: column;
-      align-items: center;
-      row-gap: 2em;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out,
-        top 0.3s ease-in-out;
-      background: var((--bg));
-      z-index: 1;
-    }
-    &--open {
-      opacity: 1;
-      top: 5em;
-      visibility: visible;
-    }
+    // @include breakpoint(medium) {
+    //   position: absolute;
+    //   left: 0;
+    //   top: 0;
+    //   flex-direction: column;
+    //   align-items: center;
+    //   row-gap: 2em;
+    //   opacity: 0;
+    //   visibility: hidden;
+    //   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out,
+    //     top 0.3s ease-in-out;
+    //   background: var((--bg));
+    //   z-index: 1;
+    // }
+    // &--open {
+    //   opacity: 1;
+    //   top: 5em;
+    //   visibility: visible;
+    // }
   }
 }
 

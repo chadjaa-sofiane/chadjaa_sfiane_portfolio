@@ -19,27 +19,27 @@ const NavBar = () => {
           <Link href="/projects">projects</Link>
         </Tab>
       </Tabs>
-      <MenuIcon open={open} setOpen={setOpen} />
+      {/* <MenuIcon open={open} setOpen={setOpen} /> */}
     </nav>
   );
 };
 
-type menuIconProps = {
-  open: boolean,
-  setOpen: (open: boolean) => void
-}
+// type menuIconProps = {
+//   open: boolean,
+//   setOpen: (open: boolean) => void
+// }
 
-const MenuIcon = ({ open, setOpen }: menuIconProps) => {
-  return (
-    <>
-      <input onChange={(e) => setOpen(e.target.checked)} checked={open} type="checkbox" className={styles["menu__input"]} hidden id="menu" />
-      <label htmlFor="menu" className={styles["menu__icon"]}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-    </>
-  )
-}
+// const MenuIcon = ({ open, setOpen }: menuIconProps) => {
+//   return (
+//     <>
+//       <input onChange={(e) => setOpen(e.target.checked)} checked={open} type="checkbox" className={styles["menu__input"]} hidden id="menu" />
+//       <label htmlFor="menu" className={styles["menu__icon"]}>
+//         <span></span>
+//         <span></span>
+//         <span></span>
+//       </label>
+//     </>
+//   )
+// }
 
 export default NavBar;
