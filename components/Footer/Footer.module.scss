@@ -15,68 +15,9 @@
   }
   &__text {
     flex: 1;
-    display: grid;
-    place-items: center;
+    text-align: right;
+    padding: 0 1em;
     color: #fff;
     font-size: 2em;
-  }
-  &__socialMedia {
-    &__container {
-      flex: 1 1 35em;
-      display: flex;
-      gap: 2em;
-      padding: 0 2em;
-      h2 {
-        color: #fff;
-      }
-    }
-    &__card {
-      --box-shadow-color: hsl(var(--primary-300));
-      display: grid;
-      place-items: center;
-      width: max-content;
-      padding: 1em;
-      aspect-ratio: 1/1;
-      box-shadow: 0 0 1em 0.05em var(--box-shadow-color);
-      border-radius: 0.5em;
-      transition: box-shadow 100ms ease-in, transform 100ms ease-in-out;
-      @include breakpoint(medium) {
-        width: max-content;
-        padding: 0.5em;
-      }
-      svg {
-        width: 4em;
-        height: 4em;
-        path {
-          stroke: #fff;
-          fill: #fff;
-          transition: stroke 100ms ease-in, fill 100ms ease-in;
-        }
-      }
-      cursor: pointer;
-      &:hover > svg path {
-        stroke: var(--color);
-        fill: var(--color);
-      }
-      &:hover {
-        transform: scale(1.02);
-        --box-shadow-color: var(--color);
-      }
-    }
-  }
-}
-
-.icon {
-  &--white {
-    --color: #fff;
-  }
-  &--twitter {
-    --color: #1da1f2;
-  }
-  &--linkedIn {
-    --color: #0077b5;
-  }
-  &--github {
-    --color: #4a4a4a;
   }
 }
