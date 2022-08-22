@@ -1,6 +1,4 @@
 import Head from "next/head";
-import { ref, getDownloadURL } from "firebase/storage";
-import { storage } from "@services/firebase";
 import {
   HeroSection,
   BackendSection,
@@ -9,6 +7,7 @@ import {
   AboutMe,
 } from "containers/Home";
 import { SectionsProgressProvider } from "@components/SectionsProgress";
+import { client, urlFor } from "@services/sanity";
 
 const Home = ({ profileImage }: { profileImage: string }) => {
   return (
@@ -26,9 +25,10 @@ const Home = ({ profileImage }: { profileImage: string }) => {
 };
 
 export const getStaticProps = async () => {
-  const imageRef = ref(storage, "profileImage.jpg");
-  const profileImage = await getDownloadURL(imageRef);
-  console.log(profileImage);
+  const dataQuery = "*[_type == 'profile']";
+  const data = await client.fetch(dataQuery);
+  const profileImage = urlFor(data[0].image).url();
+
   return {
     props: {
       profileImage,
