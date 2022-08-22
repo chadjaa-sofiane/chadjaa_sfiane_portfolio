@@ -1,29 +1,33 @@
-import { useState, useMemo } from "react";
+import { useRouter } from "next/router";
 import { Title2 } from "@components/core/Typography";
 import { Section } from "@components/Section";
 import { Tabs, Tab } from "@components/core/Tabs";
 import ProjectsCards from "./ProjectsCards";
 import { cardProps } from "@components/Card";
 import styles from "./ProjectsField.module.scss";
+import { useRef } from "react";
 
 
 const ProjectsField = ({ projects }: { projects: cardProps[] }) => {
-  const [type, setType] = useState("website");  
+  const { push } = useRouter();
 
-  const filterProjects = useMemo(() => projects.filter((p) => p.type === type), [type])
+  const divRef = useRef(null);
 
-  const handleAction = (name: string) => setType(name);
+  const handleAction = (name: string) => push({
+    pathname: "/projects",
+    query: { type: name },
+  }, undefined, { scroll: false });
 
   return (
     <Section>
-      <div className={styles["projects__field"]}>
+      <div className={styles["projects__field"]} ref={divRef}>
         <Title2>  My Projects  </Title2>
-        <Tabs handleAction={handleAction} defaultValue={type} className={styles["projects__tabs"]}>
+        <Tabs handleAction={handleAction} defaultValue="website" className={styles["projects__tabs"]}>
           <Tab name="website"> Websites </Tab>
           <Tab name="experiment"> Experiments </Tab>
           <Tab name="wordpress"> Wordpress </Tab>
         </Tabs>
-        <ProjectsCards projects={filterProjects} />
+        <ProjectsCards projects={projects} />
       </div>
     </Section>
   );

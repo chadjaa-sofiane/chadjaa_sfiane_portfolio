@@ -9,7 +9,7 @@ export interface cardProps {
   title: string;
   body: string;
   imageSrc?: string;
-  url?: string;
+  link?: string;
   githubUrl?: string;
   type?: string;
   description?: string;

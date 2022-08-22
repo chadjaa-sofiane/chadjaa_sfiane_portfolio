@@ -6,7 +6,7 @@ import GithubIcon from "@svg/github.svg";
 import styles from "./Card.module.scss";
 
 const ProjectDetailsModal = () => {
-  const { isOpen, handleOpen, title, url, githubUrl, description } =
+  const { isOpen, handleOpen, title, link, githubUrl, description } =
     useCardContext();
   return (
     <Modal isOpen={isOpen} setOpen={handleOpen}>
@@ -20,7 +20,7 @@ const ProjectDetailsModal = () => {
         <div className={styles["card__modal__buttonsField"]}>
           <AnchorButton
             role="button"
-            href={url}
+            href={link}
             target="_blank"
             rel="noopener noreferrer"
           >
