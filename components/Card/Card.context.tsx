@@ -18,7 +18,7 @@ const CardContext = createContext<CardContextState>({
     title: "",
     body: "",
     imageSrc: "",
-    url: "",
+    link: "",
     githubUrl: "",
     type: "",
     description: ""
