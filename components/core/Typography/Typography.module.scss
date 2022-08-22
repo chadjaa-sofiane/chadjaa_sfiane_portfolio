@@ -1,7 +1,7 @@
  .title1 {
   font-family: var(--header-font);
   color: var(--container-color);
-  font-size: var(--fs-xl);
+  font-size: var(--fs-2xl);
   width: 100%;
 }
 .title2 {
@@ -33,7 +33,7 @@
 }
 
 .large__paragraph {
-  font-size: var(--fs-md);
+  font-size: var(--fs-sm);
   font-family: var(--Sans-font);
   line-height: 1.5em;
   color: var(--container-color);
