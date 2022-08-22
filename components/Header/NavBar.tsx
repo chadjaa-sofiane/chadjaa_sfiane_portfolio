@@ -18,9 +18,6 @@ const NavBar = () => {
         <Tab name="/projects">
           <Link href="/projects">projects</Link>
         </Tab>
-        <Tab name="/contact">
-          <Link href="/contact">contact</Link>
-        </Tab>
       </Tabs>
       <MenuIcon open={open} setOpen={setOpen} />
     </nav>
