@@ -17,9 +17,6 @@ body {
 html {
   scroll-snap-type: y mandatory;
   @include breakpoint(medium) {
-    scroll-snap-type: y proximity;
-  }
-  @include breakpoint(small) {
     scroll-snap-type: none;
   }
 }

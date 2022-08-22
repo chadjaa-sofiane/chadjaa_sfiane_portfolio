@@ -8,6 +8,7 @@
   --header-font: "Open Sans", sans-serif;
   --button-font: "Poppins", sans-serif;
 
+  --fs-2xl: 5rem;
   --fs-xl: 4rem;
   --fs-lg: 3.5rem;
   --fs-md: 2rem;
@@ -15,6 +16,7 @@
   --fs-xs: 1.25rem;
 
   @include breakpoint(medium) {
+    --fs-2xl: 3.25rem;
     --fs-xl: 3rem;
     --fs-lg: 2.65rem;
     --fs-md: 1.5rem;
