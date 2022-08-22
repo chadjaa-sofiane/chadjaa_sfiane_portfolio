@@ -1,14 +1,10 @@
 import Head from "next/head";
+import { GetServerSideProps } from "next";
 import { useEffect } from "react"
 import { ProjectsField, ProjectsHero } from "containers/Projects";
-import { db, storage } from "@services/firebase";
-import { ref, getDownloadURL } from "firebase/storage";
-import { collection, getDocs } from "firebase/firestore";
 import { cardProps } from "@components/Card"
+import { client, urlFor } from "@services/sanity";
 
-
-const ProjectsRef = collection(db, "projects");
-const getImageRef = (id: string) => ref(storage, `projects/${id}`);
 
 const Projects = ({ projects = [] }: { projects: cardProps[] }) => {
   useEffect(() => {
@@ -17,6 +13,7 @@ const Projects = ({ projects = [] }: { projects: cardProps[] }) => {
       document.documentElement.style.scrollSnapType = "y mandatory";
     }
   }, []);
+
   return (
     <>
       <Head>
@@ -28,24 +25,31 @@ const Projects = ({ projects = [] }: { projects: cardProps[] }) => {
   );
 };
 
+const TYPES = ["website", "experiment", "wordpress"];
 
-const getImageSrc = async (id: string) => {
-  const imageRef = getImageRef(id);
-  const url = await getDownloadURL(imageRef);
-  return url;
-};
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const type = query?.type as string || "";
 
-export const getServerSideProps = async () => {
-  const data = await getDocs(ProjectsRef);
-  const projects = await Promise.all(data.docs.map(async project => {
-    const imageUrl = await getImageSrc(project.data().imageName);
+  if (!TYPES.includes(type)) {
     return {
-      ...project.data(),
-      id: project.id,
-      imageSrc: imageUrl
+      redirect: {
+        permanent: false,
+        destination: "/projects?type=website",
+      },
+      props: {}
     }
-  }));
+  }
 
+  const dataQuery = `*[_type == 'projects' && type == '${type}']`;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const projects = (await client.fetch(dataQuery)).map((project: any) => (
+    {
+      ...project,
+      id: project._id,
+      imageSrc: urlFor(project.image).url() || undefined,
+    }
+  ));
+  console.log(projects.length);
   return {
     props: {
       projects
