@@ -1,3 +1,5 @@
+@use "../../../styles/mixins/" as *;
+
 .container {
   width: 82em;
   max-width: 100%;
@@ -6,5 +8,8 @@
   --container-color: hsl(var(--primary-400));
   &--dark {
     --container-color: #fff;
+  }
+  @include breakpoint(medium) {
+    padding: 0 1em;
   }
 }

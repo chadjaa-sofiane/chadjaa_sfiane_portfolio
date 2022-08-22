@@ -1,10 +1,11 @@
  .title1 {
-  font-family: var(--Oldenburg-font);
+  font-family: var(--header-font);
   color: var(--container-color);
   font-size: var(--fs-xl);
+  width: 100%;
 }
 .title2 {
-  font-family: var(--Oldenburg-font);
+  font-family: var(--header-font);
   color: var(--container-color);
   font-size: var(--fs-lg);
 }
@@ -22,11 +23,13 @@
 
 .paragraph {
   font-size: var(--fs-xs);
-  font-family: "Pavanam", sans-serif;
+  font-family: var(--Sans-font);
+  // font-family: "Pavanam", sans-serif;
+  font-weight: 400;
   line-height: 30px;
   color: var(--container-color);
   letter-spacing: 0.1em;
-  text-align: justify;
+  // text-align: ;
 }
 
 .large__paragraph {

@@ -8,6 +8,10 @@
     flex-wrap: wrap;
     row-gap: 4em;
     column-gap: 2em;
+    @include breakpoint(large) {
+      padding: 10em 0;
+      text-align: center;
+    }
   }
   &__content {
     display: flex;

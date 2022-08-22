@@ -35,6 +35,7 @@
   text-transform: uppercase;
   &__list {
     width: min(35em, 100%);
+    justify-content: space-around;
     @include breakpoint(medium) {
       position: absolute;
       left: 0;

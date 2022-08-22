@@ -2,6 +2,7 @@
   --opacity: 1;
   outline: none;
   border: none;
+  border-radius: 0.2em;
   font-family: var(--button-font);
   font-size: var(--fs-xs);
   font-weight: bold;
@@ -11,6 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background-color 200ms ease-in-out;
   &--primary {
     --color: var(--primary-400);
   }
