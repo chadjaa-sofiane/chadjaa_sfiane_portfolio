@@ -49,7 +49,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       imageSrc: urlFor(project.image).url() || undefined,
     }
   ));
-  console.log(projects.length);
   return {
     props: {
       projects
