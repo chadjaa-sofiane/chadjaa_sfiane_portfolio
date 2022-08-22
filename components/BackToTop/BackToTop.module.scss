@@ -1,0 +1,37 @@
+.backToTop {
+  &__wrapper {
+    position: fixed;
+    width: max-content;
+    bottom: 2em;
+    right: 2em;
+    padding: 0.75em;
+    display: grid;
+    border: 0.1em solid rgba(255, 255, 255, 0.25);
+    // blend the background color with the background image
+    backdrop-filter: blur(0.5em);
+    border-radius: 0.125em;
+    place-items: center;
+    background-color: hsl(var(--primary-400) / 0.9);
+    color: #fff;
+    transition: background-color 100ms ease-in-out, scale 100ms ease-in-out;
+    // transform: rotate(-90deg);
+    rotate: -90deg;
+    z-index: 1;
+    path {
+      fill: #fff;
+    }
+    cursor: pointer;
+    &:hover {
+      background-color: hsl(var(--primary-400) / 1);
+      scale: 1.02;
+    }
+  }
+}
+
+.observable__div {
+  --height: 1em;
+  position: absolute;
+  width: 100%;
+  height: var(--height);
+  margin-top: calc(100vh - var(--height));
+}
