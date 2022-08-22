@@ -2,9 +2,6 @@ import { useEffect, useRef } from "react";
 import BackendIllustration from "@svg/backend_illustration.svg";
 import { gsap } from "gsap";
 import { SectionIllustration } from "@components/Section";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const BackEndIllustration = () => {
   const ref = useRef<HTMLDivElement>(null);

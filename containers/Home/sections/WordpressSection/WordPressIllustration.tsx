@@ -2,9 +2,6 @@ import { useEffect, useRef } from "react";
 import WordpressIllustration from "@svg/wordpress_illustration.svg";
 import { gsap } from "gsap";
 import { SectionIllustration } from "@components/Section";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const WordPressIllustration = () => {
     const ref = useRef<HTMLDivElement>(null);

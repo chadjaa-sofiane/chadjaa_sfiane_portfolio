@@ -2,9 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import { Title1 } from "../core/Typography/Typography";
 import { gsap } from "gsap"
 import { v4 as uuidV4 } from "uuid"
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
     children: string;
