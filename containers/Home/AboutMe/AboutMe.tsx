@@ -83,7 +83,7 @@ const LinkedIn = () => {
 const GitHub = () => {
   return (
     <a
-      href="https://www.github.com/chadjaa-sofiane"
+      href="https://twitter.com/chadjaa_sofiane"
       target="_blank"
       rel="noopener noreferrer"
       className={`${styles["icon"]} ${styles["icon--github"]}`}
