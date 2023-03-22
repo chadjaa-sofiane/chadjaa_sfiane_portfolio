@@ -1,9 +1,15 @@
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { useEffect } from "react"
-import { ProjectsField, ProjectsHero } from "containers/Projects";
 import { cardProps } from "@components/Card"
 import { client, urlFor } from "@services/sanity";
+import { Suspense } from "react"
+import dynamic from "next/dynamic"
+
+const ProjectsHero = dynamic(() => import('containers/Projects/ProjectsHero'));
+const ProjectsField = dynamic(() => import('containers/Projects/ProjectsField'), {
+  loading: () => <> lodaing... </>
+});
 
 
 const Projects = ({ projects = [] }: { projects: cardProps[] }) => {
@@ -20,7 +26,9 @@ const Projects = ({ projects = [] }: { projects: cardProps[] }) => {
         <title> Projects </title>
       </Head>
       <ProjectsHero />
-      <ProjectsField projects={projects} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ProjectsField projects={projects} />
+      </Suspense>
     </>
   );
 };
