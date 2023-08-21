@@ -12,7 +12,6 @@ const ProjectsField = ({ projects }: { projects: cardProps[] }) => {
   const { push } = useRouter();
 
   const divRef = useRef(null);
-
   const handleAction = (name: string) => push({
     pathname: "/projects",
     query: { type: name },
@@ -25,7 +24,7 @@ const ProjectsField = ({ projects }: { projects: cardProps[] }) => {
         <Tabs handleAction={handleAction} defaultValue="website" className={styles["projects__tabs"]}>
           <Tab name="website"> Websites </Tab>
           <Tab name="experiment"> Experiments </Tab>
-          <Tab name="wordpress"> Wordpress </Tab>
+          <Tab name="ML"> Machine Learning </Tab>
         </Tabs>
         <ProjectsCards projects={projects} />
       </div>

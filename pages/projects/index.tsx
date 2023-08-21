@@ -33,7 +33,7 @@ const Projects = ({ projects = [] }: { projects: cardProps[] }) => {
   );
 };
 
-const TYPES = ["website", "experiment", "wordpress"];
+const TYPES = ["website", "experiment", "ML"];
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const type = query?.type as string || "";

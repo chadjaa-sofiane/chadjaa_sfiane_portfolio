@@ -25,6 +25,7 @@
   }
   &--active {
     font-weight: bold;
+    color: var(--color);
 
     &::after {
       width: 100%;
