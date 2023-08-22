@@ -11,6 +11,7 @@ export interface cardProps {
   imageSrc?: string;
   link?: string;
   githubUrl?: string;
+  kaggleUrl?:string;
   type?: string;
   description?: string;
 }

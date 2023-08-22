@@ -3,10 +3,11 @@ import { Modal } from "@components/core/Modal";
 import { Title3, Paragraph, Title4 } from "@components/core/Typography";
 import { useCardContext } from "./Card.context";
 import GithubIcon from "@svg/github.svg";
+import KaggleIcon from "@svg/kaggle.svg";
 import styles from "./Card.module.scss";
 
 const ProjectDetailsModal = () => {
-  const { isOpen, handleOpen, title, link, githubUrl, description } =
+  const { isOpen, handleOpen, title, link, githubUrl, kaggleUrl, description } =
     useCardContext();
   return (
     <Modal isOpen={isOpen} setOpen={handleOpen}>
@@ -15,17 +16,22 @@ const ProjectDetailsModal = () => {
       </div>
       <div className={styles["card__modal__container"]}>
         <Paragraph>{description || "no description"}</Paragraph>
-        {githubUrl && <Title4> Source code : </Title4>}
-        <div>{githubUrl && <GitHubIconButton url={githubUrl} />}</div>
+        {(githubUrl || kaggleUrl) && <Title4> Source code : </Title4>}
+        <div>
+          {githubUrl && <GitHubIconButton url={githubUrl} />}
+          {kaggleUrl && <KaggleIconButton url={kaggleUrl} />}
+        </div>
         <div className={styles["card__modal__buttonsField"]}>
-          <AnchorButton
-            role="button"
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View Project
-          </AnchorButton>
+          {link && (
+            <AnchorButton
+              role="button"
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Project
+            </AnchorButton>
+          )}
         </div>
       </div>
     </Modal>
@@ -37,6 +43,15 @@ const GitHubIconButton = ({ url }: { url: string }) => {
     <div className={styles["card__modal__githubIcon"]}>
       <a href={url} target="_blank" rel="noopener noreferrer">
         <GithubIcon />
+      </a>
+    </div>
+  );
+};
+const KaggleIconButton = ({ url }: { url: string }) => {
+  return (
+    <div className={styles["card__modal__githubIcon"]}>
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        <KaggleIcon />
       </a>
     </div>
   );
