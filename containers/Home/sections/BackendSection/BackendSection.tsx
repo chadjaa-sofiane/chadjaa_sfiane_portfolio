@@ -10,7 +10,7 @@ const BackendSection = () => {
       <BackEndIllustration />
       <SectionContent
         title="a back end developer"
-        description={<>Proficient in maintaining and building backend servers using <HightlightedText>Node.js</HightlightedText>.</>}
+        description={<>Skilled in crafting and fortifying backend servers with the power of <HightlightedText>Node.js</HightlightedText>.</>}
       />
     </Section>
   );
