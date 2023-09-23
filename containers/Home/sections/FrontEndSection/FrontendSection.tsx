@@ -14,7 +14,7 @@ const FrontendSection = () => {
     <Section ref={ref}>
       <SectionContent
         title="a front end developer"
-        description={<>I can build responsive websites and applications. with the power of <HightlightedText>React</HightlightedText>, <HightlightedText>React-native</HightlightedText> and <HightlightedText>Next</HightlightedText> </>}
+        description={<> Crafted responsive websites and applications using the dynamic capabilities of <HightlightedText>React</HightlightedText>, <HightlightedText>React-native</HightlightedText> and <HightlightedText>Next</HightlightedText> </>}
       />
       <FrontEndIllustration />
     </Section>
