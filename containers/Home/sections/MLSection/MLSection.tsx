@@ -14,9 +14,9 @@ const MLSection = () => {
         title="a ML manager"
         description={
           <>
-            A skilled <HightlightedText>ML enginee</HightlightedText> r, capable
+            A skilled <HightlightedText>ML enginee</HightlightedText>, capable
             of using machine learning tools and frameworks to produce a valuable
-            product..
+            product.
           </>
         }
       />
