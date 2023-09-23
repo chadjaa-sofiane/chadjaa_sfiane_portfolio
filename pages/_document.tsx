@@ -10,6 +10,7 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Oldenburg&family=Open+Sans:wght@300;400;700&family=Pavanam&family=Petit+Formal+Script&family=Poppins:wght@300;500;700&display=swap"
           rel="stylesheet"
         />
+        <link rel="icon" href="/favicon.ico" sizes="196x196" />
       </Head>
       <body>
         <Main />
