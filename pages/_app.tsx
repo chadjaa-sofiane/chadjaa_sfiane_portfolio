@@ -6,6 +6,7 @@ import Footer from "@components/Footer";
 import { BackToTop } from "@components/BackToTop";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { Analytics } from "@vercel/analytics/react";
 import "@styles/index.scss";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,12 +14,15 @@ gsap.registerPlugin(ScrollTrigger);
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
   return (
-    <AlertProvider position={"top-right"}>
-      <BackToTop />
-      <Header color={pathname === "/projects" ? "dark" : "light"} />
-      <Component {...pageProps} />
-      <Footer />
-    </AlertProvider>
+    <>
+      <AlertProvider position={"top-right"}>
+        <BackToTop />
+        <Header color={pathname === "/projects" ? "dark" : "light"} />
+        <Component {...pageProps} />
+        <Footer />
+      </AlertProvider>
+      <Analytics />
+    </>
   );
 }
 
