@@ -8,14 +8,17 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { Analytics } from "@vercel/analytics/react";
 import "@styles/index.scss";
+import { GetEmail } from "@components/GetEmail";
 
 gsap.registerPlugin(ScrollTrigger);
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
   return (
     <>
       <AlertProvider position={"top-right"}>
+        <GetEmail />
         <BackToTop />
         <Header color={pathname === "/projects" ? "dark" : "light"} />
         <Component {...pageProps} />
