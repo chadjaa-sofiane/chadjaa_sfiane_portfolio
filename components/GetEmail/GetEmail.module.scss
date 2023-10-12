@@ -1,0 +1,59 @@
+.email_icon {
+  &_wrapper {
+    position: fixed;
+    bottom: 2em;
+    left: 2em;
+    z-index: 1;
+    background-color: hsl(var(--primary-400) / 0.9);
+    padding: 0.75em;
+    display: grid;
+    place-items: center;
+    border-radius: 0.2em;
+    cursor: pointer;
+    border: 0.1em solid rgba(255, 255, 255, 0.25);
+    animation: appear 1000ms ease-in-out;
+    transition: background-color 100ms ease-in-out;
+    & > svg {
+      width: 40px;
+      height: 30px;
+
+      path {
+        stroke: #fff;
+      }
+    }
+    &:hover {
+      background-color: hsl(var(--primary-400) / 1);
+    }
+  }
+  &_svg {
+    animation: bounce 3s infinite;
+    /* Adjust animation properties as needed */
+    animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
