@@ -14,7 +14,7 @@ const ProjectsHero = () => {
     <Section variant="dark">
       <SectionContent
         title="My Projects"
-        description="here when you can find my projects, my experiemets, and anything new I&apos;ve learned."
+        description="Discover my personal projects and experiments, where innovation knows no boundaries."
       />
       <ProjectsHeroIllustration />
     </Section>
