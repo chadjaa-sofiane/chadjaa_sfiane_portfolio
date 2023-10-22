@@ -9,7 +9,9 @@ import { useRef } from "react";
 
 
 const ProjectsField = ({ projects }: { projects: cardProps[] }) => {
-  const { push } = useRouter();
+  const { push, query } = useRouter();
+
+  const defaultValue = (query.type as string) || "website";
 
   const divRef = useRef(null);
   const handleAction = (name: string) => push({
@@ -21,7 +23,7 @@ const ProjectsField = ({ projects }: { projects: cardProps[] }) => {
     <Section>
       <div className={styles["projects__field"]} ref={divRef}>
         <Title2>  My Projects  </Title2>
-        <Tabs handleAction={handleAction} defaultValue="website" className={styles["projects__tabs"]}>
+        <Tabs handleAction={handleAction} defaultValue={defaultValue} className={styles["projects__tabs"]}>
           <Tab name="website"> Websites </Tab>
           <Tab name="experiment"> Experiments </Tab>
           <Tab name="ML"> Machine Learning </Tab>
