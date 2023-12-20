@@ -70,7 +70,7 @@ const Twitter = () => {
 const LinkedIn = () => {
   return (
     <a
-      href="https://www.linkedin.com/in/chadjaa-sofiane-749045217/"
+      href="https://www.linkedin.com/in/sofiane-chadjaa/"
       target="_blank"
       rel="noopener noreferrer"
       className={`${styles["icon"]} ${styles["icon--linkedin"]}`}
