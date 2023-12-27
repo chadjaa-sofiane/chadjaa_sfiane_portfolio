@@ -24,6 +24,9 @@
   &__illustration {
     width: max-content;
     max-width: 100%;
+    @include breakpoint(large){
+      width: 100%;
+    }
     @include breakpoint(medium) {
       order: 2;
     }
