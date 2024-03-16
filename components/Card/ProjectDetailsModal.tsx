@@ -1,10 +1,20 @@
 import { AnchorButton } from "@components/core/Button";
-import { Modal } from "@components/core/Modal";
 import { Title3, Paragraph, Title4 } from "@components/core/Typography";
 import { useCardContext } from "./Card.context";
 import GithubIcon from "@svg/github.svg";
 import KaggleIcon from "@svg/kaggle.svg";
 import styles from "./Card.module.scss";
+import dynamic from "next/dynamic";
+
+const Modal = dynamic(
+  async () => {
+    const { Modal } = await import("@components/core/Modal");
+    return Modal;
+  },
+  {
+    ssr: false,
+  },
+);
 
 const ProjectDetailsModal = () => {
   const { isOpen, handleOpen, title, link, githubUrl, kaggleUrl, description } =
