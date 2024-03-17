@@ -6,12 +6,15 @@
     padding: 1rem;
     font-weight: bold;
     font-size: var(--fs-sm);
-    background-color: hsl(var(--secondary-400) / 0.2);
+    color: hsl(var(--primary-400) / 0.9);
+    // background-color: hsl(var(--secondary-400) / 0.2);
+    // background-color: red;
     cursor: pointer;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     &:hover {
-      background-color: hsl(var(--secondary-400) / 0.3);
+      // background-color: hsl(var(--secondary-400) / 0.3);
+      color: hsl(var(--primary-300) / 0.9);
     }
   }
   &__wrapper {
