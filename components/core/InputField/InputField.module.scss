@@ -6,17 +6,71 @@
     font-size: var(--fs-xs);
   }
 
+  &__container {
+    position: relative;
+    padding: 1em 0;
+    display: flex;
+    flex-direction: column-reverse;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.2em;
+      width: 100%;
+      height: 0.05em;
+      background-color: hsl(var(--primary-400) / 0.9);
+    }
+  }
+
+  &__label {
+    position: absolute;
+    top: 50%;
+    color: hsl(var(--primary-400) / 0.9);
+    font-size: var(--fs-sm);
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+    transition: top 150ms ease-in-out;
+    transition-delay: 150ms;
+  }
+
+  &__underline {
+    position: absolute;
+    width: 0%;
+    height: 0.2em;
+    background-color: hsl(var(--primary-400) / 0.9);
+    left: 0;
+    bottom: -0.2em;
+    transition: width 400ms ease-in-out;
+  }
+
   input[type="text"],
   input[type="email"],
   textarea {
-    margin-top: 0.5em;
-    padding: 0.5em 1em;
+    width: 100%;
+    margin-top: 1em;
     font-size: var(--fs-xs);
     background-color: none;
     border: none;
-    outline: hsl(var(--primary-400)) 0.05em solid;
     border-radius: 3px;
     resize: none;
+    outline: none;
+    color: transparent; /* Set initial color to transparent */
+    transition: color 150ms ease; /* Add transition for color property */
+    transition-delay: 150ms;
+    &:focus + label,
+    &:not(:placeholder-shown) + label {
+      top: 0%;
+      transition-delay: 0ms;
+    }
+    &:focus,
+    &:not(:placeholder-shown) {
+      color: hsl(var(--primary-400) / 0.9);
+    }
+    &:focus ~ div,
+    &:not(:placeholder-shown) ~ div {
+      width: 100%;
+    }
   }
   &__error {
     width: 100%;
