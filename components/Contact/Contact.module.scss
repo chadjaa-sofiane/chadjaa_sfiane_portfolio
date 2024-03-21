@@ -1,3 +1,4 @@
+@use "../../styles/mixins" as *;
 .email_icon {
   &_wrapper {
     position: fixed;
@@ -30,6 +31,124 @@
     /* Adjust animation properties as needed */
     animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
     animation-iteration-count: infinite;
+  }
+}
+
+.contact {
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 4em;
+    padding: 2em;
+  }
+  &__header {
+    text-align: center;
+    color: hsl(var(--primary-400) / 0.9);
+  }
+  &__content {
+    flex: 1;
+    // give it a smaler width and make it take full when screen is medium or less
+    width: 90%;
+    @include breakpoint(medium) {
+      width: 100%;
+    }
+  }
+  &__inputs {
+    display: flex;
+    column-gap: 1em;
+    @include breakpoint(medium) {
+      flex-direction: column;
+    }
+  }
+  &__contactField {
+    position: relative;
+    display: flex;
+    align-items: center;
+    column-gap: 0.5em;
+    border: 0.1em solid hsl(var(--primary-400) / 0.4);
+    border-radius: 0.2em;
+    padding: 0.5em;
+    // font-size: var(--fs-xs);
+    &__container {
+      flex: 1;
+      display: flex;
+      column-gap: 1em;
+      align-items: center;
+      font-size: var(--fs-xs);
+    }
+    & svg {
+      fill: white;
+      width: 1em;
+      height: fit-content;
+      object-fit: contain;
+      // make it responsive when device size is small
+      @include breakpoint(medium) {
+        width: 1.25em;
+      }
+    }
+    &__title {
+      color: hsl(var(--primary-400) / 0.9);
+      font-size: var(--fs-sm);
+      letter-spacing: 0.05em;
+      font-weight: semibold;
+    }
+    &__link {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      color: hsl(var(--primary-300) / 0.9);
+      font-size: var(--fs-sm);
+      letter-spacing: 0.05em;
+      font-weight: semibold;
+    }
+    &__copy {
+      // position: relative;
+      // bottom: 0.4em;
+      background: hsl(var(--primary-400) / 0.9);
+      padding: 0.75em;
+      border-radius: 0.4em;
+      cursor: pointer;
+    }
+  }
+  &__message {
+    width: 80%;
+    @include breakpoint(medium) {
+      width: 100%;
+    }
+  }
+  &__footer {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1em;
+    @include breakpoint(medium) {
+      width: 100%;
+    }
+    &__or {
+      width: 100%;
+      position: relative;
+      text-align: center;
+      isolation: isolate;
+      & > span {
+        font-weight: bold;
+        padding: 0.4em 1em;
+        background-color: white;
+        font-size: var(--fs-xs);
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 0.1em;
+        background-color: hsl(var(--primary-400) / 0.4);
+        z-index: -1;
+      }
+    }
   }
 }
 
