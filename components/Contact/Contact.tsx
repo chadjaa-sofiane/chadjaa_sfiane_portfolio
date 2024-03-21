@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
-import EmailIcon from "@svg/email.svg";
-import CopyIcon from "@svg/copy.svg";
-import style from "./Contact.module.scss";
-
-import dynamic from "next/dynamic";
-import { InputField } from "@components/core/InputField";
-import { Button } from "@components/core/Button";
 import { AnimationText } from "@components/AnimationText";
+import { Button } from "@components/core/Button";
+import { InputField } from "@components/core/InputField";
+import CopyIcon from "@svg/copy.svg";
+import EmailIcon from "@svg/email.svg";
+import GmailIcon from "@svg/gmail.svg";
+import SkypeIcon from "@svg/skype.svg";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
+import style from "./Contact.module.scss";
 
 const Modal = dynamic(
   async () => {
@@ -19,6 +20,7 @@ const Modal = dynamic(
 );
 
 const EMAIL = "chadjaasofiane@gmail.com";
+const SKYPE = "https://join.skype.com/invite/dwx8Inm5F40q";
 const DELAY = 1000;
 
 const Contact = () => {
@@ -51,7 +53,7 @@ const Contact = () => {
               label="message"
               placeholder="please enter your message"
             />
-            <div>
+            <div className={style["contact__submit"]}>
               <Button> send </Button>
             </div>
           </div>
@@ -59,7 +61,10 @@ const Contact = () => {
             <div className={style["contact__footer__or"]}>
               <span>or</span>
             </div>
-            <ContactField link={EMAIL} />
+            <div className={style["contact__footer__socials"]}>
+              <ContactField link={EMAIL} icon={<GmailIcon />} />
+              <ContactField link={SKYPE} icon={<SkypeIcon />} type="navigate" />
+            </div>
           </div>
         </div>
       </Modal>
@@ -90,9 +95,11 @@ const DoneIcon = () => {
 
 interface ContactFieldProps {
   link: string;
+  icon: React.ReactNode;
+  type?: "copy" | "navigate";
 }
 
-const ContactField = ({ link }: ContactFieldProps) => {
+const ContactField = ({ link, icon, type = "copy" }: ContactFieldProps) => {
   const [copied, setCopied] = useState(false);
   const getEmail = () => {
     navigator.clipboard.writeText(link);
@@ -115,19 +122,18 @@ const ContactField = ({ link }: ContactFieldProps) => {
   }, [copied]);
 
   return (
-    <div className={style["contact__content"]}>
-      <div className={style["contact__contactField"]}>
-        <div className={style["contact__contactField__container"]}>
-          <EmailIcon />
-          <div className={style["contact__contactField__link"]}>{link}</div>
-        </div>
+    <div className={style["contact__contactField"]}>
+      <a href={link} target="_blank" rel="noreferrer">
+        {icon}
+      </a>
+      {type === "copy" ? (
         <div
+          className={style["contact__contactField__link"]}
           onClick={getEmail}
-          className={style["contact__contactField__copy"]}
         >
           {copied ? <DoneIcon /> : <CopyIcon />}
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };
