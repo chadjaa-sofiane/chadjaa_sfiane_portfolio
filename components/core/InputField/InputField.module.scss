@@ -32,6 +32,18 @@
     pointer-events: none;
     transition: top 150ms ease-in-out;
     transition-delay: 150ms;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      animation: appear 600ms ease-out forwards;
+      animation-delay: 100ms;
+    }
   }
 
   &__underline {
@@ -41,7 +53,7 @@
     background-color: hsl(var(--primary-400) / 0.9);
     left: 0;
     bottom: -0.2em;
-    transition: width 400ms ease-in-out;
+    transition: width 150ms ease-in-out;
   }
 
   input[type="text"],
@@ -65,7 +77,7 @@
     }
     &:focus,
     &:not(:placeholder-shown) {
-      color: hsl(var(--primary-400) / 0.9);
+      color: hsl(var(--primary-300) / 0.9);
     }
     &:focus ~ div,
     &:not(:placeholder-shown) ~ div {
@@ -78,5 +90,14 @@
     color: red;
     font-family: var(--Sans-font);
     font-size: var(--fs-xs);
+  }
+}
+
+@keyframes appear {
+  from {
+    height: 100%;
+  }
+  to {
+    height: 0%;
   }
 }
