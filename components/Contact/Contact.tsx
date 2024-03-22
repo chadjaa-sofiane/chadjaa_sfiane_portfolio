@@ -1,4 +1,5 @@
 import { AnimationText } from "@components/AnimationText";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@components/core/Button";
 import { InputField } from "@components/core/InputField";
 import CopyIcon from "@svg/copy.svg";
@@ -7,6 +8,8 @@ import GmailIcon from "@svg/gmail.svg";
 import SkypeIcon from "@svg/skype.svg";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import style from "./Contact.module.scss";
 
 const Modal = dynamic(
@@ -18,6 +21,15 @@ const Modal = dynamic(
     ssr: false,
   },
 );
+
+// create a zod validation for the schemas in this code.
+const ContactFieldSchema = z.object({
+  name: z.string().min(3).max(30),
+  email: z.string().email().min(1),
+  message: z.string().min(1).max(255),
+});
+
+type ContactField = z.infer<typeof ContactFieldSchema>;
 
 const EMAIL = "chadjaasofiane@gmail.com";
 const SKYPE = "https://join.skype.com/invite/dwx8Inm5F40q";
@@ -33,30 +45,7 @@ const Contact = () => {
           <div className={style["contact__header"]}>
             <AnimationText tag="Title2"> contact me</AnimationText>
           </div>
-          <div className={style["contact__content"]}>
-            <div className={style["contact__inputs"]}>
-              <InputField
-                name="name"
-                label="full name"
-                placeholder="enter your full name"
-              />
-              <InputField
-                name="email"
-                label="email"
-                placeholder="enter your full email"
-                style={{ flex: 1 }}
-              />
-            </div>
-            <InputField
-              name="message"
-              type="textarea"
-              label="message"
-              placeholder="please enter your message"
-            />
-            <div className={style["contact__submit"]}>
-              <Button> send </Button>
-            </div>
-          </div>
+          <ContactForm />
           <div className={style["contact__footer"]}>
             <div className={style["contact__footer__or"]}>
               <span>or</span>
@@ -76,6 +65,53 @@ const Contact = () => {
         <EmailIcon className={style["email_icon_svg"]} />
       </div>
     </>
+  );
+};
+
+const ContactForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, touchedFields, isSubmitting },
+  } = useForm<ContactField>({
+    resolver: zodResolver(ContactFieldSchema),
+  });
+
+  const onSubmit = (data: ContactField) => {
+    console.log(data);
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={style["contact__content"]}
+    >
+      <div className={style["contact__inputs"]}>
+        <InputField
+          label="full name"
+          error={errors.name ? errors.name.message : ""}
+          placeholder="enter your full name"
+          {...register("name")}
+        />
+        <InputField
+          label="email"
+          error={errors.email ? errors.email.message : ""}
+          placeholder="enter your email"
+          {...register("email")}
+          style={{ flex: 1 }}
+        />
+      </div>
+      <InputField
+        type="textarea"
+        label="message"
+        error={errors.message ? errors.message.message : ""}
+        placeholder="please enter your message"
+        {...register("message")}
+      />
+      <div className={style["contact__submit"]}>
+        <Button> send </Button>
+      </div>
+    </form>
   );
 };
 
