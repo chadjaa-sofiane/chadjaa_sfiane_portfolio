@@ -70,6 +70,9 @@
     color: transparent; /* Set initial color to transparent */
     transition: color 150ms ease; /* Add transition for color property */
     transition-delay: 150ms;
+    &::placeholder {
+      color: transparent;
+    }
     &:focus + label,
     &:not(:placeholder-shown) + label {
       top: 0%;
@@ -82,6 +85,9 @@
     &:focus ~ div,
     &:not(:placeholder-shown) ~ div {
       width: 100%;
+    }
+    &:focus::placeholder {
+      color: unset;
     }
   }
   &__error {
