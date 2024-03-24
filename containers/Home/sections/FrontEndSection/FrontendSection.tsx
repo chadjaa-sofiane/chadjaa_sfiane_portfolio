@@ -13,8 +13,8 @@ const FrontendSection = () => {
         title="a front end developer"
         description={
           <>
-            Crafted responsive websites and applications using the dynamic
-            capabilities of <HighlightedText>React</HighlightedText>,
+            Created responsive websites and applications with
+            <HighlightedText>React</HighlightedText>,
             <HighlightedText>React-native</HighlightedText> and
             <HighlightedText>Next</HighlightedText>
           </>
