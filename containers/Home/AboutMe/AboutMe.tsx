@@ -8,7 +8,7 @@ import LinkedInIcon from "@svg/linked_in.svg";
 import GithubIcon from "@svg/github.svg";
 import styles from "./AboutMe.module.scss";
 
-import { HightlightedText } from "@components/core/Typography";
+import { HighlightedText } from "@components/core/Typography";
 // import { Title2 } from "@components/AnimationText";
 import { useSectionsProgress } from "@components/SectionsProgress";
 
@@ -37,7 +37,7 @@ const AboutMe = ({ profileImage }: { profileImage: string }) => {
               <Title2> Chadjaa Sofiane </Title2>
               <LargeParagraph>
                 my name is chadjaa sofiane. I&apos;am a
-                <HightlightedText> full-stack </HightlightedText> developer.
+                <HighlightedText> full-stack </HighlightedText> developer.
                 <br />
               </LargeParagraph>
               <Button variant="outlined" onClick={downloadCv}>

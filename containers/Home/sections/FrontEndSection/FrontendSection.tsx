@@ -1,9 +1,6 @@
-import {
-  Section,
-  SectionContent,
-} from "@components/Section";
+import { Section, SectionContent } from "@components/Section";
 import FrontEndIllustration from "./FrontEndIllustration";
-import { HightlightedText } from "@components/core/Typography";
+import { HighlightedText } from "@components/core/Typography";
 import { useSectionsProgress } from "@components/SectionsProgress";
 
 //backend_illustration
@@ -14,7 +11,14 @@ const FrontendSection = () => {
     <Section ref={ref}>
       <SectionContent
         title="a front end developer"
-        description={<> Crafted responsive websites and applications using the dynamic capabilities of <HightlightedText>React</HightlightedText>, <HightlightedText>React-native</HightlightedText> and <HightlightedText>Next</HightlightedText> </>}
+        description={
+          <>
+            Crafted responsive websites and applications using the dynamic
+            capabilities of <HighlightedText>React</HighlightedText>,
+            <HighlightedText>React-native</HighlightedText> and
+            <HighlightedText>Next</HighlightedText>
+          </>
+        }
       />
       <FrontEndIllustration />
     </Section>

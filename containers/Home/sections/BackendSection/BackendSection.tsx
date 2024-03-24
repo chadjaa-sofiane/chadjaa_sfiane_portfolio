@@ -1,6 +1,6 @@
 import BackEndIllustration from "./BackEndIllustration";
 import { Section, SectionContent } from "@components/Section";
-import { HightlightedText } from "@components/core/Typography";
+import { HighlightedText } from "@components/core/Typography";
 import { useSectionsProgress } from "@components/SectionsProgress";
 
 const BackendSection = () => {
@@ -13,9 +13,9 @@ const BackendSection = () => {
         description={
           <>
             Skilled developer in
-            <HightlightedText> NodeJS</HightlightedText>,
-            <HightlightedText> Python</HightlightedText> and
-            <HightlightedText> Django</HightlightedText> for crafting powerful
+            <HighlightedText> NodeJS</HighlightedText>,
+            <HighlightedText> Python</HighlightedText> and
+            <HighlightedText> Django</HighlightedText> for crafting powerful
             backend solutions.
           </>
         }

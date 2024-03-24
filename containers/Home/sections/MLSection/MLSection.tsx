@@ -1,4 +1,4 @@
-import { HightlightedText } from "@components/core/Typography";
+import { HighlightedText } from "@components/core/Typography";
 import { Section, SectionContent } from "@components/Section";
 import { useSectionsProgress } from "@components/SectionsProgress";
 import MLIllustration from "./MLIllustration";
@@ -14,8 +14,8 @@ const MLSection = () => {
         title="a ML Engineer"
         description={
           <>
-            A skilled <HightlightedText>ML engineer</HightlightedText>, capable
-            of using machine learning tools and frameworks to produce a valuable
+            A skilled <HighlightedText>ML engineer</HighlightedText>, capable of
+            using machine learning tools and frameworks to produce a valuable
             product.
           </>
         }
