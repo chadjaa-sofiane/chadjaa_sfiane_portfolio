@@ -9,8 +9,16 @@ const BackendSection = () => {
     <Section ref={ref} variant="dark">
       <BackEndIllustration />
       <SectionContent
-        title="a back end developer"
-        description={<>Skilled in crafting and fortifying backend servers with the power of <HightlightedText>Node.js</HightlightedText>.</>}
+        title="a backend developer"
+        description={
+          <>
+            Skilled developer in
+            <HightlightedText> NodeJS</HightlightedText>,
+            <HightlightedText> Python</HightlightedText> and
+            <HightlightedText> Django</HightlightedText> for crafting powerful
+            backend solutions.
+          </>
+        }
       />
     </Section>
   );
