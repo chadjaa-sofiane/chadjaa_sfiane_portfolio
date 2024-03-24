@@ -11,7 +11,7 @@ const MLSection = () => {
     <Section ref={ref} variant="dark">
       <MLIllustration />
       <SectionContent
-        title="a ML Engineer"
+        title="an ML Engineer"
         description={
           <>
             A skilled <HighlightedText>ML engineer</HighlightedText>, capable of
