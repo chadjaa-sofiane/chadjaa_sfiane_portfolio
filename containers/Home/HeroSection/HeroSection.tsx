@@ -8,8 +8,14 @@ const HeroSection = () => {
   return (
     <Section ref={ref}>
       <SectionContent
-        title=" welcome in sotfolio"
-        description={<>I&apos;m a <HightlightedText>full-stack</HightlightedText> developer with a passion for building beautiful, responsive websites and applications.</>}
+        title=" welcome to SoftFolio"
+        description={
+          <>
+            I&apos;m a <HightlightedText>full-stack</HightlightedText> developer
+            with a passion for building beautiful and responsive websites and
+            applications.
+          </>
+        }
       />
       <HeroIllustration />
     </Section>
