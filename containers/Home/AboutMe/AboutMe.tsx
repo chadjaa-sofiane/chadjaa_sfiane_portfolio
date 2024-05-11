@@ -21,33 +21,38 @@ const downloadCv = () => {
   document.body.removeChild(a);
 };
 
-const AboutMe = ({ profileImage }: { profileImage: string }) => {
+const AboutMe = () => {
   const { ref } = useSectionsProgress();
   return (
     <Wrapper>
       <Container>
         <div ref={ref} className={styles["aboutMe__wrapper"]}>
           <div className={styles["aboutMe"]}>
+            <div className={styles["aboutMe__content"]}>
+              <Title2> About Chadjaa Sofiane</Title2>
+              <LargeParagraph>
+                A <HighlightedText> Software Engineer </HighlightedText> armed
+                with a master&apos;s in AI, fueled by a passion for solving
+                complex challenges and crafting Silly ML projects.
+                <br />
+              </LargeParagraph>
+              <Button
+                className={styles["aboutMe__button"]}
+                variant="outlined"
+                onClick={downloadCv}
+              >
+                download my cv
+              </Button>
+            </div>
             <div className={styles["aboutMe__links"]}>
               <Twitter />
               <LinkedIn />
               <GitHub />
             </div>
-            <div className={styles["aboutMe__content"]}>
-              <Title2> Chadjaa Sofiane </Title2>
-              <LargeParagraph>
-                my name is chadjaa sofiane. I&apos;am a
-                <HighlightedText> full-stack </HighlightedText> developer.
-                <br />
-              </LargeParagraph>
-              <Button variant="outlined" onClick={downloadCv}>
-                download my cv
-              </Button>
-            </div>
           </div>
-          <div className={styles["aboutMe__image__field"]}>
-            <Image src={profileImage || ""} alt="my photo" layout="fill" />
-          </div>
+          {/* <div className={styles["aboutMe__image__field"]}> */}
+          {/*   <Image src={profileImage || ""} alt="my photo" layout="fill" /> */}
+          {/* </div> */}
         </div>
       </Container>
     </Wrapper>

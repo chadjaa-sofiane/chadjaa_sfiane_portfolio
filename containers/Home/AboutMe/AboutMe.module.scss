@@ -1,6 +1,7 @@
 @use "../../../styles/mixins/" as *;
 
 .aboutMe {
+  padding: 2em;
   display: flex;
   column-gap: 1em;
   flex: 1 1 min(50em, 100%);
@@ -8,12 +9,15 @@
     flex-direction: column;
   }
   &__wrapper {
+    box-shadow: 0 0 1em hsl(var(--primary-400) / 0.1);
+    border-radius: 1em;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     row-gap: 4em;
     column-gap: 2em;
+    min-height: 50vh;
   }
   &__content {
     display: flex;
@@ -21,7 +25,7 @@
     justify-content: space-between;
     align-items: flex-start;
     row-gap: 2em;
-    padding: 1em 2em;
+    padding: 2em;
   }
   &__image__field {
     position: relative;
@@ -36,16 +40,22 @@
     }
   }
   &__links {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1em 2em;
+    align-items: center;
+    row-gap: 1em;
+    padding: 2em;
     @include breakpoint(medium) {
       flex-direction: row;
     }
+    // flex: 1;
+    // display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(5em, 1fr));
     svg {
-      width: 3.5em;
-      height: 3.5em;
+      width: 4.5em;
+      height: 4.5em;
       border: 0.2em solid hsl(var(--primary-200));
       border-radius: 0.5em;
       padding: 0.75em;
@@ -53,8 +63,21 @@
       path {
         stroke: hsl(var(--primary-400));
         fill: hsl(var(--primary-400));
-        transition: stroke 100ms ease-in, fill 100ms ease-in;
+        transition:
+          stroke 100ms ease-in,
+          fill 100ms ease-in;
       }
+    }
+  }
+  &__button {
+    font-size: var(--fs-xs);
+    padding: 0.5em 1.5em;
+    animation: bounce 2s ease-in-out infinite;
+    &:hover {
+      animation-play-state: paused;
+      scale: 1.1;
+      background-color: hsl(var(--primary-400));
+      color: white;
     }
   }
 }
@@ -69,12 +92,26 @@
   &--github {
     --icon-color: #333;
   }
-  transition: scale 100ms ease-in, color 100ms ease-in;
+  transition:
+    scale 100ms ease-in,
+    color 100ms ease-in;
   &:hover {
     scale: 1.1;
     path {
       stroke: var(--icon-color);
       fill: var(--icon-color);
     }
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
   }
 }
