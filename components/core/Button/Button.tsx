@@ -9,13 +9,23 @@ interface props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color?: "primary" | "secondary";
 }
 
-export const Button = ({ children, variant, size, color = "primary", ...rest }: props) => {
+export const Button = ({
+  children,
+  variant,
+  size,
+  color = "primary",
+  className,
+  ...rest
+}: props) => {
   const styelArray = [
+    className,
     styles["button"],
     variant === "outlined"
       ? styles["button--outlined"]
       : styles["button--field"],
-    color === "secondary" ? styles["button--secondary"] : styles["button--primary"],
+    color === "secondary"
+      ? styles["button--secondary"]
+      : styles["button--primary"],
     size === "large" ? styles["button--large"] : "",
   ];
 
@@ -26,7 +36,8 @@ export const Button = ({ children, variant, size, color = "primary", ...rest }: 
   );
 };
 
-interface AnchorButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface AnchorButtonProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   children: React.ReactNode;
 }
 
@@ -34,9 +45,13 @@ export const AnchorButton = ({ children, ...rest }: AnchorButtonProps) => {
   const clasess = [
     styles["button"],
     styles["button--field"],
-    styles["button--primary"]
-  ].join(" ")
+    styles["button--primary"],
+  ].join(" ");
   return (
-    <a {...rest} role="button" className={clasess}> {children} </a>
-  )
-}
+    <a {...rest} role="button" className={clasess}>
+      {" "}
+      {children}{" "}
+    </a>
+  );
+};
+
