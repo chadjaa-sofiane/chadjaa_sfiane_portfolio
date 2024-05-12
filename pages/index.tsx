@@ -7,9 +7,9 @@ import {
   AboutMe,
 } from "containers/Home";
 import { SectionsProgressProvider } from "@components/SectionsProgress";
-import { client, urlFor } from "@services/sanity";
+// import { client, urlFor } from "@services/sanity";
 
-const Home = ({ profileImage }: { profileImage: string }) => {
+const Home = () => {
   return (
     <SectionsProgressProvider>
       <Head>
@@ -19,21 +19,21 @@ const Home = ({ profileImage }: { profileImage: string }) => {
       <BackendSection />
       <FrontendSection />
       <WordpressSection />
-      <AboutMe profileImage={profileImage} />
+      <AboutMe />
     </SectionsProgressProvider>
   );
 };
 
-export const getStaticProps = async () => {
-  const dataQuery = "*[_type == 'profile']";
-  const data = await client.fetch(dataQuery);
-  const profileImage = urlFor(data[0].image).url();
-
-  return {
-    props: {
-      profileImage,
-    },
-  };
-};
+// export const getStaticProps = async () => {
+//   const dataQuery = "*[_type == 'profile']";
+//   const data = await client.fetch(dataQuery);
+//   const profileImage = urlFor(data[0].image).url();
+//
+//   return {
+//     props: {
+//       profileImage,
+//     },
+//   };
+// };
 
 export default Home;
