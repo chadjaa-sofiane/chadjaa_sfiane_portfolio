@@ -33,6 +33,7 @@
     aspect-ratio: 1/1;
     max-width: 100%;
     box-shadow: 0 0 2em hsl(var(--primary-400) / 0.2);
+    animation: glowing 1s infinite alternate;
     border-radius: 3em;
     img {
       width: 100%;
@@ -114,5 +115,14 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 1em hsl(var(--primary-400) / 0.1);
+  }
+  100% {
+    box-shadow: 0 0 1em hsl(var(--primary-400) / 0.5);
   }
 }
