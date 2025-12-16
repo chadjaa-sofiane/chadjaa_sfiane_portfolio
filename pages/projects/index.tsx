@@ -33,22 +33,8 @@ const Projects = ({ projects = [] }: { projects: cardProps[] }) => {
   );
 };
 
-const TYPES = ["website", "experiment", "ML"];
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const type = query?.type as string || "";
-
-  if (!TYPES.includes(type)) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/projects?type=website",
-      },
-      props: {}
-    }
-  }
-
-  const dataQuery = `*[_type == 'projects' && type == '${type}']`;
+export const getServerSideProps: GetServerSideProps = async () => {
+  const dataQuery = `*[_type == 'projects']`;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const projects = (await client.fetch(dataQuery)).map((project: any) => (
     {

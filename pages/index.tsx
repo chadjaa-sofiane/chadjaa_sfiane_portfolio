@@ -1,10 +1,7 @@
 import Head from "next/head";
 import {
-  HeroSection,
-  BackendSection,
-  FrontendSection,
-  WordpressSection,
   AboutMe,
+  DynamicRoleSection,
 } from "containers/Home";
 import { SectionsProgressProvider } from "@components/SectionsProgress";
 // import { client, urlFor } from "@services/sanity";
@@ -15,10 +12,7 @@ const Home = () => {
       <Head>
         <title> Home Page </title>
       </Head>
-      <HeroSection />
-      <BackendSection />
-      <FrontendSection />
-      <WordpressSection />
+      <DynamicRoleSection />
       <AboutMe />
     </SectionsProgressProvider>
   );

@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <AlertProvider position={"top-right"}>
         <Contact />
         <BackToTop />
-        <Header color={pathname === "/projects" ? "dark" : "light"} />
+        <Header color={pathname === "/projects" || pathname === "/" ? "dark" : "light"} />
         <Component {...pageProps} />
         <Footer />
       </AlertProvider>
