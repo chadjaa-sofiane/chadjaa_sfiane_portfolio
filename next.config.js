@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  transpilePackages: ['lucide-react'],
   images: {
     domains: ["cdn.sanity.io", "firebasestorage.googleapis.com"],
   },
