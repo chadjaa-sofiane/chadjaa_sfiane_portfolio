@@ -3,11 +3,16 @@ import { Button } from "@components/core/Button";
 import { useCardContext } from "./Card.context"
 import styles from "./Card.module.scss";
 
+import ProjectIcon from "./ProjectIcon";
+
 const CardContent = () => {
-    const { title, body } = useCardContext();
+    const { title, body, type } = useCardContext();
     return (
         <div className={styles["card__content"]}>
-            <Title4> {title} </Title4>
+            <div className={styles["card__header"]}>
+                <Title4> {title} </Title4>
+                <ProjectIcon type={type} />
+            </div>
             <Paragraph>{body}</Paragraph>
             <CardButtons />
         </div>

@@ -3,25 +3,95 @@
     width: min(43em, 100%);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(21em, 100%), 1fr));
-    box-shadow: 0px 4px 30px 2px hsl(var(--primary-400) / 0.2);
-    border-radius: 0.2em;
+    background: hsl(var(--background) / 0.95);
+    border: 1px solid hsl(var(--primary-400) / 0.1);
+    box-shadow:
+      0px 4px 20px 2px hsl(var(--primary-400) / 0.08),
+      0px 8px 40px 4px hsl(var(--primary-400) / 0.05);
+    border-radius: 1.25em;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, hsl(var(--primary-400) / 0.03), hsl(var(--secondary-400) / 0.05));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow:
+        0px 12px 40px 4px hsl(var(--primary-400) / 0.15),
+        0px 20px 60px 8px hsl(var(--primary-400) / 0.1);
+      border-color: hsl(var(--primary-400) / 0.2);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    &>* {
+      position: relative;
+      z-index: 1;
+    }
   }
+
   &__image {
     &__field {
       position: relative;
-      padding-top: 100%;
+      padding-top: 56.25%;
+      overflow: hidden;
+
+      img {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
     }
+
     object-fit: cover;
   }
+
+  &__wrapper:hover &__image__field img {
+    transform: scale(1.05);
+  }
+
   &__content {
-    padding: 1.25em;
+    padding: 1.5em;
     display: flex;
     flex-direction: column;
     row-gap: 1em;
-    & > p {
+
+    &>p {
       flex: 1;
+      line-height: 1.7;
+      color: hsl(var(--foreground) / 0.8);
     }
   }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 0.25em;
+
+    h4 {
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      background: linear-gradient(135deg, hsl(var(--foreground)), hsl(var(--foreground) / 0.8));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+  }
+
   &__modal {
     &__container {
       display: flex;
@@ -29,20 +99,25 @@
       padding: 2em;
       row-gap: 2em;
     }
+
     &__header {
       padding: 1em 2em;
     }
+
     &__githubIcon {
       width: max-content;
       transform-origin: center center;
       transition: 200ms transform ease-in;
+
       path {
         fill: #4a4a4a;
       }
+
       &:hover {
         transform: scale(1.1);
       }
     }
+
     &__buttonsField {
       display: flex;
     }
