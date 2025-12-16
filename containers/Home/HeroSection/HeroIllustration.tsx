@@ -8,7 +8,9 @@ const HeroIllustration = () => {
 
   useEffect(() => {
     const { current } = ref;
-    if (current) {
+    if (!current) return;
+
+    const ctx = gsap.context(() => {
       const bg = current.querySelector("#hero_illustration_svg__background");
       const table = current.querySelector("#hero_illustration_svg__table");
       const monitor = current.querySelector("#hero_illustration_svg__monitor");
@@ -22,38 +24,24 @@ const HeroIllustration = () => {
       const tl = gsap.timeline({
         defaults: { duration: 0.4 },
       });
-      tl.from(bg, {
-        opacity: 0,
-      })
-        .from(curtains, {
-          opacity: 0,
-        })
-        .from(table, {
-          x: -30,
-          opacity: 0,
-        })
-        .from(mug, {
-          y: -10,
-          opacity: 0,
-        })
-        .from(monitor, {
-          y: -30,
-          opacity: 0,
-        })
-        .from(person, {
-          x: -50,
-          opacity: 0,
-        })
-        .from(laptop, {
-          x: 10,
-          opacity: 0,
-        });
-    }
+
+      if (bg) tl.from(bg, { opacity: 0 });
+      if (curtains) tl.from(curtains, { opacity: 0 });
+      if (table) tl.from(table, { x: -30, opacity: 0 });
+      if (mug) tl.from(mug, { y: -10, opacity: 0 });
+      if (monitor) tl.from(monitor, { y: -30, opacity: 0 });
+      if (person) tl.from(person, { x: -50, opacity: 0 });
+      if (laptop) tl.from(laptop, { x: 10, opacity: 0 });
+    }, ref);
+
+    return () => ctx.revert();
   }, []);
 
   return (
     <SectionIllustration ref={ref}>
-      <HeroIllustrationSvg />
+      <div style={{ filter: "drop-shadow(0px 0px 20px rgba(255, 255, 255, 0.15))" }}>
+        <HeroIllustrationSvg />
+      </div>
     </SectionIllustration>
   );
 };

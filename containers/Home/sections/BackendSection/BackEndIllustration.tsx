@@ -8,7 +8,9 @@ const BackEndIllustration = () => {
 
   useEffect(() => {
     const { current } = ref;
-    if (current) {
+    if (!current) return;
+
+    const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         defaults: {
           duration: 0.4
@@ -31,19 +33,17 @@ const BackEndIllustration = () => {
       const phone = current.querySelector("#backend_illustration_svg__phone");
       const pc = current.querySelector("#backend_illustration_svg__pc");
 
-      //backend_illustration_svg__watch
-      //backend_illustration_svg__pc
-      //backend_illustration_svg__phone
+      if (serverBg) tl.from(serverBg, { opacity: 0 });
+      if (l3) tl.from(l3, { opacity: 0, y: -15 });
+      if (l2) tl.from(l2, { opacity: 0, y: -15 });
+      if (l1) tl.from(l1, { opacity: 0, y: -15 });
+      if (cercle) tl.from(cercle, { opacity: 0 });
+      if (watch) tl.from(watch, { x: 15, opacity: 0 });
+      if (phone) tl.from(phone, { x: -15, opacity: 0 });
+      if (pc) tl.from(pc, { y: -15, opacity: 0 });
+    }, ref);
 
-      tl.from(serverBg, { opacity: 0 })
-        .from(l3, { opacity: 0, y: -15 })
-        .from(l2, { opacity: 0, y: -15 })
-        .from(l1, { opacity: 0, y: -15 })
-        .from(cercle, { opacity: 0 })
-        .from(watch, { x: 15, opacity: 0 })
-        .from(phone, { x: -15, opacity: 0 })
-        .from(pc, { y: -15, opacity: 0 });
-    }
+    return () => ctx.revert();
   }, []);
 
   return (
