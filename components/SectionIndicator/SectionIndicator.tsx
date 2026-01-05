@@ -15,10 +15,10 @@ const SectionIndicator: React.FC<SectionIndicatorProps> = ({
     return (
         <div
             style={{
-                position: "absolute",
-                bottom: "1rem",
-                left: 0,
-                right: 0,
+                marginTop: "auto",
+                paddingTop: "1rem",
+                paddingBottom: "1rem",
+                width: "100%",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
