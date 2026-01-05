@@ -9,17 +9,22 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { Analytics } from "@vercel/analytics/react";
 import "@styles/index.scss";
 import { Contact } from "@components/Contact";
+import SeasonalEffects from "@components/SeasonalEffects/SeasonalEffects";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
+  // Configurable season - could be moved to an env var or config file
+  const currentSeason = "winter";
+
   return (
     <>
       <AlertProvider position={"top-right"}>
+        <SeasonalEffects season={currentSeason} />
         <Contact />
         <BackToTop />
-        <Header color={pathname === "/projects" || pathname === "/" ? "dark" : "light"} />
+        <Header />
         <Component {...pageProps} />
         <Footer />
       </AlertProvider>

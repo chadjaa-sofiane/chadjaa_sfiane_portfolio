@@ -121,8 +121,7 @@ const DynamicRoleSection = () => {
           flexDirection: "column",
           alignItems: "center",
           width: "100%",
-          height: "550px",
-          position: "relative",
+          minHeight: "550px",
         }}
       >
         <div style={{ flex: 1, display: "flex", alignItems: "center", width: "100%" }}>

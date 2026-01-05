@@ -5,6 +5,8 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
+  background-color: hsl(var(--primary-100));
+
   &--dark {
     background-color: hsl(var(--primary-400));
   }
