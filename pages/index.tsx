@@ -2,6 +2,7 @@ import Head from "next/head";
 import {
   AboutMe,
   DynamicRoleSection,
+  ExperienceSection,
 } from "containers/Home";
 import { SectionsProgressProvider } from "@components/SectionsProgress";
 // import { client, urlFor } from "@services/sanity";
@@ -14,6 +15,7 @@ const Home = () => {
       </Head>
       <DynamicRoleSection />
       <AboutMe />
+      <ExperienceSection />
     </SectionsProgressProvider>
   );
 };

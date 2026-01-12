@@ -1,0 +1,289 @@
+@use "../../../styles/mixins" as *;
+
+.experienceSection {
+    width: 100%;
+    padding: 4rem 0;
+    position: relative;
+}
+
+.sectionHeader {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.sectionTitle {
+    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+
+    @include breakpoint(medium) {
+        font-size: 2rem;
+    }
+}
+
+.sectionSubtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+    max-width: 500px;
+    margin: 0 auto;
+
+    @include breakpoint(medium) {
+        font-size: 1rem;
+    }
+}
+
+// Timeline Container
+.timelineContainer {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+// Timeline Line
+.timelineLine {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    transform: translateX(-50%);
+    z-index: 0;
+
+    @include breakpoint(medium) {
+        left: 20px;
+    }
+}
+
+.lineBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.lineFill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg,
+            hsl(25, 63%, 46%) 0%,
+            hsl(25, 63%, 60%) 50%,
+            hsl(25, 63%, 46%) 100%);
+    border-radius: 2px;
+}
+
+.lineGlow {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: hsl(25, 63%, 50%);
+    border-radius: 50%;
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+// Cards Container
+.cardsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+// Experience Card
+.experienceCard {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    width: 50%;
+
+    &.left {
+        align-self: flex-start;
+        padding-right: 3rem;
+        justify-content: flex-end;
+
+        .cardContent {
+            text-align: right;
+        }
+
+        .timelineNode {
+            right: -10px;
+            left: auto;
+        }
+
+        .techTags {
+            justify-content: flex-end;
+        }
+
+        @include breakpoint(medium) {
+            width: 100%;
+            padding-right: 0;
+            padding-left: 3rem;
+            justify-content: flex-start;
+
+            .cardContent {
+                text-align: left;
+            }
+
+            .timelineNode {
+                left: -30px;
+                right: auto;
+            }
+
+            .techTags {
+                justify-content: flex-start;
+            }
+        }
+    }
+
+    &.right {
+        align-self: flex-end;
+        padding-left: 3rem;
+
+        .timelineNode {
+            left: -10px;
+        }
+
+        @include breakpoint(medium) {
+            width: 100%;
+            padding-left: 3rem;
+
+            .timelineNode {
+                left: -30px;
+            }
+        }
+    }
+}
+
+// Timeline Node
+.timelineNode {
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: rgba(30, 30, 40, 1);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.nodeInner {
+    width: 10px;
+    height: 10px;
+    background: hsl(25, 63%, 50%);
+    border-radius: 50%;
+    box-shadow: 0 0 10px hsl(25, 63%, 50%);
+}
+
+// Card Content
+.cardContent {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.cardHeader {
+    margin-bottom: 1rem;
+}
+
+.period {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: hsl(25, 63%, 60%);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.company {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.25rem 0;
+}
+
+.role {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.summary {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1rem;
+}
+
+// Tech Tags
+.techTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+// Details Button
+.detailsButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: hsl(25, 63%, 50%);
+        color: #fff;
+
+        svg {
+            transform: translateX(3px);
+        }
+    }
+
+    svg {
+        transition: transform 0.3s ease;
+    }
+}
