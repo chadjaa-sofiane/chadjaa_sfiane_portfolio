@@ -1,0 +1,76 @@
+{
+  "company": "Data Master",
+  "role": "Front-End Developer",
+  "period": "2024 (full-time) - 2025 (part-time)",
+  "logo": null,
+  "summary": "Front-end developer focused on building clean, responsive user interfaces and integrating them with backend services, while improving usability and maintainability.",
+  "duties": [
+    {
+      "id": "D-01",
+      "title": "Frontend Development",
+      "description": "Developing and maintaining frontend applications with a focus on performance, readability, and user experience.",
+      "technologies": [
+        "React",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ]
+    },
+    {
+      "id": "D-02",
+      "title": "API Integration",
+      "description": "Integrating frontend components with backend APIs and handling client-side data flow.",
+      "technologies": [
+        "Axios",
+        "REST APIs"
+      ]
+    },
+    {
+      "id": "D-03",
+      "title": "UI/UX Collaboration",
+      "description": "Working closely with designers and team members to translate UI designs into functional interfaces.",
+      "technologies": [
+        "Figma",
+        "Responsive Design"
+      ]
+    }
+  ],
+  "achievements": [
+    {
+      "id": "A-01",
+      "title": "Responsive UI Implementation",
+      "description": "Implemented responsive layouts to ensure consistent user experience across different screen sizes.",
+      "impact": "Improved accessibility and usability on desktop and mobile devices.",
+      "technologies": [
+        "React",
+        "CSS",
+        "Flexbox",
+        "Media Queries"
+      ],
+      "images": []
+    },
+    {
+      "id": "A-02",
+      "title": "Frontend Codebase Improvement",
+      "description": "Refactored existing frontend components to improve readability and maintainability.",
+      "impact": "Reduced technical debt and made future feature development easier.",
+      "technologies": [
+        "React",
+        "Component-Based Architecture"
+      ],
+      "images": []
+    }
+  ],
+  "systems": [
+    {
+      "name": "Data Management Platform",
+      "description": "Internal and client-facing web platforms used for data visualization and management.",
+      "responsibilities": [
+        "Developing frontend features",
+        "Maintaining UI consistency",
+        "Integrating APIs into the frontend"
+      ]
+    }
+  ]
+}
+

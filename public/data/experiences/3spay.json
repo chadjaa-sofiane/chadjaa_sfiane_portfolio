@@ -1,0 +1,139 @@
+{
+  "company": "3SPay",
+  "role": "Full-Stack Developer",
+  "period": "2024 - Present",
+  "logo": null,
+  "summary": "Full-stack developer focused on building secure, scalable systems with strong automation, real-time communication, and clean architecture.",
+  "duties": [
+    {
+      "id": "D-01",
+      "title": "Backend Development",
+      "description": "Designing and implementing backend services, APIs, and core business logic with scalability and maintainability in mind.",
+      "technologies": [
+        "Node.js",
+        "Express",
+        "TypeScript",
+        "Java",
+        "Spring Boot"
+      ]
+    },
+    {
+      "id": "D-02",
+      "title": "Frontend Development",
+      "description": "Building responsive frontend interfaces and integrating them with backend APIs.",
+      "technologies": [
+        "React",
+        "React Query",
+        "Axios"
+      ]
+    },
+    {
+      "id": "D-03",
+      "title": "Infrastructure & Deployment",
+      "description": "Managing containerized services, deployments, and server configuration.",
+      "technologies": [
+        "Docker",
+        "Nginx",
+        "Linux"
+      ]
+    }
+  ],
+  "achievements": [
+    {
+      "id": "A-01",
+      "title": "Permission System from Scratch",
+      "description": "Designed and implemented a complete role and permission system, including admin and non-assignable super-admin roles.",
+      "impact": "Enabled fine-grained access control and significantly improved platform security.",
+      "technologies": [
+        "Keycloak",
+        "JWT",
+        "RBAC"
+      ],
+      "images": [
+        {
+          "alt": "Permission system architecture diagram",
+          "src": "/images/permissions-architecture.png"
+        }
+      ]
+    },
+    {
+      "id": "A-02",
+      "title": "Real-Time Server Communication",
+      "description": "Implemented real-time communication between frontend and backend to instantly reflect server-side changes on the UI.",
+      "impact": "Improved user experience by eliminating unnecessary refreshes and delays.",
+      "technologies": [
+        "WebSockets",
+        "React Query"
+      ],
+      "images": [
+        {
+          "alt": "Real-time data flow diagram",
+          "src": "/images/realtime-communication.png"
+        }
+      ]
+    },
+    {
+      "id": "A-03",
+      "title": "CI/CD & Configuration Management",
+      "description": "Implemented CI/CD pipelines and structured configuration management across services and environments.",
+      "impact": "Reduced deployment errors, improved release speed, and simplified environment management.",
+      "technologies": [
+        "Jenkins",
+        "Docker",
+        "Git",
+        "Environment Variables"
+      ],
+      "images": [
+        {
+          "alt": "CI/CD pipeline overview",
+          "src": "/images/cicd-pipeline.png"
+        },
+        {
+          "alt": "Service configuration structure",
+          "src": "/images/config-management.png"
+        }
+      ]
+    },
+    {
+      "id": "A-04",
+      "title": "Real-Time IoT Communication & Device Control",
+      "description": "Implemented real-time communication with IoT devices using MQTT to monitor, control, and exchange data between servers and connected hardware.",
+      "impact": "Enabled low-latency, reliable device control and live state synchronization between physical devices and the platform.",
+      "technologies": [
+        "MQTT",
+        "IoT",
+        "Event-Driven Architecture"
+      ],
+      "images": [
+        {
+          "alt": "MQTT communication flow between server and devices",
+          "src": "/images/mqtt-architecture.png"
+        },
+        {
+          "alt": "IoT device control dashboard",
+          "src": "/images/iot-dashboard.png"
+        }
+      ]
+    }
+  ],
+  "systems": [
+    {
+      "name": "3smax",
+      "description": "Main company platform consisting of multiple services and internal tools.",
+      "responsibilities": [
+        "Developing and maintaining core services",
+        "Implementing security and permissions",
+        "Ensuring deployment stability"
+      ]
+    },
+    {
+      "name": "TMS Platform",
+      "description": "Internal transaction management system composed of multiple backend and frontend services.",
+      "responsibilities": [
+        "Maintaining backend services",
+        "Managing authentication and authorization",
+        "Ensuring reliable service communication"
+      ]
+    }
+  ]
+}
