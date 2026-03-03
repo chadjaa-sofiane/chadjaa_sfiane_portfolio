@@ -92,9 +92,13 @@ const TechStackSection = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryId>("all");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(1400);
+  const [isLowPowerMode, setIsLowPowerMode] = useState(false);
   const dragStartX = useRef(0);
   const dragStartRotation = useRef(0);
   const wheelSnapTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const dragRafRef = useRef<number | null>(null);
+  const pendingRotationRef = useRef<number | null>(null);
+  const animationRafRef = useRef<number | null>(null);
   const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
@@ -105,23 +109,38 @@ const TechStackSection = () => {
   }, []);
 
   useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => setIsLowPowerMode(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
+  useEffect(() => {
     return () => {
       if (wheelSnapTimeoutRef.current) {
         clearTimeout(wheelSnapTimeoutRef.current);
+      }
+      if (dragRafRef.current) {
+        cancelAnimationFrame(dragRafRef.current);
+      }
+      if (animationRafRef.current) {
+        cancelAnimationFrame(animationRafRef.current);
       }
     };
   }, []);
 
   const stars = useMemo(
     () =>
-      Array.from({ length: 28 }).map((_, i) => ({
+      Array.from({ length: isLowPowerMode ? 16 : 22 }).map((_, i) => ({
         id: `star-${i}`,
         top: (i * 19) % 100,
         left: (i * 31) % 100,
         size: (i % 3) + 1,
         delay: (i % 7) * 0.55,
       })),
-    [],
+    [isLowPowerMode],
   );
 
   const listedSkills = useMemo(() => {
@@ -182,7 +201,14 @@ const TechStackSection = () => {
   const onPointerMove: React.PointerEventHandler<HTMLDivElement> = (e) => {
     if (!isDragging) return;
     const delta = e.clientX - dragStartX.current;
-    setManualRotation(dragStartRotation.current + delta * 0.2);
+    pendingRotationRef.current = dragStartRotation.current + delta * 0.2;
+    if (dragRafRef.current) return;
+    dragRafRef.current = requestAnimationFrame(() => {
+      dragRafRef.current = null;
+      if (pendingRotationRef.current !== null) {
+        setManualRotation(pendingRotationRef.current);
+      }
+    });
   };
 
   const normalizeAngle = (angle: number) => {
@@ -231,6 +257,9 @@ const TechStackSection = () => {
   const ySpread = viewportWidth < 900 ? 110 : 190;
 
   const animateRotationTo = (target: number, durationMs = 280) => {
+    if (animationRafRef.current) {
+      cancelAnimationFrame(animationRafRef.current);
+    }
     const from = manualRotation;
     const delta = target - from;
     const startedAt = performance.now();
@@ -239,10 +268,14 @@ const TechStackSection = () => {
       const t = Math.min(1, (now - startedAt) / durationMs);
       const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
       setManualRotation(from + delta * eased);
-      if (t < 1) requestAnimationFrame(tick);
+      if (t < 1) {
+        animationRafRef.current = requestAnimationFrame(tick);
+      } else {
+        animationRafRef.current = null;
+      }
     };
 
-    requestAnimationFrame(tick);
+    animationRafRef.current = requestAnimationFrame(tick);
   };
 
   const focusCategory = (category: CategoryId) => {
@@ -255,7 +288,9 @@ const TechStackSection = () => {
 
   return (
     <Section ref={ref} variant="dark">
-      <div className={styles.techOrbit}>
+      <div
+        className={`${styles.techOrbit} ${isLowPowerMode ? styles["techOrbit--lowPower"] : ""}`}
+      >
         <div className={styles.techOrbit__stars} aria-hidden>
           {stars.map((star) => (
             <span
@@ -341,9 +376,12 @@ const TechStackSection = () => {
               activeCategory === "all" || tool.category === activeCategory;
             const thetaDeg = normalizeAngle(profile.baseAngleDeg + manualRotation);
             const angularDistance = Math.min(thetaDeg, 360 - thetaDeg);
-            const isInFocusWindow = angularDistance <= 66; // ~7 primary items
+            const isInFocusWindow = angularDistance <= 90;
             const isPrimaryFocus = isInFocusWindow && isCategoryActive;
             const isSecondaryFocus = isInFocusWindow && !isCategoryActive;
+            const shouldRender = !isLowPowerMode || isInFocusWindow || depth > 0.5;
+
+            if (!shouldRender) return null;
 
             const scaleBase = 0.66 + depth * 0.42;
             const scale = scaleBase * (isPrimaryFocus ? 1.08 : isSecondaryFocus ? 0.92 : 0.82);
@@ -352,11 +390,13 @@ const TechStackSection = () => {
               : isSecondaryFocus
                 ? 0.2 + depth * 0.24
                 : 0.05 + depth * 0.12;
-            const blur = isPrimaryFocus
-              ? (1 - depth) * 0.9
-              : isSecondaryFocus
-                ? 2.1
-                : 4.4;
+            const blur = isLowPowerMode
+              ? 0
+              : isPrimaryFocus
+                ? (1 - depth) * 0.75
+                : isSecondaryFocus
+                  ? 1.4
+                  : 2.4;
 
             return (
               <div
@@ -370,8 +410,8 @@ const TechStackSection = () => {
                     filter: `blur(${blur}px)`,
                     pointerEvents: "auto",
                     transition: isDragging
-                      ? "transform 0.02s linear, opacity 0.08s linear, filter 0.08s linear"
-                      : "transform 0.13s ease, opacity 0.09s linear, filter 0.09s linear",
+                      ? "transform 0.03s linear, opacity 0.08s linear, filter 0.08s linear"
+                      : "transform 0.145s ease, opacity 0.1s linear, filter 0.1s linear",
                   } as React.CSSProperties
                 }
               >
