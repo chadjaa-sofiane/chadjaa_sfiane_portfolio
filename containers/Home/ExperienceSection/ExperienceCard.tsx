@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
 import { Experience } from "./types";
 import styles from "./ExperienceSection.module.scss";
 
@@ -7,31 +7,43 @@ interface ExperienceCardProps {
     experience: Experience;
     index: number;
     isLeft: boolean;
+    onViewDetails: (experience: Experience) => void;
+    onInView?: (index: number) => void;
 }
 
 const ExperienceCard: React.FC<ExperienceCardProps> = ({
     experience,
     index,
     isLeft,
+    onViewDetails,
+    onInView,
 }) => {
+    const cardRef = useRef(null);
+    const isInView = useInView(cardRef, { once: true, amount: 0.3, margin: "0px 0px -100px 0px" });
+
+    useEffect(() => {
+        if (isInView && onInView) onInView(index);
+    }, [isInView, index, onInView]);
+
     return (
         <motion.div
+            ref={cardRef}
             className={`${styles.experienceCard} ${isLeft ? styles.left : styles.right}`}
-            initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            transition={{
+                duration: 0.8,
+                ease: [0.2, 0.65, 0.3, 0.9],
+                delay: index * 0.1
+            }}
         >
-            {/* Timeline Node */}
-            <div className={styles.timelineNode}>
-                <motion.div
-                    className={styles.nodeInner}
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
-                />
-            </div>
+            {/* Timeline Node - Positioned on the center line */}
+            <motion.div
+                className={styles.timelineNode}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 + 0.2, type: "spring", stiffness: 200 }}
+            />
 
             {/* Card Content */}
             <div className={styles.cardContent}>
@@ -51,7 +63,10 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                     ))}
                 </div>
 
-                <button className={styles.detailsButton}>
+                <button
+                    className={styles.detailsButton}
+                    onClick={() => onViewDetails(experience)}
+                >
                     <span>View Details</span>
                     <svg
                         width="16"

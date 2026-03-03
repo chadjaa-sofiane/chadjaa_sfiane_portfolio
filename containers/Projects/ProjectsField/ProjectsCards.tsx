@@ -10,7 +10,7 @@ const ProjectsCards = ({ projects }: { projects: cardProps[] }) => {
       {
         projects?.map((project: cardProps) => (<Card key={project.id} {...project} />))
       }
-      {projects.length === 0 && <EmptyProjectsCards />}
+      {(!projects || projects.length === 0) && <EmptyProjectsCards />}
     </div>
   );
 };

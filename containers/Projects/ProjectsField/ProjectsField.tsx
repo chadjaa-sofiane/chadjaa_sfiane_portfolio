@@ -10,7 +10,7 @@ const ProjectsField = ({ projects }: { projects: cardProps[] }) => {
   const divRef = useRef(null);
 
   return (
-    <Section>
+    <Section variant="projects">
       <div className={styles["projects__field"]} ref={divRef}>
         <Title2>  My Projects  </Title2>
         <ProjectsCards projects={projects} />

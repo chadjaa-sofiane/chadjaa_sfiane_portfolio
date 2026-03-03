@@ -3,15 +3,16 @@ import styles from "./Container.module.scss";
 interface Props {
   // eslint-disable-next-line no-undef
   children: React.ReactNode;
-  variant?: "dark" | "light";
+  variant?: "dark" | "light" | "projects";
   classNames?: string;
 }
 
-const container = ({ children, variant = "light",classNames = "" }: Props) => {
+const container = ({ children, variant = "light", classNames = "" }: Props) => {
   const classes = [
     styles["container"],
     variant === "dark" ? styles["container--dark"] : "",
-    classNames
+    variant === "projects" ? styles["container--projects"] : "",
+    classNames,
   ];
   return <div className={classes.join(" ")}>{children}</div>;
 };

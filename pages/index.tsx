@@ -14,8 +14,8 @@ const Home = () => {
         <title> Home Page </title>
       </Head>
       <DynamicRoleSection />
-      <AboutMe />
       <ExperienceSection />
+      <AboutMe />
     </SectionsProgressProvider>
   );
 };

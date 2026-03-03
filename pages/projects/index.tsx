@@ -34,21 +34,46 @@ const Projects = ({ projects = [] }: { projects: cardProps[] }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const dataQuery = `*[_type == 'projects']`;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const projects = (await client.fetch(dataQuery)).map((project: any) => (
-    {
-      ...project,
-      id: project._id,
-      imageSrc: urlFor(project.image).url() || undefined,
+  try {
+    const dataQuery = `*[_type == 'projects']`;
+    const data = await client.fetch(dataQuery);
+
+    if (!data) {
+      return { props: { projects: [] } };
     }
-  ));
-  return {
-    props: {
-      projects
-    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const projects = data.map((project: any) => {
+      let imageSrc = undefined;
+      try {
+        if (project.image) {
+          imageSrc = urlFor(project.image).url();
+        }
+      } catch (err) {
+        console.error(`Error generating image URL for project ${project._id}:`, err);
+      }
+
+      return {
+        ...project,
+        id: project._id,
+        imageSrc,
+      };
+    });
+
+    return {
+      props: {
+        projects,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching projects from Sanity:", error);
+    return {
+      props: {
+        projects: [],
+      },
+    };
   }
-}
+};
 
 
 export default Projects;

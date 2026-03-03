@@ -43,15 +43,16 @@ const Contact = () => {
       <Modal isOpen={open} setOpen={(open) => setOpen(open)}>
         <div className={style["contact__wrapper"]}>
           <div className={style["contact__header"]}>
-            <AnimationText tag="Title2"> contact me</AnimationText>
+            <AnimationText tag="Title2">Let&apos;s build something together</AnimationText>
+            <p>Have a project in mind or just want to say hi? I&apos;d love to hear from you.</p>
           </div>
           <ContactForm />
           <div className={style["contact__footer"]}>
             <div className={style["contact__footer__or"]}>
-              <span>or</span>
+              <span>or connect via</span>
             </div>
             <div className={style["contact__footer__socials"]}>
-              <ContactField link={EMAIL} icon={<GmailIcon />} />
+              <ContactField link={`mailto:${EMAIL}`} icon={<GmailIcon />} />
               <ContactField link={SKYPE} icon={<SkypeIcon />} type="navigate" />
             </div>
           </div>
@@ -60,7 +61,6 @@ const Contact = () => {
       <div
         className={style["email_icon_wrapper"]}
         onClick={() => setOpen(true)}
-        title="copied"
       >
         <EmailIcon className={style["email_icon_svg"]} />
       </div>
@@ -158,7 +158,7 @@ const ContactField = ({ link, icon, type = "copy" }: ContactFieldProps) => {
   }, [copied]);
 
   return (
-    <div className={style["contact__contactField"]}>
+    <div className={`${style["contact__contactField"]} ${copied ? style["copied"] : ""}`}>
       <a href={link} target="_blank" rel="noreferrer">
         {icon}
       </a>
