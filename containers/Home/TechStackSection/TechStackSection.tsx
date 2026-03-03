@@ -26,7 +26,7 @@ import styles from "./TechStackSection.module.scss";
 
 type Tool = {
   name: string;
-  icon: React.ComponentType<{ size?: number; strokeWidth?: number }>;
+  icon: React.ElementType;
   color: string;
   category: "backend" | "frontend" | "infra" | "ai";
 };

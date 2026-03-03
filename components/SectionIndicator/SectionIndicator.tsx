@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { motion } from "framer-motion";
 
 interface SectionIndicatorProps {
     totalSections: number;
     currentIndex: number;
-    onSelect: (index: number) => void;
+    onSelect: (...args: [number]) => void;
 }
 
 const SectionIndicator: React.FC<SectionIndicatorProps> = ({
