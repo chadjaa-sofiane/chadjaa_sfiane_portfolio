@@ -1,11 +1,16 @@
 .wrapper {
-  scroll-snap-align: start;
-  outline: 1px solid #fff;
+  // scroll-snap-align: start;
   width: 100%;
   min-height: 100vh;
   display: flex;
   align-items: center;
+  background: transparent;
+
   &--dark {
-    background-color: hsl(var(--primary-400));
+    background: transparent;
+  }
+
+  &--projects {
+    background: transparent;
   }
 }

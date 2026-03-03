@@ -1,173 +1,305 @@
 @use "../../styles/mixins" as *;
+
 .email_icon {
   &_wrapper {
     position: fixed;
-    bottom: 2em;
-    left: 2em;
-    z-index: 1;
-    background-color: hsl(var(--primary-400) / 0.9);
-    padding: 0.75em;
-    display: grid;
-    place-items: center;
-    border-radius: 0.2em;
+    bottom: 3rem;
+    left: 3rem;
+    z-index: 100;
+    background: rgba(43, 44, 53, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 100px;
     cursor: pointer;
-    border: 0.1em solid rgba(255, 255, 255, 0.25);
-    animation: appear 1000ms ease-in-out;
-    transition: background-color 100ms ease-in-out;
-    & > svg {
-      width: 40px;
-      height: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    animation: floatIcon 2.8s ease-in-out infinite;
+
+    @include breakpoint(medium) {
+      bottom: 1.5rem;
+      left: 1.5rem;
+      padding: 0.8rem;
+    }
+
+    &::after {
+      content: 'Get in touch';
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      white-space: nowrap;
+      width: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    &>svg {
+      width: 24px;
+      height: 24px;
 
       path {
         stroke: #fff;
       }
     }
+
     &:hover {
-      background-color: hsl(var(--primary-400) / 1);
+      animation-play-state: paused;
+      background: rgba(43, 44, 53, 1);
+      transform: scale(1.05) translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.2);
+      padding-right: 2rem;
+
+      &::after {
+        width: 80px;
+        opacity: 1;
+        margin-left: 0.5rem;
+      }
     }
-  }
-  &_svg {
-    animation: bounce 3s infinite;
-    /* Adjust animation properties as needed */
-    animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    animation-iteration-count: infinite;
+
+    &--disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      animation: none;
+      pointer-events: none;
+
+      &::after {
+        width: auto;
+        opacity: 1;
+        margin-left: 0.5rem;
+        content: 'Send disabled';
+      }
+
+      &:hover {
+        background: rgba(43, 44, 53, 0.8);
+        transform: none;
+        border-color: rgba(255, 255, 255, 0.1);
+        padding-right: 1rem;
+      }
+    }
   }
 }
 
 .contact {
   &__wrapper {
     width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    row-gap: 4em;
-    padding: 2em;
+    gap: 3rem;
+    background: linear-gradient(165deg,
+        rgba(8, 20, 36, 0.92) 0%,
+        rgba(14, 25, 44, 0.92) 48%,
+        rgba(24, 18, 40, 0.92) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 24px 60px rgba(2, 6, 23, 0.45),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -8rem;
+      right: -7rem;
+      width: 18rem;
+      height: 18rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.28) 0%, rgba(56, 189, 248, 0) 70%);
+      pointer-events: none;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -9rem;
+      left: -7rem;
+      width: 20rem;
+      height: 20rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(52, 211, 153, 0.18) 0%, rgba(52, 211, 153, 0) 70%);
+      pointer-events: none;
+    }
+
+    @include breakpoint(medium) {
+      padding: 1.5rem;
+      border-radius: 18px;
+    }
   }
+
   &__header {
     text-align: center;
-    color: hsl(var(--primary-400) / 0.9);
-  }
-  &__content {
-    flex: 1;
-    // give it a smaler width and make it take full when screen is medium or less
-    width: 90%;
-    @include breakpoint(medium) {
-      width: 100%;
-    }
-  }
-  &__inputs {
-    display: flex;
-    column-gap: 1em;
-    @include breakpoint(medium) {
-      flex-direction: column;
-    }
-  }
-  &__contactField {
-    --opacity: 0;
     position: relative;
-    border: 0.1em solid hsl(var(--primary-400) / 0.4);
-    border-radius: 0.2em;
-    padding: 0.5em;
-    cursor: pointer;
-    & svg {
-      fill: white;
-      width: 2.5em;
-      height: fit-content;
-      object-fit: contain;
-      @include breakpoint(medium) {
-        width: 2em;
+    z-index: 1;
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1.1rem;
+      max-width: 40rem;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    padding: 1.6rem;
+    border-radius: 18px;
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.025) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(4px);
+  }
+
+  &__inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    @include breakpoint(medium) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  &__submit {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__submitButton {
+    min-width: 12rem;
+    padding: 0.95rem 1.6rem !important;
+    border-radius: 12px !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.04em;
+    background: linear-gradient(135deg,
+        rgba(37, 99, 235, 1) 0%,
+        rgba(14, 116, 144, 1) 55%,
+        rgba(5, 150, 105, 1) 100%) !important;
+    box-shadow:
+      0 10px 24px rgba(14, 116, 144, 0.38),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease !important;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px) scale(1.02);
+      filter: brightness(1.06);
+      box-shadow:
+        0 14px 30px rgba(5, 150, 105, 0.42),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 0.5rem;
+    position: relative;
+    z-index: 1;
+
+    &__or {
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        position: absolute;
+        padding: 0 1rem;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.52);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
       }
     }
+
+    &__socials {
+      display: flex;
+      gap: 1.5rem;
+    }
+  }
+
+  &__contactField {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(167, 243, 208, 0.7);
+      box-shadow: 0 10px 24px rgba(2, 6, 23, 0.35);
+      transform: translateY(-4px) scale(1.04);
+    }
+
     &__link {
       position: absolute;
       inset: 0;
-      display: grid;
-      place-items: center;
-      opacity: var(--opacity);
-      background-color: hsl(var(--primary-400) / 0.9);
-      transition: opacity 100ms ease-in-out;
-    }
-    &:hover {
-      background-origin: red;
-      animation: glow 1000ms ease-in-out infinite forwards;
-      --opacity: 1;
-    }
-  }
-  &__submit {
-    display: flex;
-    justify-content: center;
-  }
-  &__footer {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 1em;
-    @include breakpoint(medium) {
-      width: 100%;
-    }
-    &__socials {
       display: flex;
-      column-gap: 1em;
+      align-items: center;
+      justify-content: center;
+      background: hsl(var(--primary-300));
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity 0.24s ease;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
     }
-    &__or {
-      width: 100%;
-      position: relative;
-      text-align: center;
-      isolation: isolate;
-      & > span {
-        font-weight: bold;
-        padding: 0.4em 1em;
-        background-color: white;
-        font-size: var(--fs-xs);
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 100%;
-        height: 0.1em;
-        background-color: hsl(var(--primary-400) / 0.4);
-        z-index: -1;
-      }
+
+    &.copied &__link {
+      opacity: 1;
     }
   }
 }
 
-@keyframes appear {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes bounce {
+@keyframes floatIcon {
   0%,
-  20%,
-  50%,
-  80%,
   100% {
     transform: translateY(0);
   }
-  40% {
-    transform: translateY(-8px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
-}
 
-@keyframes glow {
-  0% {
-    box-shadow: 0 0 0 0 hsl(var(--primary-400) / 0.8);
-  }
-  70% {
-    box-shadow: 0 0 0 0.5em hsl(var(--primary-400) / 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 hsl(var(--primary-400) / 0);
+  50% {
+    transform: translateY(-4px);
   }
 }

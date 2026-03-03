@@ -2,22 +2,131 @@
 
 .footer {
   &__wrapper {
-    width: 100vw;
-    background-color: hsl(var(--primary-400));
-    scroll-snap-align: start;
-  }
-  &__container {
     width: 100%;
-    display: flex;
-    padding: 1em;
-    flex-wrap: wrap;
-    gap: 2em;
+    background-color: hsl(var(--primary-400));
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    scroll-snap-align: start;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    }
   }
-  &__text {
-    flex: 1;
-    text-align: right;
-    padding: 0 1em;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 3rem;
+
+    @include breakpoint(medium) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__brand {
+    max-width: 400px;
+  }
+
+  &__logo {
+    font-size: 2.5rem;
+    font-weight: 800;
     color: #fff;
-    font-size: 2em;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+
+    span {
+      color: hsl(var(--primary-300));
+    }
+  }
+
+  &__description {
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    font-size: 1.1rem;
+  }
+
+  &__links {
+    display: flex;
+    gap: 4rem;
+
+    h3 {
+      color: #fff;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+  }
+
+  &__socials {
+    display: flex;
+    gap: 1.5rem;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+
+      svg {
+        width: 20px;
+        height: 20px;
+        fill: #fff;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+
+        svg {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.9rem;
+
+    @include breakpoint(medium) {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+
+  &__bottom_links {
+    display: flex;
+    gap: 2rem;
   }
 }

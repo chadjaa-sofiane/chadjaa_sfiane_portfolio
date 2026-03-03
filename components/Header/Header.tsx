@@ -2,24 +2,18 @@ import NavBar from "./NavBar";
 import styles from "./Header.module.scss";
 import Container from "@components/core/Container";
 
-interface IProps {
-  color?: "dark" | "light";
-}
-
-const Header = ({ color = "light" }: IProps) => {
-  const classes = [
-    styles["header"],
-    color === "light" ? styles["header--light"] : styles["header--dark"],
-  ];
+const Header = () => {
   return (
-    <div className={styles["header__wrapper"]}>
-      <Container>
-        <div className={classes.join(" ")}>
-          <div className={styles["logo"]}> softfolio </div>
-          <NavBar />
-        </div>
-      </Container>
-    </div>
+    <header className={styles["header"]}>
+      <div className={styles["header__wrapper"]}>
+        <Container>
+          <div className={styles["header__container"]}>
+            <div className={styles["logo"]}>softfolio</div>
+            <NavBar />
+          </div>
+        </Container>
+      </div>
+    </header>
   );
 };
 

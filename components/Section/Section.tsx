@@ -5,7 +5,7 @@ import styles from "./Section.module.scss";
 
 interface Props {
   children: React.ReactNode;
-  variant?: "dark" | "light";
+  variant?: "dark" | "light" | "projects";
   ref?: Ref<HTMLDivElement>
 }
 

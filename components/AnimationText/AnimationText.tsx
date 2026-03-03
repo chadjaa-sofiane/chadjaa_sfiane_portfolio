@@ -35,11 +35,11 @@ const AnimationText = ({ children, tag = "Title1" }: Props) => {
       });
       gsap.to(letters, {
         scrollTrigger: current,
-        duration: 0.35,
+        duration: 0.25,
         autoAlpha: 1,
         top: 0,
         left: 0,
-        stagger: 0.1,
+        stagger: 0.05,
         ease: "power2.out",
       });
     }

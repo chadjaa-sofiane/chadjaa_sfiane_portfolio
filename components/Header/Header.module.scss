@@ -1,110 +1,98 @@
 @use "../../styles/mixins" as *;
 
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
   &__wrapper {
-    position: absolute;
-    width: 100vw;
-    left: 0;
+    position: relative;
+    width: 100%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(10, 10, 20, 0.6); // Dark semi-transparent
+
+    @supports not (backdrop-filter: blur(12px)) {
+      background: rgba(10, 10, 20, 0.95);
+    }
   }
-  &--light {
-    --bg: #fff;
-    --color: hsl(var(--primary-400));
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 0;
   }
-  &--dark {
-    --bg: hsl(var(--primary-400));
-    --color: #fff;
-  }
-  display: flex;
-  column-gap: 2em;
-  background-color: var(--bg);
-  color: var(--color);
-  justify-content: space-between;
-  align-items: center;
 }
 
 .logo {
-  font-size: var(--fs-md);
+  font-size: 1.75rem;
   font-family: var(--Sans-font);
-  font-weight: bold;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  cursor: pointer;
+  background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .navBar {
-  flex: 1;
   display: flex;
-  justify-content: flex-end;
-  text-transform: uppercase;
+  align-items: center;
+
   &__list {
-    width: min(35em, 100%);
-    justify-content: space-around;
-    // @include breakpoint(medium) {
-    //   position: absolute;
-    //   left: 0;
-    //   top: 0;
-    //   flex-direction: column;
-    //   align-items: center;
-    //   row-gap: 2em;
-    //   opacity: 0;
-    //   visibility: hidden;
-    //   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out,
-    //     top 0.3s ease-in-out;
-    //   background: var((--bg));
-    //   z-index: 1;
-    // }
-    // &--open {
-    //   opacity: 1;
-    //   top: 5em;
-    //   visibility: visible;
-    // }
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 }
 
-.menu {
-  &__input:checked ~ .menu__icon {
-    & > span:nth-of-type(1) {
-      transform: rotate(-45deg);
-      top: 66%;
-    }
-    & > span:nth-of-type(2) {
-      left: -100%;
-      opacity: 0;
-    }
-    & > span:nth-of-type(3) {
-      transform: rotate(45deg);
-      top: 66%;
-    }
+.navLink {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #a5b4fc, #6366f1);
+    transition: width 0.3s ease;
+    border-radius: 2px;
   }
-  &__icon {
-    position: relative;
-    width: 2.5em;
-    height: 2.5em;
-    cursor: pointer;
-    & > span {
-      --duration: 250ms;
-      position: absolute;
-      display: block;
+
+  &:hover,
+  &--active {
+    color: #fff;
+
+    &::after {
       width: 100%;
-      height: 0.3em;
-      left: 0;
-      border-radius: 2px;
-      background-color: var(--color);
-      transition:
-        top var(--duration) ease-in,
-        transform var(--duration) ease-in;
-    }
-    & > span:nth-of-type(1) {
-      top: 33%;
-    }
-    & > span:nth-of-type(2) {
-      top: 66%;
-      transition:
-        left var(--duration) ease-in,
-        opacity calc(var(--duration) - 100ms) ease-in;
-    }
-    & > span:nth-of-type(3) {
-      top: 100%;
-    }
-    @include breakpoint-up(medium) {
-      display: none;
     }
   }
+}
+
+// Mobile menu placeholder styles if needed later
+.menu {
+  display: none; // Hiding for now as requested design is primarily desktop visible
 }

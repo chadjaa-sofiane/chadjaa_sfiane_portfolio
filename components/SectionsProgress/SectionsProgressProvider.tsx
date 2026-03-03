@@ -1,5 +1,4 @@
 import { createContext, RefObject, useContext, useEffect, useRef, useState } from "react";
-import SectionsProgress from "./SectionsProgress";
 
 interface SectionsProgressProps {
     children: React.ReactNode;
@@ -33,7 +32,12 @@ export const SectionsProgressProvider = ({ children }: SectionsProgressProps) =>
     const [activeSection, setActive] = useState<ActiveSection>(null);
 
     const addSection = (ref: RefObject<Element>) => {
-        setSection(prev => new Set([...prev, ref]));
+        setSection((prev) => {
+            if (prev.has(ref)) {
+                return prev;
+            }
+            return new Set([...prev, ref]);
+        });
     };
 
     const goTo = (ref: RefObject<HTMLDivElement>) => {
@@ -73,7 +77,6 @@ export const SectionsProgressProvider = ({ children }: SectionsProgressProps) =>
             setActive,
             goTo
         }}>
-            <SectionsProgress />
             {children}
         </SectionsProgressContext.Provider>
     )
@@ -88,10 +91,11 @@ export const useSectionsProgress = () => {
     }
 
     useEffect(() => {
-        if (ref?.current) {
-            context.addSection(ref);
+        // Some sections mount after async data loads; check each render and rely on idempotent addSection.
+        if (ref.current) {
+            context.addSection(ref as RefObject<Element>);
         }
-    }, [ref])
+    });
 
     return {
         ...context,

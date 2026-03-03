@@ -1,0 +1,61 @@
+{
+  "company": "Freelance",
+  "role": "Frontend / Full-Stack Developer",
+  "period": "2020 - 2023",
+  "logo": null,
+  "summary": "Freelance developer working alongside university studies, delivering frontend-focused solutions with occasional full-stack responsibilities for small businesses and individuals.",
+  "duties": [
+    {
+      "id": "D-01",
+      "title": "Frontend Development",
+      "description": "Designing and building responsive, user-friendly interfaces based on client requirements and business needs.",
+      "technologies": ["React", "JavaScript", "HTML", "CSS"]
+    },
+    {
+      "id": "D-02",
+      "title": "Backend & Integration",
+      "description": "Developing lightweight backend services and integrating frontend applications with APIs and databases.",
+      "technologies": ["Node.js", "Express", "PHP"]
+    },
+    {
+      "id": "D-03",
+      "title": "Client Collaboration & Delivery",
+      "description": "Working directly with clients to gather requirements, propose solutions, iterate on feedback, and deliver projects on time.",
+      "technologies": ["Git", "REST APIs"]
+    }
+  ],
+  "achievements": [
+    {
+      "id": "A-01",
+      "title": "End-to-End Freelance Projects",
+      "description": "Delivered multiple freelance projects from initial concept to deployment while managing both technical and client-facing responsibilities.",
+      "impact": "Built strong autonomy, communication skills, and the ability to translate business needs into functional software.",
+      "technologies": ["React", "Node.js", "PHP"]
+    },
+    {
+      "id": "A-02",
+      "title": "Frontend Performance & UX Improvements",
+      "description": "Improved UI responsiveness and user experience through component optimization and better state management.",
+      "impact": "Increased client satisfaction and usability across delivered applications.",
+      "technologies": ["React", "JavaScript", "CSS"]
+    },
+    {
+      "id": "A-03",
+      "title": "Balancing Freelancing with University Studies",
+      "description": "Successfully managed freelance workloads in parallel with academic commitments.",
+      "impact": "Developed strong time management, prioritization, and self-discipline skills.",
+      "technologies": ["Project Planning", "Self-Management"]
+    }
+  ],
+  "systems": [
+    {
+      "name": "Client Web Applications",
+      "description": "Small to medium web applications built for individual clients and small businesses.",
+      "responsibilities": [
+        "Frontend development",
+        "API integration",
+        "Bug fixing and feature enhancements"
+      ]
+    }
+  ]
+}

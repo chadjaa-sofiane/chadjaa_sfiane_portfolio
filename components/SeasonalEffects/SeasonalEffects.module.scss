@@ -1,0 +1,47 @@
+.seasonSwitch {
+  position: fixed;
+  left: 50%;
+  bottom: 1.15rem;
+  transform: translateX(-50%);
+  z-index: 120;
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  padding: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.38);
+  background: rgba(8, 15, 31, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  @media (max-width: 768px) {
+    bottom: 0.8rem;
+    gap: 0.3rem;
+    padding: 0.28rem;
+  }
+
+  &__button {
+    border: 1px solid transparent;
+    background: transparent;
+    color: rgba(226, 232, 240, 0.9);
+    font-size: 0.73rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 0.42rem 0.7rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(148, 163, 184, 0.2);
+    }
+
+    &--active {
+      color: #fff;
+      border-color: rgba(125, 211, 252, 0.8);
+      background: rgba(30, 64, 175, 0.34);
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+    }
+  }
+}

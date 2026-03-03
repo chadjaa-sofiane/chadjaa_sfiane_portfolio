@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { GetServerSideProps } from "next";
-import { useEffect } from "react"
 import { cardProps } from "@components/Card"
 import { client, urlFor } from "@services/sanity";
 import { Suspense } from "react"
@@ -13,13 +12,6 @@ const ProjectsField = dynamic(() => import('containers/Projects/ProjectsField'),
 
 
 const Projects = ({ projects = [] }: { projects: cardProps[] }) => {
-  useEffect(() => {
-    document.documentElement.style.scrollSnapType = "y proximity";
-    return () => {
-      document.documentElement.style.scrollSnapType = "y mandatory";
-    }
-  }, []);
-
   return (
     <>
       <Head>
@@ -33,36 +25,47 @@ const Projects = ({ projects = [] }: { projects: cardProps[] }) => {
   );
 };
 
-const TYPES = ["website", "experiment", "ML"];
+export const getServerSideProps: GetServerSideProps = async () => {
+  try {
+    const dataQuery = `*[_type == 'projects']`;
+    const data = await client.fetch(dataQuery);
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const type = query?.type as string || "";
+    if (!data) {
+      return { props: { projects: [] } };
+    }
 
-  if (!TYPES.includes(type)) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const projects = data.map((project: any) => {
+      let imageSrc = undefined;
+      try {
+        if (project.image) {
+          imageSrc = urlFor(project.image).url();
+        }
+      } catch (err) {
+        console.error(`Error generating image URL for project ${project._id}:`, err);
+      }
+
+      return {
+        ...project,
+        id: project._id,
+        imageSrc,
+      };
+    });
+
     return {
-      redirect: {
-        permanent: false,
-        destination: "/projects?type=website",
+      props: {
+        projects,
       },
-      props: {}
-    }
+    };
+  } catch (error) {
+    console.error("Error fetching projects from Sanity:", error);
+    return {
+      props: {
+        projects: [],
+      },
+    };
   }
-
-  const dataQuery = `*[_type == 'projects' && type == '${type}']`;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const projects = (await client.fetch(dataQuery)).map((project: any) => (
-    {
-      ...project,
-      id: project._id,
-      imageSrc: urlFor(project.image).url() || undefined,
-    }
-  ));
-  return {
-    props: {
-      projects
-    }
-  }
-}
+};
 
 
 export default Projects;

@@ -6,11 +6,17 @@ interface Props {
   title: string;
   description: string | React.ReactNode;
   button?: React.ReactNode | null;
+  className?: string;
 }
 
-const SectionContent = ({ title, description, button = null }: Props) => {
+const SectionContent = ({
+  title,
+  description,
+  button = null,
+  className = "",
+}: Props) => {
   return (
-    <div className={styles["section__content"]}>
+    <div className={`${styles["section__content"]} ${className}`.trim()}>
       <AnimationText>{title}</AnimationText>
       <LargeParagraph>{description}</LargeParagraph>
       {button}
