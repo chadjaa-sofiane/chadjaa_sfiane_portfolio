@@ -36,6 +36,37 @@ body::before {
   z-index: -1;
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.35s ease, background 0.35s ease;
+}
+
+body[data-season="winter"]::after {
+  opacity: 0.42;
+  background:
+    radial-gradient(circle at 22% 24%, rgba(125, 211, 252, 0.2) 0%, transparent 42%),
+    radial-gradient(circle at 80% 72%, rgba(96, 165, 250, 0.16) 0%, transparent 44%);
+}
+
+body[data-season="spring"]::after {
+  opacity: 0.38;
+  background:
+    radial-gradient(circle at 20% 24%, rgba(251, 207, 232, 0.18) 0%, transparent 42%),
+    radial-gradient(circle at 82% 76%, rgba(252, 231, 243, 0.16) 0%, transparent 46%);
+}
+
+body[data-season="autumn"]::after {
+  opacity: 0.4;
+  background:
+    radial-gradient(circle at 20% 24%, rgba(253, 186, 116, 0.18) 0%, transparent 40%),
+    radial-gradient(circle at 82% 76%, rgba(251, 146, 60, 0.16) 0%, transparent 44%);
+}
+
 html {
   @include breakpoint(medium) {
     // scroll-snap-type: none;
