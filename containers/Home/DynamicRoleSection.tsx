@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Section, SectionContent } from "@components/Section";
-import { HighlightedText } from "@components/core/Typography";
 import { useSectionsProgress } from "@components/SectionsProgress";
 import { SectionIndicator } from "@components/SectionIndicator";
 
@@ -11,21 +10,18 @@ import BackEndIllustration from "./sections/BackendSection/BackEndIllustration";
 import FrontEndIllustration from "./sections/FrontEndSection/FrontEndIllustration";
 import MLIllustration from "./sections/MLSection/MLIllustration";
 import DevOpsIllustration from "./sections/DevOpsSection/DevOpsIllustration";
+import styles from "./DynamicRoleSection.module.scss";
 
 const SECTION_DISPLAY_DURATION = 6000; // 6 seconds per section
 
 const roles = [
   {
     id: "hero",
-    title: "Welcome to SoftFolio",
+    title: "Sofiane Chadjaa",
     description: (
       <>
-        I build reliable web applications focused on clarity, performance and
-        long-term maintenance.
-        {/* Using */}
-        {/* <HighlightedText>React</HighlightedText>,{" "} */}
-        {/* <HighlightedText>Node.js</HighlightedText> and sound engineering */}
-        practices.
+        Full-stack engineer with 6+ years building secure, scalable software
+        from architecture to production.
       </>
     ),
     Illustration: HeroIllustration,
@@ -33,14 +29,11 @@ const roles = [
   },
   {
     id: "backend",
-    title: "Backend Developer",
+    title: "Backend & System Design",
     description: (
       <>
-        Building stable APIs and data models with a focus on performance,
-        security and clear integration points. Tech stack includes{" "}
-        <HighlightedText>Node.js</HighlightedText>,{" "}
-        <HighlightedText>Django</HighlightedText>, and {" "}
-        <HighlightedText>Spring Boot</HighlightedText>,{" "}
+        I design resilient services, APIs, and integration boundaries with a
+        system-level focus on security, performance, and maintainability.
       </>
     ),
     Illustration: BackEndIllustration,
@@ -48,13 +41,11 @@ const roles = [
   },
   {
     id: "frontend",
-    title: "Frontend Developer",
+    title: "Product-Facing Engineering",
     description: (
       <>
-        Creating accessible, responsive user interfaces by translating product
-        goals into clean, reusable components. Primarily working with{" "}
-        <HighlightedText>React</HighlightedText> and{" "}
-        <HighlightedText>Next.js</HighlightedText>.
+        I build clean, responsive interfaces that turn product requirements
+        into reliable user experiences and maintainable delivery workflows.
       </>
     ),
     Illustration: FrontEndIllustration,
@@ -62,14 +53,11 @@ const roles = [
   },
   {
     id: "ml",
-    title: "Machine Learning Focus",
+    title: "AI & Agent Systems",
     description: (
       <>
-        Experience applying machine learning concepts in practical contexts,
-        from experimentation to integration. Working with{" "}
-        <HighlightedText>TensorFlow</HighlightedText> and{" "}
-        <HighlightedText>PyTorch</HighlightedText> when the problem justifies
-        it.
+        I build practical AI workflows and agents that combine automation,
+        APIs, and language models for real-world outcomes.
       </>
     ),
     Illustration: MLIllustration,
@@ -77,14 +65,11 @@ const roles = [
   },
   {
     id: "devops",
-    title: "DevOps & Deployment Practices",
+    title: "Infrastructure & Reliability",
     description: (
       <>
-        Automating builds, deployments and monitoring to support reliable
-        production systems. Using <HighlightedText>Docker</HighlightedText>,{" "}
-        <HighlightedText>CI/CD</HighlightedText>,{" "}
-        <HighlightedText>Jenkins</HighlightedText> and container-based
-        workflows.
+        I set up environments from scratch to keep deployment pipelines secure,
+        observable, and stable across releases.
       </>
     ),
     Illustration: DevOpsIllustration,
@@ -154,6 +139,7 @@ const DynamicRoleSection = () => {
 
               <div style={{ flex: 1, minWidth: "300px" }}>
                 <SectionContent
+                  className={styles.roleContent}
                   title={currentRole.title}
                   description={currentRole.description}
                 />

@@ -14,9 +14,9 @@ const DevOpsIllustration = () => {
         const ctx = gsap.context(() => {
             const tl = gsap.timeline({
                 defaults: {
-                    duration: 0.6,
+                    duration: 0.78,
                     ease: "power3.out"
-                }
+                },
             });
 
             // Get SVG elements by ID for precise targeting
@@ -161,6 +161,14 @@ const DevOpsIllustration = () => {
                     y: 10,
                 }, "-=0.2");
             }
+
+            gsap.to(current, {
+                y: -6,
+                duration: 4.7,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true,
+            });
         }, ref);
 
         // Cleanup on unmount

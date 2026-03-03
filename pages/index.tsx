@@ -3,6 +3,7 @@ import {
   AboutMe,
   DynamicRoleSection,
   ExperienceSection,
+  TechStackSection,
 } from "containers/Home";
 import { SectionsProgressProvider } from "@components/SectionsProgress";
 // import { client, urlFor } from "@services/sanity";
@@ -14,6 +15,7 @@ const Home = () => {
         <title> Home Page </title>
       </Head>
       <DynamicRoleSection />
+      <TechStackSection />
       <ExperienceSection />
       <AboutMe />
     </SectionsProgressProvider>
