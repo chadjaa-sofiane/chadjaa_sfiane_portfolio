@@ -35,8 +35,10 @@ const TimelineLine: React.FC<TimelineLineProps> = ({
                 initial={{ height: "0%" }}
                 animate={{ height: `${fillPercentage}%` }}
                 transition={{
-                    duration: 0.7,
-                    ease: [0.25, 0.46, 0.45, 0.94],
+                    type: "spring",
+                    stiffness: 120,
+                    damping: 22,
+                    mass: 0.7,
                 }}
             />
         </div>

@@ -17,7 +17,8 @@
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    animation: floatIcon 2.8s ease-in-out infinite;
 
     @include breakpoint(medium) {
       bottom: 1.5rem;
@@ -47,6 +48,7 @@
     }
 
     &:hover {
+      animation-play-state: paused;
       background: rgba(43, 44, 53, 1);
       transform: scale(1.05) translateY(-5px);
       border-color: rgba(255, 255, 255, 0.2);
@@ -56,6 +58,27 @@
         width: 80px;
         opacity: 1;
         margin-left: 0.5rem;
+      }
+    }
+
+    &--disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      animation: none;
+      pointer-events: none;
+
+      &::after {
+        width: auto;
+        opacity: 1;
+        margin-left: 0.5rem;
+        content: 'Send disabled';
+      }
+
+      &:hover {
+        background: rgba(43, 44, 53, 0.8);
+        transform: none;
+        border-color: rgba(255, 255, 255, 0.1);
+        padding-right: 1rem;
       }
     }
   }
@@ -70,40 +93,84 @@
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    background: transparent;
+    background: linear-gradient(165deg,
+        rgba(8, 20, 36, 0.92) 0%,
+        rgba(14, 25, 44, 0.92) 48%,
+        rgba(24, 18, 40, 0.92) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 24px 60px rgba(2, 6, 23, 0.45),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -8rem;
+      right: -7rem;
+      width: 18rem;
+      height: 18rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.28) 0%, rgba(56, 189, 248, 0) 70%);
+      pointer-events: none;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -9rem;
+      left: -7rem;
+      width: 20rem;
+      height: 20rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(52, 211, 153, 0.18) 0%, rgba(52, 211, 153, 0) 70%);
+      pointer-events: none;
+    }
 
     @include breakpoint(medium) {
       padding: 1.5rem;
+      border-radius: 18px;
     }
   }
 
   &__header {
     text-align: center;
+    position: relative;
+    z-index: 1;
 
     h2 {
       font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 800;
-      background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.5) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #fff;
       margin-bottom: 1rem;
     }
 
     p {
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.82);
       font-size: 1.1rem;
+      max-width: 40rem;
+      margin: 0 auto;
+      line-height: 1.6;
     }
   }
 
   &__content {
     width: 100%;
+    position: relative;
+    z-index: 1;
+    padding: 1.6rem;
+    border-radius: 18px;
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.025) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(4px);
   }
 
   &__inputs {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
     margin-bottom: 2rem;
 
     @include breakpoint(medium) {
@@ -116,21 +183,29 @@
     margin-top: 2rem;
     display: flex;
     justify-content: flex-end;
+  }
 
-    button {
-      padding: 1rem 3rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border-radius: 12px;
-      background: hsl(var(--primary-300));
-      color: #fff;
-      transition: all 0.3s ease;
+  &__submitButton {
+    min-width: 12rem;
+    padding: 0.95rem 1.6rem !important;
+    border-radius: 12px !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.04em;
+    background: linear-gradient(135deg,
+        rgba(37, 99, 235, 1) 0%,
+        rgba(14, 116, 144, 1) 55%,
+        rgba(5, 150, 105, 1) 100%) !important;
+    box-shadow:
+      0 10px 24px rgba(14, 116, 144, 0.38),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease !important;
 
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        background: hsl(var(--primary-300) / 0.9);
-      }
+    &:hover:not(:disabled) {
+      transform: translateY(-2px) scale(1.02);
+      filter: brightness(1.06);
+      box-shadow:
+        0 14px 30px rgba(5, 150, 105, 0.42),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
     }
   }
 
@@ -139,7 +214,9 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
+    position: relative;
+    z-index: 1;
 
     &__or {
       width: 100%;
@@ -153,8 +230,8 @@
       span {
         position: absolute;
         padding: 0 1rem;
-        background: hsl(var(--primary-400));
-        color: rgba(255, 255, 255, 0.3);
+        background: transparent;
+        color: rgba(255, 255, 255, 0.52);
         font-size: 0.8rem;
         text-transform: uppercase;
         letter-spacing: 0.1em;
@@ -175,9 +252,9 @@
     align-items: center;
     justify-content: center;
     border-radius: 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
 
     svg {
@@ -187,9 +264,10 @@
     }
 
     &:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.1);
-      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(167, 243, 208, 0.7);
+      box-shadow: 0 10px 24px rgba(2, 6, 23, 0.35);
+      transform: translateY(-4px) scale(1.04);
     }
 
     &__link {
@@ -201,7 +279,7 @@
       background: hsl(var(--primary-300));
       border-radius: inherit;
       opacity: 0;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.24s ease;
 
       svg {
         width: 20px;
@@ -212,5 +290,16 @@
     &.copied &__link {
       opacity: 1;
     }
+  }
+}
+
+@keyframes floatIcon {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
   }
 }

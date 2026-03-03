@@ -6,6 +6,7 @@ import CopyIcon from "@svg/copy.svg";
 import EmailIcon from "@svg/email.svg";
 import GmailIcon from "@svg/gmail.svg";
 import SkypeIcon from "@svg/skype.svg";
+import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -34,6 +35,31 @@ type ContactField = z.infer<typeof ContactFieldSchema>;
 const EMAIL = "chadjaasofiane@gmail.com";
 const SKYPE = "https://join.skype.com/invite/dwx8Inm5F40q";
 const DELAY = 1000;
+const CONTACT_FORM_DISABLED = true;
+const CONTACT_TRIGGER_DISABLED = true;
+
+const containerVariants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.08,
+      delayChildren: 0.06,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 const Contact = () => {
   const [open, setOpen] = useState(false);
@@ -41,13 +67,18 @@ const Contact = () => {
   return (
     <>
       <Modal isOpen={open} setOpen={(open) => setOpen(open)}>
-        <div className={style["contact__wrapper"]}>
-          <div className={style["contact__header"]}>
+        <motion.div
+          className={style["contact__wrapper"]}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div className={style["contact__header"]} variants={itemVariants}>
             <AnimationText tag="Title2">Let&apos;s build something together</AnimationText>
             <p>Have a project in mind or just want to say hi? I&apos;d love to hear from you.</p>
-          </div>
+          </motion.div>
           <ContactForm />
-          <div className={style["contact__footer"]}>
+          <motion.div className={style["contact__footer"]} variants={itemVariants}>
             <div className={style["contact__footer__or"]}>
               <span>or connect via</span>
             </div>
@@ -55,12 +86,13 @@ const Contact = () => {
               <ContactField link={`mailto:${EMAIL}`} icon={<GmailIcon />} />
               <ContactField link={SKYPE} icon={<SkypeIcon />} type="navigate" />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </Modal>
       <div
-        className={style["email_icon_wrapper"]}
-        onClick={() => setOpen(true)}
+        className={`${style["email_icon_wrapper"]} ${CONTACT_TRIGGER_DISABLED ? style["email_icon_wrapper--disabled"] : ""}`}
+        onClick={CONTACT_TRIGGER_DISABLED ? undefined : () => setOpen(true)}
+        aria-disabled={CONTACT_TRIGGER_DISABLED}
       >
         <EmailIcon className={style["email_icon_svg"]} />
       </div>
@@ -72,7 +104,7 @@ const ContactForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, touchedFields, isSubmitting },
+    formState: { errors },
   } = useForm<ContactField>({
     resolver: zodResolver(ContactFieldSchema),
   });
@@ -82,36 +114,48 @@ const ContactForm = () => {
   };
 
   return (
-    <form
+    <motion.form
       onSubmit={handleSubmit(onSubmit)}
       className={style["contact__content"]}
+      variants={itemVariants}
     >
       <div className={style["contact__inputs"]}>
-        <InputField
-          label="full name"
-          error={errors.name ? errors.name.message : ""}
-          placeholder="enter your full name"
-          {...register("name")}
-        />
-        <InputField
-          label="email"
-          error={errors.email ? errors.email.message : ""}
-          placeholder="enter your email"
-          {...register("email")}
-          style={{ flex: 1 }}
-        />
+        <motion.div variants={itemVariants}>
+          <InputField
+            label="full name"
+            error={errors.name ? errors.name.message : ""}
+            placeholder="enter your full name"
+            {...register("name")}
+          />
+        </motion.div>
+        <motion.div variants={itemVariants}>
+          <InputField
+            label="email"
+            error={errors.email ? errors.email.message : ""}
+            placeholder="enter your email"
+            {...register("email")}
+            style={{ flex: 1 }}
+          />
+        </motion.div>
       </div>
-      <InputField
-        type="textarea"
-        label="message"
-        error={errors.message ? errors.message.message : ""}
-        placeholder="please enter your message"
-        {...register("message")}
-      />
+      <motion.div variants={itemVariants}>
+        <InputField
+          type="textarea"
+          label="message"
+          error={errors.message ? errors.message.message : ""}
+          placeholder="please enter your message"
+          {...register("message")}
+        />
+      </motion.div>
       <div className={style["contact__submit"]}>
-        <Button> send </Button>
+        <Button
+          className={style["contact__submitButton"]}
+          disabled
+        >
+          {CONTACT_FORM_DISABLED ? "send message (disabled)" : "send message"}
+        </Button>
       </div>
-    </form>
+    </motion.form>
   );
 };
 

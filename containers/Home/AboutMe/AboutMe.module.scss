@@ -23,11 +23,13 @@
     width: 120%;
     height: 120%;
     background: radial-gradient(circle at center,
-        rgba(100, 149, 237, 0.15) 0%,
+        rgba(191, 229, 255, 0.28) 0%,
         transparent 70%);
     z-index: 0;
     pointer-events: none;
     filter: blur(60px);
+    opacity: 0;
+    transition: opacity 0.35s ease;
   }
 
   &__card {
@@ -44,13 +46,17 @@
     gap: 2.5rem;
     position: relative;
     z-index: 1;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 4px 30px rgba(0, 0, 0, 0.1),
+      0 0 0 rgba(147, 197, 253, 0);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.2),
+        0 0 44px rgba(147, 197, 253, 0.36);
+      border-color: rgba(191, 219, 254, 0.55);
     }
 
     @include breakpoint(medium) {
@@ -66,10 +72,13 @@
   }
 
   &__title {
-    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #dbeafe 45%, #93c5fd 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow:
+      0 0 0 rgba(191, 219, 254, 0),
+      0 0 0 rgba(147, 197, 253, 0);
     font-size: 3.5rem;
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -77,6 +86,24 @@
 
     @include breakpoint(medium) {
       font-size: 2.5rem;
+    }
+  }
+
+  &--inView {
+    .aboutMe__background {
+      opacity: 1;
+    }
+
+    .aboutMe__card {
+      box-shadow:
+        0 4px 30px rgba(0, 0, 0, 0.1),
+        0 0 24px rgba(147, 197, 253, 0.2);
+    }
+
+    .aboutMe__title {
+      text-shadow:
+        0 0 12px rgba(191, 219, 254, 0.58),
+        0 0 28px rgba(147, 197, 253, 0.34);
     }
   }
 

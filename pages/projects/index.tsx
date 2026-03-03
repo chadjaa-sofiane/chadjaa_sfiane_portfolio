@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { GetServerSideProps } from "next";
-import { useEffect } from "react"
 import { cardProps } from "@components/Card"
 import { client, urlFor } from "@services/sanity";
 import { Suspense } from "react"
@@ -13,13 +12,6 @@ const ProjectsField = dynamic(() => import('containers/Projects/ProjectsField'),
 
 
 const Projects = ({ projects = [] }: { projects: cardProps[] }) => {
-  useEffect(() => {
-    document.documentElement.style.scrollSnapType = "y proximity";
-    return () => {
-      document.documentElement.style.scrollSnapType = "y mandatory";
-    }
-  }, []);
-
   return (
     <>
       <Head>

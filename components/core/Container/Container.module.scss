@@ -5,8 +5,11 @@
   max-width: 100%;
   margin: 0 auto;
   padding: 0 2em;
-  --container-color: hsl(var(--primary-400));
+  --container-color: #fff;
   &--dark {
+    --container-color: #fff;
+  }
+  &--projects {
     --container-color: #fff;
   }
   @include breakpoint(medium) {

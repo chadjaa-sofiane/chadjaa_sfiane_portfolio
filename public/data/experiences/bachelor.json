@@ -1,0 +1,89 @@
+{
+  "company": "USTO-MB (Bachelor’s Degree in Computer Science)",
+  "role": "Computer Science Student",
+  "period": "2016 - 2019",
+  "logo": "/images/logos/usto-mb.png",
+  "summary": "Computer Science student at USTO-MB with strong foundations in programming, mathematics, computer systems, and software engineering principles. Built solid analytical and problem-solving skills through practical projects and core theoretical courses.",
+  "duties": [
+    {
+      "id": "D-01",
+      "title": "Programming Fundamentals",
+      "description": "Learned and applied core programming concepts including object-oriented programming, memory management, and structured problem solving.",
+      "technologies": [
+        "C",
+        "Java",
+        "Python"
+      ]
+    },
+    {
+      "id": "D-02",
+      "title": "Data Structures & Algorithms",
+      "description": "Studied and implemented classical data structures and algorithms with focus on complexity analysis and performance optimization.",
+      "technologies": [
+        "Data Structures",
+        "Algorithms",
+        "Big-O Analysis"
+      ]
+    },
+    {
+      "id": "D-03",
+      "title": "Databases & Systems",
+      "description": "Designed relational databases and worked with operating systems and networking fundamentals through academic labs and projects.",
+      "technologies": [
+        "SQL",
+        "MySQL",
+        "Linux",
+        "Networking Fundamentals"
+      ]
+    }
+  ],
+  "achievements": [
+    {
+      "id": "A-01",
+      "title": "Bachelor Final Year Project",
+      "description": "Developed a software system as a final-year project, applying software engineering principles from requirements analysis to implementation and testing.",
+      "impact": "Demonstrated ability to design structured, maintainable systems from scratch.",
+      "technologies": [
+        "Java",
+        "SQL",
+        "UML"
+      ],
+      "images": []
+    },
+    {
+      "id": "A-02",
+      "title": "Strong Mathematical Foundation",
+      "description": "Completed advanced coursework in discrete mathematics, linear algebra, probability, and statistics.",
+      "impact": "Built the mathematical foundation necessary for advanced AI and system-level reasoning.",
+      "technologies": [
+        "Linear Algebra",
+        "Probability",
+        "Discrete Mathematics"
+      ],
+      "images": []
+    },
+    {
+      "id": "A-03",
+      "title": "Team-Based Academic Projects",
+      "description": "Participated in collaborative development projects using structured documentation and version control.",
+      "impact": "Developed early teamwork discipline and structured development habits.",
+      "technologies": [
+        "Git",
+        "Technical Documentation"
+      ],
+      "images": []
+    }
+  ],
+  "systems": [
+    {
+      "name": "Bachelor Graduation Project",
+      "description": "Structured software application developed as part of the final-year academic requirement.",
+      "responsibilities": [
+        "Requirement analysis",
+        "Database design",
+        "Application development",
+        "Testing and documentation"
+      ]
+    }
+  ]
+}

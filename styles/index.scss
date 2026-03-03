@@ -12,8 +12,28 @@ body {
 
 body {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   overflow-x: clip;
+  color: #fff;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 85% 78%, rgba(59, 130, 246, 0.14) 0%, transparent 45%),
+    linear-gradient(160deg, #060b16 0%, #0b1326 48%, #0a1020 100%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: -1;
 }
 
 html {

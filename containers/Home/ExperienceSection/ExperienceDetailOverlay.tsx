@@ -12,6 +12,7 @@ const ExperienceDetailOverlay: React.FC<ExperienceDetailOverlayProps> = ({
     experience,
     onClose,
 }) => {
+    const showLogo = Boolean(experience.logo) && !experience.company.includes("USTO");
     // Handle Escape key
     const handleKeyDown = useCallback(
         (e: KeyboardEvent) => {
@@ -119,9 +120,19 @@ const ExperienceDetailOverlay: React.FC<ExperienceDetailOverlayProps> = ({
                     <motion.span className={styles.detailPeriod} variants={itemVariants}>
                         {experience.period}
                     </motion.span>
-                    <motion.h2 className={styles.detailCompany} variants={itemVariants}>
-                        {experience.company}
-                    </motion.h2>
+                    <motion.div className={styles.detailCompanyRow} variants={itemVariants}>
+                        {showLogo ? (
+                            <div className={styles.detailCompanyMeta}>
+                                <img
+                                    src={experience.logo as string}
+                                    alt={`${experience.company} logo`}
+                                    className={styles.detailCompanyLogo}
+                                    loading="lazy"
+                                />
+                            </div>
+                        ) : null}
+                        <h2 className={styles.detailCompany}>{experience.company}</h2>
+                    </motion.div>
                     <motion.p className={styles.detailRole} variants={itemVariants}>
                         {experience.role}
                     </motion.p>

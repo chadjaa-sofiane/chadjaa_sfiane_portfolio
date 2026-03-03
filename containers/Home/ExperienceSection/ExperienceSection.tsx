@@ -1,6 +1,6 @@
 import { Section } from "@components/Section";
 import { useSectionsProgress } from "@components/SectionsProgress";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import React, { useCallback, useEffect, useState } from "react";
 import ExperienceCard from "./ExperienceCard";
 import ExperienceDetailOverlay from "./ExperienceDetailOverlay";
@@ -10,6 +10,7 @@ import { Experience } from "./types";
 
 const ExperienceSection: React.FC = () => {
   const { ref: sectionProgressRef } = useSectionsProgress();
+  const reduceMotion = useReducedMotion();
   const [experiences, setExperiences] = useState<Experience[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedExperience, setSelectedExperience] =
@@ -47,6 +48,8 @@ const ExperienceSection: React.FC = () => {
           "3spay.json",
           "datamaster.json",
           "freelance.json",
+          "master.json",
+          "bachelor.json"
         ];
 
         const experienceData = await Promise.all(
@@ -74,13 +77,15 @@ const ExperienceSection: React.FC = () => {
   return (
     <Section ref={setSectionRef} variant="dark">
       <div className={styles.experienceSection}>
-        {/* Section Header */}
         <motion.div
           className={styles.sectionHeader}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: reduceMotion ? 0 : 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{
+            duration: reduceMotion ? 0.01 : 0.65,
+            ease: [0.22, 1, 0.36, 1],
+          }}
         >
           <h2 className={styles.sectionTitle}>Professional Experience</h2>
           <p className={styles.sectionSubtitle}>
@@ -88,14 +93,27 @@ const ExperienceSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Timeline Container */}
         <div className={styles.timelineContainer}>
           <TimelineLine
             numberOfCards={experiences.length}
             filledUpToIndex={highestCardIndexInView}
           />
 
-          <div className={styles.cardsContainer}>
+          <motion.div
+            className={styles.cardsContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: reduceMotion ? 0 : 0.08,
+                  delayChildren: reduceMotion ? 0 : 0.1,
+                },
+              },
+            }}
+          >
             {experiences.map((experience, index) => (
               <ExperienceCard
                 key={experience.company}
@@ -106,7 +124,7 @@ const ExperienceSection: React.FC = () => {
                 onInView={handleCardInView}
               />
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
 

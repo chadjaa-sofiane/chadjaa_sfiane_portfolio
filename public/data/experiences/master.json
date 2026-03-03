@@ -1,0 +1,73 @@
+{
+  "company": "USTO-MB (Master’s Degree in Artificial Intelligence)",
+  "role": "AI & Software Engineering Student",
+  "period": "2019 - 2024",
+  "logo": "/images/logos/usto-mb.png",
+  "summary": "Master’s student at USTO-MB in Artificial Intelligence with strong focus on software engineering fundamentals, algorithms, system design, and applied machine learning projects.",
+  "duties": [
+    {
+      "id": "D-01",
+      "title": "Academic Software Development",
+      "description": "Designed and implemented academic projects focusing on clean architecture, modular design, and algorithmic problem-solving.",
+      "technologies": ["Java", "Python", "C", "SQL"]
+    },
+    {
+      "id": "D-02",
+      "title": "Machine Learning & AI Projects",
+      "description": "Built and evaluated machine learning models for classification, prediction, and data analysis tasks.",
+      "technologies": ["Python", "Scikit-learn", "NumPy", "Pandas"]
+    },
+    {
+      "id": "D-03",
+      "title": "Systems & Networking Fundamentals",
+      "description": "Studied operating systems, networking concepts, and distributed systems foundations through practical labs and simulations.",
+      "technologies": ["Linux", "TCP/IP", "Bash"]
+    }
+  ],
+  "achievements": [
+    {
+      "id": "A-01",
+      "title": "Final Year AI Project",
+      "description": "Designed and implemented an AI-based solution as a graduation project, including data preprocessing, model training, and evaluation.",
+      "impact": "Demonstrated ability to transform theoretical AI concepts into a functional, end-to-end system.",
+      "technologies": ["Python", "Machine Learning", "Data Preprocessing"],
+      "images": []
+    },
+    {
+      "id": "A-02",
+      "title": "Algorithm Optimization & Problem Solving",
+      "description": "Developed optimized solutions for algorithmic and data structure problems across multiple academic assignments.",
+      "impact": "Strengthened analytical thinking and performance-oriented coding skills.",
+      "technologies": ["Data Structures", "Algorithms", "Complexity Analysis"],
+      "images": []
+    },
+    {
+      "id": "A-03",
+      "title": "Collaborative Team Projects",
+      "description": "Worked in small teams to design and deliver software projects, applying version control and structured development workflows.",
+      "impact": "Improved teamwork, code collaboration, and project organization skills.",
+      "technologies": ["Git", "Agile Fundamentals", "Documentation"],
+      "images": []
+    }
+  ],
+  "systems": [
+    {
+      "name": "AI Graduation Project",
+      "description": "End-to-end machine learning system developed as part of the master’s thesis.",
+      "responsibilities": [
+        "Data collection and preprocessing",
+        "Model selection and evaluation",
+        "System implementation and testing"
+      ]
+    },
+    {
+      "name": "Academic Management System Project",
+      "description": "Full-stack or backend-focused academic project simulating a real-world management platform.",
+      "responsibilities": [
+        "Database design",
+        "Backend logic implementation",
+        "Basic UI integration"
+      ]
+    }
+  ]
+}

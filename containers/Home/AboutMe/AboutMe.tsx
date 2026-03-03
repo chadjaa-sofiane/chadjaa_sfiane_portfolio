@@ -24,7 +24,10 @@ const AboutMe = () => {
 
   return (
     <Section ref={ref} variant="dark">
-      <div className={styles["aboutMe"]} id="about">
+      <div
+        className={`${styles["aboutMe"]} ${isInView ? styles["aboutMe--inView"] : ""}`}
+        id="about"
+      >
         <div className={styles["aboutMe__background"]} />
 
         <motion.div

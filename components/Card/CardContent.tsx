@@ -22,7 +22,11 @@ const CardContent = () => {
 const CardButtons = () => {
     const { handleOpen } = useCardContext();
     return (
-        <Button variant="outlined" onClick={() => handleOpen(true)}>
+        <Button
+            variant="outlined"
+            onClick={() => handleOpen(true)}
+            className={styles["card__detailsButton"]}
+        >
             view details
         </Button>)
 }
