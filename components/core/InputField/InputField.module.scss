@@ -19,14 +19,14 @@
       bottom: -0.2em;
       width: 100%;
       height: 0.05em;
-      background-color: rgba(255, 255, 255, 0.22);
+      background-color: rgba(95, 66, 44, 0.28);
     }
   }
 
   &__label {
     position: absolute;
     top: 50%;
-    color: rgba(255, 255, 255, 0.72);
+    color: rgba(77, 56, 41, 0.72);
     font-size: var(--fs-sm);
     font-weight: bold;
     letter-spacing: 0.05em;
@@ -39,7 +39,7 @@
     position: absolute;
     width: 0%;
     height: 0.2em;
-    background-color: rgba(125, 211, 252, 0.9);
+    background-color: rgba(157, 90, 58, 0.85);
     left: 0;
     bottom: -0.2em;
     transition: width 150ms ease-in-out;
@@ -56,8 +56,8 @@
     border-radius: 3px;
     resize: none;
     outline: none;
-    color: rgba(255, 255, 255, 0.94);
-    caret-color: #fff;
+    color: rgba(63, 46, 31, 0.94);
+    caret-color: hsl(var(--primary-400));
     transition: color 150ms ease;
     transition-delay: 120ms;
 
@@ -69,12 +69,12 @@
     &:not(:placeholder-shown) + label {
       top: 0%;
       transition-delay: 0ms;
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(63, 46, 31, 0.9);
     }
 
     &:focus,
     &:not(:placeholder-shown) {
-      color: rgba(255, 255, 255, 0.98);
+      color: rgba(44, 32, 22, 0.98);
     }
 
     &:focus ~ div,
@@ -83,7 +83,7 @@
     }
 
     &:focus::placeholder {
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(77, 56, 41, 0.5);
     }
   }
 

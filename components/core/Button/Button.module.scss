@@ -1,12 +1,13 @@
 .button {
   --opacity: 1;
   outline: none;
-  border: none;
-  border-radius: 0.2em;
+  border: 1px solid transparent;
+  border-radius: 0;
   font-family: var(--button-font);
   font-size: var(--fs-xs);
-  font-weight: bold;
-  padding: 0.5em 1em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.65em 1.2em;
   cursor: pointer;
   text-transform: uppercase;
   display: flex;
@@ -20,12 +21,13 @@
     --color: var(--secondary-400);
   }
   &--field {
-    color: #fff;
+    color: hsl(var(--primary-100));
     background-color: hsl(var(--color) / var(--opacity));
+    border-color: hsl(var(--color) / calc(var(--opacity) * 0.85));
   }
   &--outlined {
-    color: var(--primary-300);
-    background-color: hsl(var(--color) / calc(1 - var(--opacity)));
+    color: hsl(var(--primary-400));
+    background-color: hsl(var(--primary-100) / calc(1 - var(--opacity)));
     border: 0.1em solid hsl(var(--color) / var(--opacity));
   }
   &--large {

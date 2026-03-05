@@ -1,12 +1,11 @@
 @use "../mixins/" as *;
 
 @mixin fonts {
-  --Oldenburg-font: "Oldenburg", cursive, "Open Sans", "Helvetica Neue",
-    sans-serif;
-  --Sans-font: "Open Sans", "Helvetica Neue", sans-serif;
+  --Oldenburg-font: "Fraunces", "Times New Roman", serif;
+  --Sans-font: "Manrope", "Segoe UI", sans-serif;
 
-  --header-font: "Open Sans", sans-serif;
-  --button-font: "Poppins", sans-serif;
+  --header-font: "Fraunces", "Times New Roman", serif;
+  --button-font: "Syne", "Manrope", sans-serif;
 
   --fs-2xl: 5rem;
   --fs-xl: 4rem;

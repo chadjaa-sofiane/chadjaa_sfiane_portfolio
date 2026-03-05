@@ -5,12 +5,12 @@
   max-width: 100%;
   margin: 0 auto;
   padding: 0 2em;
-  --container-color: #fff;
+  --container-color: hsl(var(--primary-400));
   &--dark {
-    --container-color: #fff;
+    --container-color: hsl(var(--primary-400));
   }
   &--projects {
-    --container-color: #fff;
+    --container-color: hsl(var(--primary-400));
   }
   @include breakpoint(medium) {
     padding: 0 1em;

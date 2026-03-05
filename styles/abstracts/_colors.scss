@@ -1,16 +1,16 @@
 @mixin colors {
-  --primary-400: 242 28% 21%;
-  --primary-300: 202 52% 36%;
-  --primary-200: 180 50% 82%;
-  --primary-100: 177 51% 93%;
+  --primary-400: 208 34% 15%;
+  --primary-300: 178 45% 34%;
+  --primary-200: 38 46% 84%;
+  --primary-100: 42 76% 95%;
   // secondary colors
-  --secondary-400: 25 63% 29%;
-  --secondary-300: 25 63% 46%;
-  --secondary-200: 25 25% 63%;
-  --secondary-100: 25 63% 71%;
+  --secondary-400: 12 58% 34%;
+  --secondary-300: 13 66% 46%;
+  --secondary-200: 24 45% 66%;
+  --secondary-100: 30 71% 84%;
 
-  // Projects Redesign Theme (Dark Light Purple / Amethyst)
-  --projects-bg: 260 25% 12%;
-  --projects-card-bg: 260 25% 18%;
-  --projects-accent: 260 80% 70%;
+  // Projects Redesign Theme (Editorial warm paper)
+  --projects-bg: 40 45% 93%;
+  --projects-card-bg: 38 36% 88%;
+  --projects-accent: 12 66% 46%;
 }

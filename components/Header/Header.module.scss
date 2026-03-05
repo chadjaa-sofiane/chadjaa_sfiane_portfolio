@@ -7,17 +7,17 @@
   width: 100%;
   z-index: 1000;
   transition: all 0.3s ease-in-out;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(67, 50, 36, 0.2);
 
   &__wrapper {
     position: relative;
     width: 100%;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    background: rgba(10, 10, 20, 0.6); // Dark semi-transparent
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    background: rgba(245, 233, 215, 0.86);
 
-    @supports not (backdrop-filter: blur(12px)) {
-      background: rgba(10, 10, 20, 0.95);
+    @supports not (backdrop-filter: blur(6px)) {
+      background: rgba(245, 233, 215, 0.97);
     }
   }
 
@@ -25,24 +25,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.25rem 0;
+    padding: 1rem 0;
   }
 }
 
 .logo {
-  font-size: 1.75rem;
-  font-family: var(--Sans-font);
-  font-weight: 800;
-  letter-spacing: -0.05em;
+  font-size: 1.9rem;
+  font-family: var(--header-font);
+  font-weight: 700;
+  letter-spacing: 0.01em;
   cursor: pointer;
-  background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: opacity 0.3s ease;
+  color: hsl(var(--primary-400));
+  text-transform: lowercase;
+  transition: color 0.3s ease;
 
   &:hover {
-    opacity: 0.8;
+    color: hsl(var(--secondary-300));
   }
 }
 
@@ -61,30 +59,30 @@
 
 .navLink {
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.95rem;
-  font-weight: 500;
+  color: rgba(49, 34, 22, 0.72);
+  font-size: 0.86rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
   position: relative;
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
   transition: color 0.3s ease;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #a5b4fc, #6366f1);
+    background: hsl(var(--secondary-300));
     transition: width 0.3s ease;
     border-radius: 2px;
   }
 
   &:hover,
   &--active {
-    color: #fff;
+    color: hsl(var(--primary-400));
 
     &::after {
       width: 100%;

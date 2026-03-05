@@ -3,11 +3,15 @@
   color: var(--container-color);
   font-size: var(--fs-2xl);
   width: 100%;
+  font-weight: 700;
+  line-height: 1.05;
 }
 .title2 {
   font-family: var(--header-font);
   color: var(--container-color);
   font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1.08;
 }
 .title3 {
   font-family: var(--Sans-font);
@@ -26,9 +30,9 @@
   font-family: var(--Sans-font);
   // font-family: "Pavanam", sans-serif;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 1.8;
   color: var(--container-color);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.02em;
   // text-align: ;
 }
 
@@ -37,12 +41,12 @@
   font-family: var(--Sans-font);
   line-height: 1.5em;
   color: var(--container-color);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.02em;
 }
 .highlighted__text {
-  font-family: var(--Sans-font);
+  font-family: var(--header-font);
   color: hsl(var(--secondary-300));
   font-size: var(--fs-md);
-  text-transform: capitalize;
-  font-weight: bold;
+  text-transform: none;
+  font-weight: 600;
 }

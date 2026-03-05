@@ -7,7 +7,7 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    color: #fff;
+    color: hsl(var(--primary-400));
     z-index: 1;
     cursor: pointer;
     & > span {
@@ -27,7 +27,7 @@
         background-color: hsl(var(--primary-400));
         border-radius: 50%;
         opacity: var(--opacity);
-        box-shadow: 0 0 0.1em 0.1em #FFF;
+        box-shadow: 0 0 0 0.1em rgba(244, 230, 208, 0.85);
         transition: opacity 100ms ease-in-out;
       }
       &:hover::after {

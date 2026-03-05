@@ -8,14 +8,14 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.72;
+    opacity: 0.52;
   }
 
   &__star {
     position: absolute;
     border-radius: 50%;
-    background: rgba(186, 230, 253, 0.84);
-    box-shadow: 0 0 8px rgba(125, 211, 252, 0.44);
+    background: rgba(193, 116, 78, 0.68);
+    box-shadow: 0 0 8px rgba(193, 116, 78, 0.38);
     animation: twinkle 3.1s ease-in-out infinite;
   }
 
@@ -27,15 +27,16 @@
     z-index: 1;
 
     h2 {
-      color: #fff;
+      color: hsl(var(--primary-100));
       font-size: clamp(1.9rem, 4vw, 2.45rem);
       margin-bottom: 0.55rem;
-      letter-spacing: -0.015em;
-      text-shadow: 0 0 20px rgba(56, 189, 248, 0.26);
+      letter-spacing: 0;
+      font-family: var(--header-font);
+      text-shadow: none;
     }
 
     p {
-      color: rgba(226, 232, 240, 0.84);
+      color: rgba(242, 234, 221, 0.78);
       font-size: 0.95rem;
       line-height: 1.55;
     }
@@ -53,9 +54,9 @@
   }
 
   &__filterButton {
-    border: 1px solid rgba(148, 163, 184, 0.34);
-    background: rgba(15, 23, 42, 0.55);
-    color: rgba(226, 232, 240, 0.92);
+    border: 1px solid rgba(221, 193, 164, 0.4);
+    background: rgba(57, 42, 32, 0.55);
+    color: rgba(246, 236, 222, 0.92);
     border-radius: 999px;
     padding: 0.35rem 0.7rem;
     font-size: 0.72rem;
@@ -66,22 +67,22 @@
     transition: all 0.2s ease;
 
     &:hover {
-      border-color: rgba(125, 211, 252, 0.7);
-      background: rgba(30, 41, 59, 0.8);
+      border-color: rgba(198, 126, 91, 0.9);
+      background: rgba(77, 53, 37, 0.85);
     }
 
     &--active {
       color: #fff;
-      border-color: rgba(125, 211, 252, 0.85);
-      background: rgba(37, 99, 235, 0.26);
-      box-shadow: 0 0 22px rgba(56, 189, 248, 0.35);
+      border-color: rgba(198, 126, 91, 0.95);
+      background: rgba(159, 82, 47, 0.42);
+      box-shadow: 0 0 20px rgba(184, 104, 67, 0.32);
     }
   }
 
   &__drawerButton {
-    border: 1px solid rgba(94, 234, 212, 0.55);
-    background: rgba(15, 118, 110, 0.22);
-    color: rgba(204, 251, 241, 0.98);
+    border: 1px solid rgba(141, 204, 181, 0.55);
+    background: rgba(56, 110, 96, 0.28);
+    color: rgba(223, 247, 238, 0.98);
     border-radius: 999px;
     padding: 0.35rem 0.75rem;
     font-size: 0.72rem;
@@ -92,8 +93,8 @@
     transition: all 0.2s ease;
 
     &:hover {
-      background: rgba(13, 148, 136, 0.3);
-      box-shadow: 0 0 14px rgba(20, 184, 166, 0.22);
+      background: rgba(66, 126, 111, 0.45);
+      box-shadow: 0 0 14px rgba(78, 163, 139, 0.28);
     }
   }
 
@@ -122,7 +123,7 @@
     left: 50%;
     top: 48%;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle at center, rgba(125, 211, 252, 0.2) 0%, rgba(125, 211, 252, 0) 70%);
+    background: radial-gradient(circle at center, rgba(190, 114, 76, 0.26) 0%, rgba(190, 114, 76, 0) 70%);
     pointer-events: none;
   }
 
@@ -142,14 +143,14 @@
     border-radius: 999px;
     height: 48px;
     padding: 0 0.86rem;
-    color: rgba(248, 250, 252, 0.95);
+    color: rgba(250, 242, 229, 0.95);
     font-size: 0.76rem;
     font-weight: 700;
     letter-spacing: 0.024em;
-    background: linear-gradient(160deg, rgba(16, 29, 52, 0.84) 0%, rgba(8, 15, 30, 0.92) 100%);
+    background: linear-gradient(160deg, rgba(46, 33, 25, 0.88) 0%, rgba(30, 22, 18, 0.95) 100%);
     border: 1px solid color-mix(in oklab, var(--glow), #ffffff 42%);
     box-shadow:
-      0 10px 24px rgba(2, 6, 23, 0.38),
+      0 10px 24px rgba(10, 7, 5, 0.36),
       0 0 20px color-mix(in oklab, var(--glow), transparent 70%);
     transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 
@@ -157,7 +158,7 @@
       transform: translateY(-7px) rotateX(10deg) rotateY(-5deg);
       border-color: color-mix(in oklab, var(--glow), #ffffff 26%);
       box-shadow:
-        0 16px 30px rgba(2, 6, 23, 0.48),
+        0 16px 30px rgba(10, 7, 5, 0.46),
         0 0 28px color-mix(in oklab, var(--glow), transparent 58%);
     }
   }
@@ -178,8 +179,8 @@
     position: fixed;
     inset: 0;
     border: none;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(12px);
+    background: rgba(14, 9, 7, 0.82);
+    backdrop-filter: blur(8px);
     z-index: 1000;
     cursor: pointer;
   }
@@ -190,9 +191,9 @@
     right: 0;
     width: min(700px, 100vw);
     height: 100vh;
-    background: #111;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: none;
+    background: #1a120f;
+    border-left: 1px solid rgba(246, 225, 198, 0.12);
+    box-shadow: -16px 0 30px rgba(0, 0, 0, 0.22);
     z-index: 1001;
     display: flex;
     flex-direction: column;
@@ -203,10 +204,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 2rem 2rem 1.1rem;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    border-bottom: 1px solid rgba(246, 225, 198, 0.18);
 
     h3 {
-      color: #fff;
+      color: #f7e7d2;
       font-size: 1.5rem;
       font-weight: 700;
       letter-spacing: 0;
@@ -214,8 +215,8 @@
 
     button {
       border: none;
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
+      background: rgba(231, 199, 167, 0.16);
+      color: #f7e7d2;
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -227,7 +228,7 @@
 
       &:hover {
         background: #fff;
-        color: #000;
+        color: #1a120f;
         transform: rotate(90deg);
       }
     }
@@ -249,23 +250,23 @@
   }
 
   &__drawerBody::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(231, 199, 167, 0.32);
     border-radius: 3px;
   }
 
   &__drawerGroup {
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 243, 226, 0.1);
     border-radius: 16px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 243, 226, 0.05);
     padding: 1rem 1.05rem;
 
     h4 {
-      color: #fff;
+      color: #f9e9d6;
       font-size: 1rem;
       letter-spacing: 0.03em;
       margin-bottom: 0.7rem;
       padding-bottom: 0.45rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 243, 226, 0.19);
     }
 
     ul {
@@ -277,7 +278,7 @@
     }
 
     li {
-      color: rgba(255, 255, 255, 0.78);
+      color: rgba(248, 233, 213, 0.84);
       font-size: 0.9rem;
       line-height: 1.45;
       position: relative;
@@ -287,7 +288,7 @@
         content: '→';
         position: absolute;
         left: 0;
-        color: #a5b4fc;
+        color: #e59f75;
       }
     }
   }
