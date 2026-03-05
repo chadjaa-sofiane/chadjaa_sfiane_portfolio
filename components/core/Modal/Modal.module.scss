@@ -8,19 +8,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(215, 184, 148, 0.2);
-    border: 1px solid rgba(93, 65, 45, 0.25);
+    background: rgba(45, 59, 69, 0.35);
+    border: 1px solid rgba(228, 191, 145, 0.24);
     border-radius: 50%;
     font-weight: 500;
     font-size: 0.9rem;
-    color: rgba(58, 40, 28, 0.75);
+    color: rgba(237, 227, 212, 0.8);
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(2px);
 
     &:hover {
-      background: rgba(188, 120, 83, 0.22);
-      border-color: rgba(93, 65, 45, 0.45);
+      background: rgba(209, 138, 82, 0.24);
+      border-color: rgba(228, 191, 145, 0.5);
       color: hsl(var(--primary-400));
       transform: rotate(90deg);
     }
@@ -40,7 +40,7 @@
   &__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(32, 23, 17, 0.62);
+    background: rgba(4, 7, 10, 0.66);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     z-index: -1;
@@ -51,12 +51,12 @@
     width: min(760px, calc(100% - 2rem));
     max-height: calc(100vh - 4rem);
     overflow-y: auto;
-    background: linear-gradient(165deg, rgba(250, 241, 226, 0.98) 0%, rgba(240, 226, 206, 0.99) 100%);
-    border: 1px solid rgba(93, 65, 45, 0.22);
+    background: linear-gradient(165deg, rgba(16, 22, 28, 0.98) 0%, rgba(11, 16, 21, 0.99) 100%);
+    border: 1px solid rgba(228, 191, 145, 0.22);
     border-radius: 10px;
     box-shadow:
-      0 0 0 1px rgba(93, 65, 45, 0.08),
-      0 20px 50px -10px rgba(65, 46, 33, 0.3);
+      0 0 0 1px rgba(228, 191, 145, 0.08),
+      0 20px 50px -10px rgba(0, 0, 0, 0.45);
     animation: modalEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
     // Custom scrollbar
@@ -69,11 +69,11 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background: rgba(129, 92, 64, 0.24);
+      background: rgba(228, 191, 145, 0.26);
       border-radius: 3px;
 
       &:hover {
-        background: rgba(129, 92, 64, 0.36);
+        background: rgba(228, 191, 145, 0.38);
       }
     }
   }

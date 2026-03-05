@@ -9,6 +9,23 @@
     position: relative;
     overflow: hidden;
     scroll-snap-align: start;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: min(720px, 88%);
+      height: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(97, 164, 141, 0.45),
+        rgba(228, 191, 145, 0.45),
+        transparent
+      );
+    }
   }
 
   &__container {
@@ -49,9 +66,10 @@
   }
 
   &__description {
-    color: rgba(63, 46, 31, 0.72);
+    color: rgba(232, 224, 211, 0.72);
     line-height: 1.6;
     font-size: 1.1rem;
+    max-width: 36ch;
   }
 
   &__links {
@@ -60,9 +78,11 @@
 
     h3 {
       color: hsl(var(--primary-400));
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
       font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
     }
   }
 
@@ -76,10 +96,10 @@
       justify-content: center;
       width: 45px;
       height: 45px;
-      border-radius: 50%;
-      background: rgba(215, 184, 148, 0.16);
-      border: 1px solid rgba(95, 66, 44, 0.22);
-      transition: all 0.3s ease;
+      border-radius: 0.45rem;
+      background: rgba(52, 64, 74, 0.16);
+      border: 1px solid rgba(227, 181, 125, 0.22);
+      transition: all 0.25s ease;
 
       svg {
         width: 20px;
@@ -89,12 +109,12 @@
       }
 
       &:hover {
-        background: rgba(188, 120, 83, 0.2);
-        border-color: rgba(95, 66, 44, 0.4);
-        transform: translateY(-3px);
+        background: rgba(88, 150, 130, 0.22);
+        border-color: rgba(108, 179, 156, 0.5);
+        transform: translateY(-2px) rotate(-3deg);
 
         svg {
-          transform: scale(1.1);
+          transform: scale(1.08);
         }
       }
     }
@@ -105,9 +125,11 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 2rem;
-    border-top: 1px solid rgba(95, 66, 44, 0.2);
-    color: rgba(63, 46, 31, 0.58);
-    font-size: 0.9rem;
+    border-top: 1px solid rgba(227, 181, 125, 0.2);
+    color: rgba(232, 224, 211, 0.58);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 
     @include breakpoint(medium) {
       flex-direction: column;

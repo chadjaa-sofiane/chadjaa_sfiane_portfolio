@@ -27,7 +27,7 @@
         background-color: hsl(var(--primary-400));
         border-radius: 50%;
         opacity: var(--opacity);
-        box-shadow: 0 0 0 0.1em rgba(244, 230, 208, 0.85);
+        box-shadow: 0 0 0 0.1em rgba(20, 26, 31, 0.85);
         transition: opacity 100ms ease-in-out;
       }
       &:hover::after {

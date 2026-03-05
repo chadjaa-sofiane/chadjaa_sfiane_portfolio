@@ -19,14 +19,14 @@
       bottom: -0.2em;
       width: 100%;
       height: 0.05em;
-      background-color: rgba(95, 66, 44, 0.28);
+      background-color: rgba(227, 181, 125, 0.28);
     }
   }
 
   &__label {
     position: absolute;
     top: 50%;
-    color: rgba(77, 56, 41, 0.72);
+    color: rgba(235, 221, 200, 0.62);
     font-size: var(--fs-sm);
     font-weight: bold;
     letter-spacing: 0.05em;
@@ -39,7 +39,7 @@
     position: absolute;
     width: 0%;
     height: 0.2em;
-    background-color: rgba(157, 90, 58, 0.85);
+    background: linear-gradient(90deg, rgba(157, 90, 58, 0.9), rgba(97, 163, 141, 0.78));
     left: 0;
     bottom: -0.2em;
     transition: width 150ms ease-in-out;
@@ -56,25 +56,25 @@
     border-radius: 3px;
     resize: none;
     outline: none;
-    color: rgba(63, 46, 31, 0.94);
+    color: rgba(242, 235, 224, 0.96);
     caret-color: hsl(var(--primary-400));
     transition: color 150ms ease;
     transition-delay: 120ms;
 
     &::placeholder {
-      color: transparent;
+      color: rgba(235, 221, 200, 0.28);
     }
 
     &:focus + label,
     &:not(:placeholder-shown) + label {
       top: 0%;
       transition-delay: 0ms;
-      color: rgba(63, 46, 31, 0.9);
+      color: rgba(232, 224, 211, 0.9);
     }
 
     &:focus,
     &:not(:placeholder-shown) {
-      color: rgba(44, 32, 22, 0.98);
+      color: rgba(248, 242, 233, 0.98);
     }
 
     &:focus ~ div,
@@ -83,7 +83,7 @@
     }
 
     &:focus::placeholder {
-      color: rgba(77, 56, 41, 0.5);
+      color: rgba(235, 221, 200, 0.42);
     }
   }
 

@@ -1,16 +1,16 @@
 @mixin colors {
-  --primary-400: 208 34% 15%;
-  --primary-300: 178 45% 34%;
-  --primary-200: 38 46% 84%;
-  --primary-100: 42 76% 95%;
+  --primary-400: 40 38% 92%;
+  --primary-300: 164 26% 68%;
+  --primary-200: 205 20% 26%;
+  --primary-100: 212 24% 10%;
   // secondary colors
-  --secondary-400: 12 58% 34%;
-  --secondary-300: 13 66% 46%;
-  --secondary-200: 24 45% 66%;
-  --secondary-100: 30 71% 84%;
+  --secondary-400: 28 58% 35%;
+  --secondary-300: 28 66% 58%;
+  --secondary-200: 25 45% 70%;
+  --secondary-100: 27 56% 88%;
 
-  // Projects Redesign Theme (Editorial warm paper)
-  --projects-bg: 40 45% 93%;
-  --projects-card-bg: 38 36% 88%;
-  --projects-accent: 12 66% 46%;
+  // Projects Redesign Theme (Dark Slate + Ember)
+  --projects-bg: 214 23% 11%;
+  --projects-card-bg: 215 21% 15%;
+  --projects-accent: 28 66% 58%;
 }

@@ -7,17 +7,17 @@
   width: 100%;
   z-index: 1000;
   transition: all 0.3s ease-in-out;
-  border-bottom: 1px solid rgba(67, 50, 36, 0.2);
+  border-bottom: 1px solid rgba(228, 191, 145, 0.14);
 
   &__wrapper {
     position: relative;
     width: 100%;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    background: rgba(245, 233, 215, 0.86);
+    background: linear-gradient(180deg, rgba(11, 16, 21, 0.9), rgba(11, 16, 21, 0.72));
 
     @supports not (backdrop-filter: blur(6px)) {
-      background: rgba(245, 233, 215, 0.97);
+      background: rgba(11, 16, 21, 0.94);
     }
   }
 
@@ -26,6 +26,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+
+    @include breakpoint(medium) {
+      padding: 0.7rem 0;
+    }
   }
 }
 
@@ -33,7 +37,7 @@
   font-size: 1.9rem;
   font-family: var(--header-font);
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
   cursor: pointer;
   color: hsl(var(--primary-400));
   text-transform: lowercase;
@@ -47,6 +51,7 @@
 .navBar {
   display: flex;
   align-items: center;
+  position: relative;
 
   &__list {
     display: flex;
@@ -54,43 +59,151 @@
     list-style: none;
     padding: 0;
     margin: 0;
+
+    @include breakpoint(medium) {
+      position: absolute;
+      top: calc(100% + 0.7rem);
+      right: 0;
+      min-width: 220px;
+      padding: 0.7rem;
+      flex-direction: column;
+      gap: 0.35rem;
+      border: 1px solid rgba(228, 191, 145, 0.24);
+      border-radius: 0.35rem 1rem 0.35rem 1rem;
+      background: linear-gradient(180deg, rgba(13, 19, 24, 0.98), rgba(13, 19, 24, 0.9));
+      box-shadow: 0 18px 28px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
   }
 }
 
 .navLink {
   text-decoration: none;
-  color: rgba(49, 34, 22, 0.72);
+  color: rgba(237, 227, 212, 0.74);
   font-size: 0.86rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   position: relative;
-  padding: 0.4rem 0;
-  transition: color 0.3s ease;
+  padding: 0.4rem 0.2rem;
+  transition: color 0.25s ease, transform 0.25s ease;
 
   &::after {
     content: "";
     position: absolute;
-    bottom: 0;
+    bottom: -0.05rem;
     left: 0;
     width: 0;
     height: 2px;
     background: hsl(var(--secondary-300));
-    transition: width 0.3s ease;
+    transition: width 0.25s ease;
     border-radius: 2px;
+  }
+
+  &::before {
+    content: "[";
+    margin-right: 0.22rem;
+    color: hsl(var(--secondary-300) / 0.2);
+    transition: color 0.25s ease;
   }
 
   &:hover,
   &--active {
     color: hsl(var(--primary-400));
+    transform: translateX(1px);
+
+    &::before {
+      color: hsl(var(--secondary-300) / 0.85);
+    }
 
     &::after {
       width: 100%;
     }
   }
+
+  @include breakpoint(medium) {
+    width: 100%;
+    font-size: 0.78rem;
+    padding: 0.62rem 0.7rem;
+    border-radius: 0.5rem;
+
+    &::after {
+      display: none;
+    }
+
+    &:hover,
+    &--active {
+      transform: none;
+      background: rgba(209, 138, 82, 0.12);
+    }
+  }
 }
 
-// Mobile menu placeholder styles if needed later
-.menu {
-  display: none; // Hiding for now as requested design is primarily desktop visible
+.menuButton {
+  display: none;
+
+  @include breakpoint(medium) {
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0.35rem;
+    border: 1px solid rgba(228, 191, 145, 0.28);
+    border-radius: 0.5rem;
+    background: rgba(25, 34, 43, 0.84);
+    display: grid;
+    align-content: center;
+    gap: 0.26rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      border-radius: 999px;
+      background: hsl(var(--primary-400));
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+  }
+}
+
+.menuButton:hover {
+  @include breakpoint(medium) {
+    border-color: rgba(228, 191, 145, 0.45);
+    background: rgba(33, 44, 54, 0.95);
+  }
+}
+
+.navBar--open {
+  .menuButton {
+    @include breakpoint(medium) {
+      span:nth-child(1) {
+        transform: translateY(0.4rem) rotate(45deg);
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:nth-child(3) {
+        transform: translateY(-0.4rem) rotate(-45deg);
+      }
+    }
+  }
+
+  .navBar__list {
+    @include breakpoint(medium) {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+  }
+}
+
+@include breakpoint(medium) {
+  .navBar {
+    align-items: flex-start;
+  }
 }

@@ -15,9 +15,9 @@ body {
   overflow-x: clip;
   color: hsl(var(--primary-400));
   background:
-    radial-gradient(circle at 14% 12%, rgba(164, 93, 61, 0.2) 0%, transparent 40%),
-    radial-gradient(circle at 86% 84%, rgba(42, 113, 107, 0.16) 0%, transparent 42%),
-    linear-gradient(160deg, #e8d7bf 0%, #dec7a7 52%, #d2b691 100%);
+    radial-gradient(circle at 14% 12%, rgba(209, 138, 82, 0.17) 0%, transparent 38%),
+    radial-gradient(circle at 86% 84%, rgba(94, 165, 142, 0.13) 0%, transparent 40%),
+    linear-gradient(160deg, #0e1318 0%, #131a21 52%, #0f151c 100%);
   background-attachment: fixed;
   background-size: cover;
 }
@@ -27,11 +27,11 @@ body::before {
   position: fixed;
   inset: 0;
   background-image:
-    radial-gradient(rgba(53, 44, 36, 0.08) 1px, transparent 1px),
-    radial-gradient(rgba(53, 44, 36, 0.06) 1px, transparent 1px);
+    radial-gradient(rgba(228, 191, 145, 0.12) 1px, transparent 1px),
+    radial-gradient(rgba(100, 176, 151, 0.1) 1px, transparent 1px);
   background-position: 0 0, 16px 16px;
   background-size: 32px 32px;
-  opacity: 0.14;
+  opacity: 0.16;
   pointer-events: none;
   z-index: -1;
 }
@@ -47,21 +47,21 @@ body::after {
 }
 
 body[data-season="winter"]::after {
-  opacity: 0.24;
+  opacity: 0.2;
   background:
     radial-gradient(circle at 22% 24%, rgba(98, 174, 198, 0.16) 0%, transparent 42%),
     radial-gradient(circle at 80% 72%, rgba(61, 124, 144, 0.13) 0%, transparent 44%);
 }
 
 body[data-season="spring"]::after {
-  opacity: 0.22;
+  opacity: 0.16;
   background:
     radial-gradient(circle at 20% 24%, rgba(229, 150, 123, 0.16) 0%, transparent 42%),
     radial-gradient(circle at 82% 76%, rgba(199, 136, 109, 0.14) 0%, transparent 46%);
 }
 
 body[data-season="autumn"]::after {
-  opacity: 0.28;
+  opacity: 0.2;
   background:
     radial-gradient(circle at 20% 24%, rgba(180, 95, 54, 0.17) 0%, transparent 40%),
     radial-gradient(circle at 82% 76%, rgba(140, 72, 43, 0.14) 0%, transparent 44%);

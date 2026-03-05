@@ -6,12 +6,12 @@
     right: 2em;
     padding: 0.75em;
     display: grid;
-    border: 0.1em solid rgba(95, 66, 44, 0.3);
+    border: 0.1em solid rgba(227, 181, 125, 0.3);
     // blend the background color with the background image
     backdrop-filter: blur(0.5em);
     border-radius: 0.125em;
     place-items: center;
-    background-color: rgba(244, 230, 208, 0.94);
+    background-color: rgba(20, 26, 31, 0.94);
     color: hsl(var(--primary-400));
     transition: background-color 100ms ease-in-out, scale 100ms ease-in-out;
     // transform: rotate(-90deg);

@@ -5,11 +5,11 @@
     width: 100%;
     max-width: 420px;
     min-height: 530px;
-    background: linear-gradient(160deg, rgba(251, 243, 232, 0.95) 0%, rgba(245, 233, 214, 0.95) 100%);
-    border: 1px solid rgba(101, 73, 49, 0.25);
-    border-radius: 8px;
+    background: linear-gradient(160deg, rgba(22, 27, 31, 0.95) 0%, rgba(17, 22, 26, 0.95) 100%);
+    border: 1px solid rgba(101, 73, 49, 0.28);
+    border-radius: 0.25rem 1rem 0.25rem 1rem;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.26s ease, box-shadow 0.26s ease, border-color 0.26s ease;
     position: relative;
     cursor: pointer;
     margin: 0 auto;
@@ -30,12 +30,23 @@
       z-index: 0;
     }
 
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, rgba(227, 181, 125, 0.2), transparent 72%);
+      pointer-events: none;
+    }
+
     &:hover {
-      transform: translateY(-6px) rotate(-0.5deg);
-      border-color: rgba(184, 104, 67, 0.4);
+      transform: translateY(-6px);
+      border-color: rgba(184, 104, 67, 0.48);
       box-shadow:
         0 18px 28px rgba(77, 56, 41, 0.25),
-        8px 8px 0 rgba(96, 63, 40, 0.15);
+        10px 10px 0 rgba(96, 63, 40, 0.12);
 
       &::before {
         opacity: 1;
@@ -92,7 +103,7 @@
     p {
       font-size: 0.88rem;
       line-height: 1.55;
-      color: rgba(53, 38, 26, 0.9);
+      color: rgba(232, 224, 211, 0.85);
       -webkit-line-clamp: 3;
       line-clamp: 3;
       -webkit-box-orient: vertical;
@@ -139,7 +150,7 @@
       p {
         font-size: 1.1rem;
         line-height: 1.8;
-        color: rgba(38, 28, 20, 0.8);
+        color: rgba(232, 224, 211, 0.82);
       }
 
       h4 {
@@ -152,7 +163,7 @@
     &__header {
       padding: 2.5rem;
       border-bottom: 1px solid rgba(101, 73, 49, 0.24);
-      background: linear-gradient(130deg, rgba(251, 243, 232, 0.95) 0%, rgba(236, 215, 190, 0.95) 100%);
+      background: linear-gradient(130deg, rgba(22, 27, 31, 0.95) 0%, rgba(26, 32, 38, 0.95) 100%);
 
       h3 {
         font-size: 2rem;

@@ -27,7 +27,7 @@
     z-index: 1;
 
     h2 {
-      color: hsl(var(--primary-100));
+      color: hsl(var(--primary-400));
       font-size: clamp(1.9rem, 4vw, 2.45rem);
       margin-bottom: 0.55rem;
       letter-spacing: 0;
@@ -227,8 +227,8 @@
       transition: all 0.2s ease;
 
       &:hover {
-        background: #fff;
-        color: #1a120f;
+        background: rgba(209, 138, 82, 0.26);
+        color: hsl(var(--primary-400));
         transform: rotate(90deg);
       }
     }
