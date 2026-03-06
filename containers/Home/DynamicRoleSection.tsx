@@ -20,8 +20,8 @@ const roles = [
     title: "Sofiane Chadjaa",
     description: (
       <>
-        Full-stack engineer with 6+ years building secure, scalable software
-        from architecture to production.
+        Software engineer with 6+ years of experience building reliable systems
+        — from architecture and APIs to production environments.
       </>
     ),
     Illustration: HeroIllustration,
@@ -32,8 +32,8 @@ const roles = [
     title: "Backend & System Design",
     description: (
       <>
-        I design resilient services, APIs, and integration boundaries with a
-        system-level focus on security, performance, and maintainability.
+        Designing services and APIs that stay stable as systems grow. I focus on
+        clear boundaries, predictable behavior, and maintainable architectures.
       </>
     ),
     Illustration: BackEndIllustration,
@@ -41,11 +41,11 @@ const roles = [
   },
   {
     id: "frontend",
-    title: "Product-Facing Engineering",
+    title: "Frontend Engineering",
     description: (
       <>
-        I build clean, responsive interfaces that turn product requirements
-        into reliable user experiences and maintainable delivery workflows.
+        Building interfaces that translate product ideas into dependable user
+        experiences without sacrificing simplicity or maintainability.
       </>
     ),
     Illustration: FrontEndIllustration,
@@ -53,11 +53,11 @@ const roles = [
   },
   {
     id: "ml",
-    title: "AI & Agent Systems",
+    title: "AI & Automation",
     description: (
       <>
-        I build practical AI workflows and agents that combine automation,
-        APIs, and language models for real-world outcomes.
+        Creating practical AI workflows and agents that combine language models,
+        APIs, and automation to solve real-world tasks.
       </>
     ),
     Illustration: MLIllustration,
@@ -65,18 +65,17 @@ const roles = [
   },
   {
     id: "devops",
-    title: "Infrastructure & Reliability",
+    title: "Infrastructure & Deployment",
     description: (
       <>
-        I set up environments from scratch to keep deployment pipelines secure,
-        observable, and stable across releases.
+        Setting up environments and deployment pipelines from scratch to keep
+        systems secure, observable, and reliable in production.
       </>
     ),
     Illustration: DevOpsIllustration,
     variant: "dark",
   },
 ];
-
 const DynamicRoleSection = () => {
   const { ref } = useSectionsProgress();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -109,7 +108,14 @@ const DynamicRoleSection = () => {
           minHeight: "550px",
         }}
       >
-        <div style={{ flex: 1, display: "flex", alignItems: "center", width: "100%" }}>
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={currentRole.id}
