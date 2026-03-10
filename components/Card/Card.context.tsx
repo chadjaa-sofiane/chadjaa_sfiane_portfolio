@@ -18,6 +18,8 @@ const CardContext = createContext<CardContextState>({
     title: "",
     body: "",
     imageSrc: "",
+    showImage: true,
+    isPrivate: false,
     link: "",
     githubUrl: "",
     type: "",

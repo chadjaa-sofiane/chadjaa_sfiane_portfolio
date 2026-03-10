@@ -6,12 +6,19 @@ import styles from "./Card.module.scss";
 import ProjectIcon from "./ProjectIcon";
 
 const CardContent = () => {
-    const { title, body, type } = useCardContext();
+    const { title, body, type, isPrivate } = useCardContext();
     return (
-        <div className={styles["card__content"]}>
+        <div
+            className={`${styles["card__content"]} ${
+                isPrivate ? styles["card__content--private"] : ""
+            }`}
+        >
             <div className={styles["card__header"]}>
                 <Title4> {title} </Title4>
-                <ProjectIcon type={type} />
+                <div className={styles["card__meta"]}>
+                    {isPrivate && <span className={styles["card__badge--bottom"]}>Private</span>}
+                    <ProjectIcon type={type} />
+                </div>
             </div>
             <Paragraph>{body}</Paragraph>
             <CardButtons />

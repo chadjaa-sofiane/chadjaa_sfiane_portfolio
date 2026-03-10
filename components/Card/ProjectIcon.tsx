@@ -1,5 +1,5 @@
 import React from "react";
-import { Globe, FlaskConical, BrainCircuit } from "lucide-react";
+import { Globe, FlaskConical, BrainCircuit, Shapes } from "lucide-react";
 
 interface ProjectIconProps {
     type?: string;
@@ -12,6 +12,8 @@ const ProjectIcon: React.FC<ProjectIconProps> = ({ type }) => {
                 return "#3b82f6"; // Blue
             case "experiment":
                 return "#10b981"; // Green
+            case "other":
+                return "#f59e0b"; // Amber
             case "ml":
             case "machine learning":
                 return "#8b5cf6"; // Purple
@@ -28,6 +30,8 @@ const ProjectIcon: React.FC<ProjectIconProps> = ({ type }) => {
                 return <Globe size={size} color={color} />;
             case "experiment":
                 return <FlaskConical size={size} color={color} />;
+            case "other":
+                return <Shapes size={size} color={color} />;
             case "ml":
             case "machine learning":
                 return <BrainCircuit size={size} color={color} />;

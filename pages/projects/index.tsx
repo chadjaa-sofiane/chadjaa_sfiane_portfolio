@@ -36,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const projects = data.map((project: any) => {
-      let imageSrc = undefined;
+      let imageSrc = null;
       try {
         if (project.image) {
           imageSrc = urlFor(project.image).url();

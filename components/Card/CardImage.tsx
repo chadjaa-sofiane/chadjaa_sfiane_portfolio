@@ -4,7 +4,13 @@ import styles from "./Card.module.scss";
 
 
 const CardImage = () => {
-    const { imageSrc } = useCardContext();
+    const { imageSrc, showImage, isPrivate } = useCardContext();
+    if (isPrivate) {
+        return <div className={styles["card__image__placeholder"]} />;
+    }
+    if (showImage === false || !imageSrc) {
+        return null;
+    }
     return (
         <div className={styles["card__image__field"]}>
             <Image

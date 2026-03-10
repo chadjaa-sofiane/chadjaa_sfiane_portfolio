@@ -17,22 +17,31 @@ const Modal = dynamic(
 );
 
 const ProjectDetailsModal = () => {
-  const { isOpen, handleOpen, title, link, githubUrl, kaggleUrl, description } =
+  const { isOpen, handleOpen, title, link, githubUrl, kaggleUrl, description, isPrivate } =
     useCardContext();
+  const content = description;
   return (
     <Modal isOpen={isOpen} setOpen={handleOpen}>
       <div className={styles["card__modal__header"]}>
         <Title3> {title} </Title3>
       </div>
       <div className={styles["card__modal__container"]}>
-        <Paragraph>{description || "no description"}</Paragraph>
+        <Paragraph>{content || "no description"}</Paragraph>
         {(githubUrl || kaggleUrl) && <Title4> Source code : </Title4>}
         <div>
           {githubUrl && <GitHubIconButton url={githubUrl} />}
           {kaggleUrl && <KaggleIconButton url={kaggleUrl} />}
         </div>
         <div className={styles["card__modal__buttonsField"]}>
-          {link && (
+          {isPrivate && (
+            <AnchorButton
+              role="button"
+              href="mailto:chadjaasofiane@gmail.com"
+            >
+              Let's talk
+            </AnchorButton>
+          )}
+          {!isPrivate && link && (
             <AnchorButton
               role="button"
               href={link}

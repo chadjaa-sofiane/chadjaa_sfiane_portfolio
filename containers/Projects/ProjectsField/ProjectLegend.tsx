@@ -4,7 +4,7 @@ import { Paragraph } from "@components/core/Typography";
 import styles from "./ProjectsField.module.scss";
 
 const ProjectLegend = () => {
-    const types = ["Website", "Experiment", "Machine Learning"];
+    const types = ["Website", "Experiment", "Machine Learning", "Other"];
 
     return (
         <div className={styles["projects__legend"]}>

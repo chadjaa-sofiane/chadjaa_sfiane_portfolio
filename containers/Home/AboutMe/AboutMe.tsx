@@ -47,11 +47,30 @@ const AboutMe = () => {
               <h2 className={styles["aboutMe__title"]}>
                 About Chadjaa Sofiane
               </h2>
-              <p className={styles["aboutMe__description"]}>
-                An overview of my work and
-                interests, with links to projects, code, and professional
-                profiles.
-              </p>
+              <div className={styles["aboutMe__blocks"]}>
+                <div className={styles["aboutMe__block"]}>
+                  <h3>What I do</h3>
+                  <p>
+                    Full-stack developer focused on fintech, real-time products,
+                    and high-reliability systems - work where mistakes are expensive.
+                  </p>
+                </div>
+                <div className={styles["aboutMe__block"]}>
+                  <h3>How I work</h3>
+                  <p>
+                    Async-first, thorough in discovery, and comfortable flying solo
+                    or partnering with design. Most production work is under NDA,
+                    including payment platforms, IoT device control, and internal tools at scale.
+                  </p>
+                </div>
+                <div className={styles["aboutMe__block"]}>
+                  <h3>What I'm looking for</h3>
+                  <p>
+                    Freelance and contract projects - especially new builds or scale-ups
+                    that need to be done right from day one.
+                  </p>
+                </div>
+              </div>
             </motion.div>
 
             <motion.div
