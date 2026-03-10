@@ -20,8 +20,8 @@ const roles = [
     title: "Sofiane Chadjaa",
     description: (
       <>
-        Software engineer with 6+ years of experience building reliable systems
-        — from architecture and APIs to production environments.
+        I build fintech, IoT, and SaaS platforms — reliable systems for products
+        where failure isn't cheap.
       </>
     ),
     Illustration: HeroIllustration,
