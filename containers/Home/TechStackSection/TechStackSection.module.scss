@@ -1,8 +1,24 @@
 .techOrbit {
   width: 100%;
-  padding: 4.4rem 0 4rem;
+  padding: 6rem 0 5.5rem;
   position: relative;
   overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -18rem;
+    left: 50%;
+    width: 64rem;
+    height: 64rem;
+    transform: translateX(-50%);
+    background: radial-gradient(circle,
+        rgba(191, 114, 79, 0.12) 0%,
+        rgba(80, 149, 130, 0.1) 35%,
+        rgba(0, 0, 0, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
   &__stars {
     position: absolute;
@@ -21,24 +37,24 @@
 
   &__header {
     text-align: center;
-    max-width: 640px;
-    margin: 0 auto 1.4rem;
+    max-width: 720px;
+    margin: 0 auto 2.2rem;
     position: relative;
     z-index: 1;
 
     h2 {
       color: hsl(var(--primary-400));
-      font-size: clamp(1.9rem, 4vw, 2.45rem);
-      margin-bottom: 0.55rem;
-      letter-spacing: 0;
+      font-size: clamp(2.2rem, 4.4vw, 3.2rem);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
       font-family: var(--header-font);
       text-shadow: none;
     }
 
     p {
-      color: rgba(242, 234, 221, 0.78);
-      font-size: 0.95rem;
-      line-height: 1.55;
+      color: rgba(232, 224, 211, 0.75);
+      font-size: 1.05rem;
+      line-height: 1.6;
     }
   }
 
@@ -48,18 +64,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.6rem;
     flex-wrap: wrap;
-    margin-bottom: 0.7rem;
+    margin-bottom: 1.4rem;
   }
 
   &__filterButton {
-    border: 1px solid rgba(221, 193, 164, 0.4);
-    background: rgba(57, 42, 32, 0.55);
-    color: rgba(246, 236, 222, 0.92);
+    border: 1px solid rgba(227, 181, 125, 0.35);
+    background: rgba(34, 24, 19, 0.55);
+    color: rgba(240, 231, 217, 0.9);
     border-radius: 999px;
-    padding: 0.35rem 0.7rem;
-    font-size: 0.72rem;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -67,25 +83,25 @@
     transition: all 0.2s ease;
 
     &:hover {
-      border-color: rgba(198, 126, 91, 0.9);
-      background: rgba(77, 53, 37, 0.85);
+      border-color: rgba(190, 116, 79, 0.7);
+      background: rgba(58, 38, 28, 0.85);
     }
 
     &--active {
       color: #fff;
-      border-color: rgba(198, 126, 91, 0.95);
-      background: rgba(159, 82, 47, 0.42);
-      box-shadow: 0 0 20px rgba(184, 104, 67, 0.32);
+      border-color: rgba(190, 116, 79, 0.9);
+      background: rgba(157, 90, 58, 0.35);
+      box-shadow: 0 0 18px rgba(190, 116, 79, 0.25);
     }
   }
 
   &__drawerButton {
-    border: 1px solid rgba(141, 204, 181, 0.55);
-    background: rgba(56, 110, 96, 0.28);
-    color: rgba(223, 247, 238, 0.98);
+    border: 1px solid rgba(80, 149, 130, 0.55);
+    background: rgba(53, 100, 90, 0.28);
+    color: rgba(225, 243, 237, 0.96);
     border-radius: 999px;
-    padding: 0.35rem 0.75rem;
-    font-size: 0.72rem;
+    padding: 0.45rem 0.95rem;
+    font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -102,7 +118,7 @@
     --manual-rotation: 0deg;
     --radius: clamp(230px, 33vw, 420px);
     width: 100%;
-    height: clamp(470px, 60vw, 700px);
+    height: clamp(520px, 70vw, 780px);
     position: relative;
     z-index: 1;
     cursor: grab;
@@ -113,6 +129,14 @@
     &--dragging {
       cursor: grabbing;
     }
+  }
+
+  &__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
   &__centerGlow {
@@ -191,8 +215,8 @@
     right: 0;
     width: min(700px, 100vw);
     height: 100vh;
-    background: #1a120f;
-    border-left: 1px solid rgba(246, 225, 198, 0.12);
+    background: #17110e;
+    border-left: 1px solid rgba(246, 225, 198, 0.14);
     box-shadow: -16px 0 30px rgba(0, 0, 0, 0.22);
     z-index: 1001;
     display: flex;
@@ -208,14 +232,14 @@
 
     h3 {
       color: #f7e7d2;
-      font-size: 1.5rem;
+      font-size: 1.65rem;
       font-weight: 700;
       letter-spacing: 0;
     }
 
     button {
       border: none;
-      background: rgba(231, 199, 167, 0.16);
+      background: rgba(231, 199, 167, 0.14);
       color: #f7e7d2;
       width: 40px;
       height: 40px;
@@ -329,6 +353,8 @@
 
 @media (max-width: 900px) {
   .techOrbit {
+    padding: 5rem 0 4.5rem;
+
     &__tool {
       height: 43px;
       font-size: 0.7rem;
@@ -337,21 +363,21 @@
     }
 
     &__scene {
-      height: clamp(420px, 80vw, 580px);
+      height: clamp(460px, 88vw, 640px);
     }
 
     &__filters {
-      gap: 0.34rem;
+      gap: 0.4rem;
     }
 
     &__filterButton {
-      font-size: 0.66rem;
-      padding: 0.3rem 0.58rem;
+      font-size: 0.68rem;
+      padding: 0.36rem 0.7rem;
     }
 
     &__drawerButton {
-      font-size: 0.66rem;
-      padding: 0.3rem 0.58rem;
+      font-size: 0.68rem;
+      padding: 0.36rem 0.72rem;
     }
 
     &__drawer {
