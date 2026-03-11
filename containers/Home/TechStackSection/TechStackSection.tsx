@@ -25,6 +25,12 @@ import {
   Zap,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import type {
+  CSSProperties,
+  ElementType,
+  PointerEvent as ReactPointerEvent,
+  WheelEvent as ReactWheelEvent,
+} from "react";
 import * as THREE from "three";
 
 const CATEGORY_META = {
@@ -34,7 +40,27 @@ const CATEGORY_META = {
   ai: { label: "AI", color: "#f59e0b", glyph: "◆" },
 };
 
-const tools = [
+type ToolCategory = "backend" | "frontend" | "infra" | "ai";
+
+type Tool = {
+  name: string;
+  icon: ElementType;
+  color: string;
+  category: ToolCategory;
+  desc: string;
+};
+
+type OrbitProfile = {
+  baseAngleDeg: number;
+  baseYFactor: number;
+  wave: number;
+  phase: number;
+  radiusXScale: number;
+  radiusZScale: number;
+  zWave: number;
+};
+
+const tools: Tool[] = [
   { name: "Node.js", icon: Server, color: "#34d399", category: "backend", desc: "JS runtime for scalable server-side applications" },
   { name: "TypeScript", icon: Braces, color: "#60a5fa", category: "backend", desc: "Typed superset of JavaScript for safer codebases" },
   { name: "Java", icon: Workflow, color: "#f59e0b", category: "backend", desc: "Enterprise-grade OOP language" },
@@ -76,15 +102,18 @@ const categories = [
   { id: "frontend", label: "Frontend" },
   { id: "infra", label: "Infra" },
   { id: "ai", label: "AI" },
-];
+ ] as const;
 
-const categoryCenterAngles = { backend: 330, frontend: 50, infra: 170, ai: 255 };
+type CategoryId = (typeof categories)[number]["id"];
+type SkillCategory = Exclude<CategoryId, "all">;
 
-const normalizeAngle = (angle) => ((angle % 360) + 360) % 360;
+const categoryCenterAngles: Record<SkillCategory, number> = { backend: 330, frontend: 50, infra: 170, ai: 255 };
+
+const normalizeAngle = (angle: number) => ((angle % 360) + 360) % 360;
 
 export default function TechStackSection() {
   const [manualRotation, setManualRotation] = useState(-12);
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState<CategoryId>("all");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(1400);
@@ -93,52 +122,52 @@ export default function TechStackSection() {
   const [autoRotateSpeed, setAutoRotateSpeed] = useState(2); // deg/sec
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
-  const [selectedTool, setSelectedTool] = useState(null);
-  const [hoveredTool, setHoveredTool] = useState(null);
-  const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
+  const [hoveredTool, setHoveredTool] = useState<Tool | null>(null);
+  const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
-  const canvasRef = useRef(null);
-  const sceneContainerRef = useRef(null);
-  const rendererRef = useRef(null);
-  const sceneRef = useRef(null);
-  const cameraRef = useRef(null);
-  const starFieldRef = useRef(null);
-  const centerGlowRef = useRef(null);
-  const spritesRef = useRef([]);
-  const spriteMetaRef = useRef([]);
-  const hoverIndexRef = useRef(null);
-  const manualRotationRef = useRef(manualRotation);
-  const activeCategoryRef = useRef(activeCategory);
-  const isDraggingRef = useRef(isDragging);
-  const lowPowerRef = useRef(isLowPowerMode);
-  const isAutoRotatingRef = useRef(isAutoRotating);
-  const autoRotateSpeedRef = useRef(autoRotateSpeed);
-  const searchQueryRef = useRef(searchQuery);
-  const debouncedQueryRef = useRef(debouncedQuery);
-  const sizeRef = useRef({ width: 0, height: 0 });
-  const parallaxRef = useRef({ x: 0, y: 0 });
-  const parallaxTargetRef = useRef({ x: 0, y: 0 });
-  const hoverRafRef = useRef(null);
-  const lastHoverIndexRef = useRef(null);
-  const isScrollingRef = useRef(false);
-  const scrollTimeoutRef = useRef(null);
-  const needsTextureRebuildRef = useRef(true);
-  const animationLoopRef = useRef(null);
-  const resizeObserverRef = useRef(null);
-  const dragStartX = useRef(0);
-  const dragStartRotation = useRef(0);
-  const dragPointerIdRef = useRef(null);
-  const dragRafRef = useRef(null);
-  const pendingRotationRef = useRef(null);
-  const animationRafRef = useRef(null);
-  const wheelSnapTimeoutRef = useRef(null);
-  const lastAutoRotateTime = useRef(null);
-  const autoRotateAccumulator = useRef(0);
-  const lastInteractionRef = useRef(Date.now());
-  const compactRef = useRef(false);
-  const clickCandidateRef = useRef(null);
-  const clickStartXRef = useRef(0);
-  const prevTimeRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const sceneContainerRef = useRef<HTMLDivElement | null>(null);
+  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+  const sceneRef = useRef<THREE.Scene | null>(null);
+  const cameraRef = useRef<THREE.OrthographicCamera | null>(null);
+  const starFieldRef = useRef<THREE.Points | null>(null);
+  const centerGlowRef = useRef<THREE.Sprite | null>(null);
+  const spritesRef = useRef<THREE.Sprite[]>([]);
+  const spriteMetaRef = useRef<Array<{ tool: Tool; profile: OrbitProfile; baseSize: { w: number; h: number } }>>([]);
+  const hoverIndexRef = useRef<number | null>(null);
+  const manualRotationRef = useRef<number>(manualRotation);
+  const activeCategoryRef = useRef<CategoryId>(activeCategory);
+  const isDraggingRef = useRef<boolean>(isDragging);
+  const lowPowerRef = useRef<boolean>(isLowPowerMode);
+  const isAutoRotatingRef = useRef<boolean>(isAutoRotating);
+  const autoRotateSpeedRef = useRef<number>(autoRotateSpeed);
+  const searchQueryRef = useRef<string>(searchQuery);
+  const debouncedQueryRef = useRef<string>(debouncedQuery);
+  const sizeRef = useRef<{ width: number; height: number }>({ width: 0, height: 0 });
+  const parallaxRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const parallaxTargetRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const hoverRafRef = useRef<number | null>(null);
+  const lastHoverIndexRef = useRef<number | null>(null);
+  const isScrollingRef = useRef<boolean>(false);
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const needsTextureRebuildRef = useRef<boolean>(true);
+  const animationLoopRef = useRef<number | null>(null);
+  const resizeObserverRef = useRef<ResizeObserver | null>(null);
+  const dragStartX = useRef<number>(0);
+  const dragStartRotation = useRef<number>(0);
+  const dragPointerIdRef = useRef<number | null>(null);
+  const dragRafRef = useRef<number | null>(null);
+  const pendingRotationRef = useRef<number | null>(null);
+  const animationRafRef = useRef<number | null>(null);
+  const wheelSnapTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastAutoRotateTime = useRef<number | null>(null);
+  const autoRotateAccumulator = useRef<number>(0);
+  const lastInteractionRef = useRef<number>(Date.now());
+  const compactRef = useRef<boolean>(false);
+  const clickCandidateRef = useRef<Tool | null>(null);
+  const clickStartXRef = useRef<number>(0);
+  const prevTimeRef = useRef<number | null>(null);
 
   // sync refs
   useEffect(() => { manualRotationRef.current = manualRotation; }, [manualRotation]);
@@ -205,12 +234,12 @@ export default function TechStackSection() {
 
   useEffect(() => {
     if (!isDrawerOpen) return;
-    const onEsc = (e) => { if (e.key === "Escape") setIsDrawerOpen(false); };
+    const onEsc = (e: KeyboardEvent) => { if (e.key === "Escape") setIsDrawerOpen(false); };
     document.addEventListener("keydown", onEsc);
     return () => document.removeEventListener("keydown", onEsc);
   }, [isDrawerOpen]);
 
-  const orbitProfile = useMemo(() => {
+  const orbitProfile = useMemo<OrbitProfile[]>(() => {
     const grouped = {
       backend: tools.filter(t => t.category === "backend"),
       frontend: tools.filter(t => t.category === "frontend"),
@@ -236,14 +265,14 @@ export default function TechStackSection() {
     });
   }, []);
 
-  const listedSkills = useMemo(() => ({
+  const listedSkills = useMemo<Record<SkillCategory, Tool[]>>(() => ({
     backend: tools.filter(t => t.category === "backend"),
     frontend: tools.filter(t => t.category === "frontend"),
     infra: tools.filter(t => t.category === "infra"),
     ai: tools.filter(t => t.category === "ai"),
   }), []);
 
-  const categoryCounts = useMemo(() => ({
+  const categoryCounts = useMemo<Record<CategoryId, number>>(() => ({
     all: tools.length,
     backend: tools.filter(t => t.category === "backend").length,
     frontend: tools.filter(t => t.category === "frontend").length,
@@ -251,7 +280,9 @@ export default function TechStackSection() {
     ai: tools.filter(t => t.category === "ai").length,
   }), []);
 
-  const filteredTools = useMemo(() => {
+  const drawerCategories: SkillCategory[] = ["backend", "frontend", "infra", "ai"];
+
+  const filteredTools = useMemo<Tool[] | null>(() => {
     if (!debouncedQuery.trim()) return null;
     const q = debouncedQuery.toLowerCase();
     return tools.filter(t => t.name.toLowerCase().includes(q) || t.category.includes(q));
@@ -266,7 +297,14 @@ export default function TechStackSection() {
     animateRotationTo(-orbitProfile[index].baseAngleDeg, 260);
   }, [debouncedQuery, filteredTools, orbitProfile]);
 
-  const drawRoundedRect = (ctx, x, y, w, h, r) => {
+  const drawRoundedRect = (
+    ctx: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    r: number,
+  ) => {
     const cr = Math.min(r, w / 2, h / 2);
     ctx.beginPath();
     ctx.moveTo(x + cr, y);
@@ -281,7 +319,7 @@ export default function TechStackSection() {
     ctx.closePath();
   };
 
-  const createToolTexture = (tool, compact, dpr) => {
+  const createToolTexture = (tool: Tool, compact: boolean, dpr: number) => {
     const fontFamily = '"DM Serif Display", Fraunces, Georgia, serif';
     const fontSize = compact ? 13 : 14.5;
     const height = compact ? 42 : 50;
@@ -356,7 +394,7 @@ export default function TechStackSection() {
     return { texture, width, height };
   };
 
-  const createGlowTexture = (dpr) => {
+  const createGlowTexture = (dpr: number) => {
     const size = Math.floor(320 * dpr);
     const canvas = document.createElement("canvas");
     canvas.width = size;
@@ -383,7 +421,7 @@ export default function TechStackSection() {
     return t;
   };
 
-  const createRingTexture = (color, dpr) => {
+  const createRingTexture = (color: string, dpr: number) => {
     const size = Math.floor(200 * dpr);
     const canvas = document.createElement("canvas");
     canvas.width = size;
@@ -427,9 +465,17 @@ export default function TechStackSection() {
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
 
-    const disposeSprite = (sprite) => {
+    const disposeSprite = (sprite: THREE.Sprite) => {
       if (sprite.material?.map) sprite.material.map.dispose();
       sprite.material?.dispose();
+    };
+
+    const disposeMaterial = (material: THREE.Material | THREE.Material[]) => {
+      if (Array.isArray(material)) {
+        material.forEach((mat) => mat.dispose());
+      } else {
+        material.dispose();
+      }
     };
 
     const rebuildSprites = () => {
@@ -456,11 +502,11 @@ export default function TechStackSection() {
       });
     };
 
-    const rebuildStars = (width, height) => {
+    const rebuildStars = (width: number, height: number) => {
       if (starFieldRef.current) {
         scene.remove(starFieldRef.current);
         starFieldRef.current.geometry.dispose();
-        starFieldRef.current.material?.dispose();
+        if (starFieldRef.current.material) disposeMaterial(starFieldRef.current.material);
         starFieldRef.current = null;
       }
     };
@@ -502,7 +548,7 @@ export default function TechStackSection() {
       rebuildStars(width, height);
     };
 
-    const handlePointerMove = (event) => {
+    const handlePointerMove = (event: PointerEvent) => {
       if (!canvasRef.current || !cameraRef.current || isScrollingRef.current) return;
       const rect = canvasRef.current.getBoundingClientRect();
       mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
@@ -529,7 +575,7 @@ export default function TechStackSection() {
       });
     };
 
-    const handleCanvasClick = (event) => {
+    const handleCanvasClick = (event: MouseEvent) => {
       const dx = Math.abs(event.clientX - clickStartXRef.current);
       if (dx > 5) return; // was a drag
       if (hoverIndexRef.current !== null) {
@@ -540,7 +586,7 @@ export default function TechStackSection() {
       }
     };
 
-    const handleParallaxMove = (event) => {
+    const handleParallaxMove = (event: PointerEvent) => {
       if (!container || isDraggingRef.current || isScrollingRef.current) return;
       const rect = container.getBoundingClientRect();
       parallaxTargetRef.current = {
@@ -567,9 +613,9 @@ export default function TechStackSection() {
     }
 
     resizeObserverRef.current = new ResizeObserver(() => resize());
-    resizeObserverRef.current.observe(container);
+    resizeObserverRef.current?.observe(container);
 
-    const animate = (time) => {
+    const animate = (time: number) => {
       const ren = rendererRef.current;
       const cam = cameraRef.current;
       if (!ren || !cam) return;
@@ -672,19 +718,23 @@ export default function TechStackSection() {
       if (animationLoopRef.current) cancelAnimationFrame(animationLoopRef.current);
       spritesRef.current.forEach(disposeSprite);
       spritesRef.current = [];
-      if (starFieldRef.current) { scene.remove(starFieldRef.current); starFieldRef.current.geometry.dispose(); starFieldRef.current.material?.dispose(); }
+      if (starFieldRef.current) {
+        scene.remove(starFieldRef.current);
+        starFieldRef.current.geometry.dispose();
+        if (starFieldRef.current.material) disposeMaterial(starFieldRef.current.material);
+      }
       if (centerGlowRef.current) { scene.remove(centerGlowRef.current); centerGlowRef.current.material?.map?.dispose(); centerGlowRef.current.material?.dispose(); }
       renderer.dispose();
       scene.clear();
     };
   }, [orbitProfile]);
 
-  const animateRotationTo = (target, durationMs = 280) => {
+  const animateRotationTo = (target: number, durationMs = 280) => {
     if (animationRafRef.current) cancelAnimationFrame(animationRafRef.current);
     const from = manualRotationRef.current;
     const delta = target - from;
     const startedAt = performance.now();
-    const tick = (now) => {
+    const tick = (now: number) => {
       const t = Math.min(1, (now - startedAt) / durationMs);
       const eased = 1 - Math.pow(1 - t, 3);
       const next = from + delta * eased;
@@ -716,7 +766,7 @@ export default function TechStackSection() {
     snapToNearest();
   };
 
-  const onPointerDown = (e) => {
+  const onPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
     if (isScrollingRef.current) return;
     lastInteractionRef.current = Date.now();
     setIsDragging(true);
@@ -728,7 +778,7 @@ export default function TechStackSection() {
     e.currentTarget.setPointerCapture(e.pointerId);
   };
 
-  const onPointerMove = (e) => {
+  const onPointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
     if (isScrollingRef.current) return;
     if (!isDragging) return;
     const delta = e.clientX - dragStartX.current;
@@ -744,8 +794,8 @@ export default function TechStackSection() {
 
   useEffect(() => {
     if (!isDragging) return;
-    const onUp = (e) => { if (dragPointerIdRef.current !== e.pointerId) return; dragPointerIdRef.current = null; stopDragging(); };
-    const onMove = (e) => {
+    const onUp = (e: PointerEvent) => { if (dragPointerIdRef.current !== e.pointerId) return; dragPointerIdRef.current = null; stopDragging(); };
+    const onMove = (e: PointerEvent) => {
       if (dragPointerIdRef.current !== e.pointerId) return;
       const delta = e.clientX - dragStartX.current;
       const next = dragStartRotation.current + delta * 0.2;
@@ -760,7 +810,7 @@ export default function TechStackSection() {
     return () => { window.removeEventListener("pointermove", onMove); window.removeEventListener("pointerup", onUp); window.removeEventListener("pointercancel", onUp); };
   }, [isDragging]);
 
-  const onWheel = (e) => {
+  const onWheel = (e: ReactWheelEvent<HTMLDivElement>) => {
     if (isScrollingRef.current) return;
     e.preventDefault();
     lastInteractionRef.current = Date.now();
@@ -771,7 +821,7 @@ export default function TechStackSection() {
     wheelSnapTimeoutRef.current = setTimeout(snapToNearest, 110);
   };
 
-  const focusCategory = (cat) => {
+  const focusCategory = (cat: CategoryId) => {
     lastInteractionRef.current = Date.now();
     setActiveCategory(cat);
     activeCategoryRef.current = cat;
@@ -779,7 +829,44 @@ export default function TechStackSection() {
   };
 
   // ─── Styles ──────────────────────────────────────────────────────────────────
-  const s = {
+  type StyleMap = {
+    root: CSSProperties;
+    header: CSSProperties;
+    eyebrow: CSSProperties;
+    title: CSSProperties;
+    subtitle: CSSProperties;
+    controls: CSSProperties;
+    filterRow: CSSProperties;
+    filterBtn: (active: boolean, cat: CategoryId) => CSSProperties;
+    countBadge: (cat: CategoryId) => CSSProperties;
+    toolbarBtn: (active: boolean) => CSSProperties;
+    searchWrap: CSSProperties;
+    searchIcon: CSSProperties;
+    searchInput: CSSProperties;
+    scene: CSSProperties;
+    canvas: CSSProperties;
+    speedRow: CSSProperties;
+    speedLabel: CSSProperties;
+    speedSlider: CSSProperties;
+    tooltip: CSSProperties;
+    tooltipName: CSSProperties;
+    tooltipCat: CSSProperties;
+    tooltipDesc: CSSProperties;
+    detailCard: CSSProperties;
+    drawerOverlay: CSSProperties;
+    drawer: CSSProperties;
+    drawerHeader: CSSProperties;
+    drawerTitle: CSSProperties;
+    drawerClose: CSSProperties;
+    drawerBody: CSSProperties;
+    drawerGroup: CSSProperties;
+    drawerGroupTitle: CSSProperties;
+    drawerList: CSSProperties;
+    drawerItem: (color: string) => CSSProperties;
+    skillsBtn: CSSProperties;
+  };
+
+  const s: StyleMap = {
     root: {
       width: "100%",
       maxWidth: "1200px",
@@ -818,7 +905,7 @@ export default function TechStackSection() {
     },
     controls: { display: "flex", gap: "10px", alignItems: "center", marginBottom: "0.4rem", flexWrap: "wrap", justifyContent: "center", position: "relative", zIndex: 2 },
     filterRow: { display: "flex", gap: "6px", alignItems: "center", flexWrap: "wrap", justifyContent: "center" },
-    filterBtn: (active, cat) => ({
+    filterBtn: (active: boolean, cat: CategoryId) => ({
       padding: "7px 16px", borderRadius: "999px", border: "1px solid",
       borderColor: active ? "rgba(190,116,79,0.9)" : "rgba(227,181,125,0.28)",
       background: active ? "rgba(157,90,58,0.35)" : "rgba(34,24,19,0.55)",
@@ -827,12 +914,12 @@ export default function TechStackSection() {
       fontFamily: "var(--button-font)", letterSpacing: "0.05em",
       display: "flex", alignItems: "center", gap: "6px",
     }),
-    countBadge: (cat) => ({
+    countBadge: (cat: CategoryId) => ({
       fontSize: "10px", padding: "1px 6px", borderRadius: "999px",
       background: "rgba(190,116,79,0.16)",
       color: "rgba(232,224,211,0.8)",
     }),
-    toolbarBtn: (active) => ({
+    toolbarBtn: (active: boolean) => ({
       padding: "7px 13px", borderRadius: "10px",
       border: `1px solid ${active ? "rgba(190,116,79,0.6)" : "rgba(227,181,125,0.25)"}`,
       background: active ? "rgba(157,90,58,0.2)" : "rgba(34,24,19,0.55)",
@@ -913,7 +1000,7 @@ export default function TechStackSection() {
       display: "flex", alignItems: "center", gap: "8px", color: "rgba(232,224,211,0.8)",
     },
     drawerList: { listStyle: "none", margin: 0, padding: 0, display: "flex", flexWrap: "wrap", gap: "6px" },
-    drawerItem: (color) => ({
+    drawerItem: (color: string) => ({
       padding: "4px 10px", borderRadius: "999px", fontSize: "11.5px",
       background: color + "14", border: `1px solid ${color}33`,
       color: "rgba(232,224,211,0.85)", fontFamily: "var(--Sans-font)",
@@ -1125,7 +1212,7 @@ export default function TechStackSection() {
                 <button style={s.drawerClose} onClick={() => setIsDrawerOpen(false)}><X size={14} /></button>
               </div>
               <div style={s.drawerBody}>
-                {(["backend", "frontend", "infra", "ai"]).map(cat => (
+                {drawerCategories.map(cat => (
                   <div key={cat} style={s.drawerGroup}>
                     <div style={{ ...s.drawerGroupTitle, color: CATEGORY_META[cat].color }}>
                       <span>{CATEGORY_META[cat].glyph}</span>
