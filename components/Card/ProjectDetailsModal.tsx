@@ -38,7 +38,7 @@ const ProjectDetailsModal = () => {
               role="button"
               href="mailto:chadjaasofiane@gmail.com"
             >
-              Let's talk
+              Let&apos;s talk
             </AnchorButton>
           )}
           {!isPrivate && link && (
