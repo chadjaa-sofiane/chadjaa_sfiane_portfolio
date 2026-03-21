@@ -107,7 +107,7 @@ const Twitter = () => {
       target="_blank"
       rel="noopener noreferrer"
       className={styles["icon"]}
-      aria-label="Twitter Profile"
+      aria-label="X Profile"
     >
       <TwitterIcon />
     </a>

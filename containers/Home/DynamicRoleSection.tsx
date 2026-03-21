@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Section, SectionContent } from "@components/Section";
 import { useSectionsProgress } from "@components/SectionsProgress";
 import { SectionIndicator } from "@components/SectionIndicator";
@@ -12,11 +12,12 @@ import MLIllustration from "./sections/MLSection/MLIllustration";
 import DevOpsIllustration from "./sections/DevOpsSection/DevOpsIllustration";
 import styles from "./DynamicRoleSection.module.scss";
 
-const SECTION_DISPLAY_DURATION = 6000; // 6 seconds per section
+const SECTION_DISPLAY_DURATION = 6000;
 
 const roles = [
   {
     id: "hero",
+    eyebrow: "Full-Stack Engineer",
     title: "Sofiane Chadjaa",
     description: (
       <>
@@ -29,6 +30,7 @@ const roles = [
   },
   {
     id: "backend",
+    eyebrow: "Systems & APIs",
     title: "Backend & System Design",
     description: (
       <>
@@ -41,6 +43,7 @@ const roles = [
   },
   {
     id: "frontend",
+    eyebrow: "Interfaces & UX",
     title: "Frontend Engineering",
     description: (
       <>
@@ -53,6 +56,7 @@ const roles = [
   },
   {
     id: "ml",
+    eyebrow: "AI & Agents",
     title: "AI & Automation",
     description: (
       <>
@@ -65,6 +69,7 @@ const roles = [
   },
   {
     id: "devops",
+    eyebrow: "CI/CD & Cloud",
     title: "Infrastructure & Deployment",
     description: (
       <>
@@ -76,20 +81,20 @@ const roles = [
     variant: "dark",
   },
 ];
+
 const DynamicRoleSection = () => {
   const { ref } = useSectionsProgress();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
 
-  // Auto-rotate sections
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % roles.length);
     }, SECTION_DISPLAY_DURATION);
 
     return () => clearInterval(interval);
-  }, [currentIndex]); // Reset timer when index changes (including manual navigation)
+  }, [currentIndex]);
 
-  // Handle manual section selection
   const handleSectionSelect = useCallback((index: number) => {
     setCurrentIndex(index);
   }, []);
@@ -99,51 +104,40 @@ const DynamicRoleSection = () => {
 
   return (
     <Section ref={ref} variant="dark">
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          width: "100%",
-          minHeight: "550px",
-        }}
-      >
-        <div
-          style={{
-            flex: 1,
-            display: "flex",
-            alignItems: "center",
-            width: "100%",
-          }}
-        >
+      <div className={styles.heroSection}>
+        <div className={styles.heroInner}>
           <AnimatePresence mode="wait">
             <motion.div
               key={currentRole.id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
-              style={{
-                display: "flex",
-                width: "100%",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "2em",
-                flexWrap: "wrap",
+              className={styles.heroLayout}
+              initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: reduceMotion ? 0 : -10 }}
+              transition={{
+                duration: reduceMotion ? 0.01 : 0.6,
+                ease: [0.22, 1, 0.36, 1],
               }}
             >
-              <div
-                style={{
-                  flex: 1,
-                  minWidth: "300px",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
+              <div className={styles.heroIllustration}>
                 <Illustration />
               </div>
 
-              <div style={{ flex: 1, minWidth: "300px" }}>
+              <div className={styles.heroContent}>
+                <motion.span
+                  className={styles.roleEyebrow}
+                  initial={{ opacity: 0, x: reduceMotion ? 0 : -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: reduceMotion ? 0 : 0.15, duration: 0.4 }}
+                >
+                  {currentRole.eyebrow}
+                </motion.span>
+                <motion.div
+                  className={styles.accentLine}
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: reduceMotion ? 0 : 0.2, duration: 0.5, ease: "easeOut" }}
+                  style={{ transformOrigin: "left" }}
+                />
                 <SectionContent
                   className={styles.roleContent}
                   title={currentRole.title}

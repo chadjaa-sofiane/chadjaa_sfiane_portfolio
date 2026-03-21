@@ -6,11 +6,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4rem 0;
+  padding: 5rem 0;
 
   &__wrapper {
     width: 100%;
-    max-width: 1000px;
+    max-width: 960px;
     margin: 0 auto;
     position: relative;
   }
@@ -23,48 +23,46 @@
     width: 120%;
     height: 120%;
     background: radial-gradient(circle at center,
-        rgba(191, 114, 79, 0.22) 0%,
-        transparent 70%);
+        rgba(200, 130, 60, 0.14) 0%,
+        transparent 65%);
     z-index: 0;
     pointer-events: none;
-    filter: blur(60px);
+    filter: blur(80px);
     opacity: 0;
-    transition: opacity 0.35s ease;
+    transition: opacity 0.5s ease;
   }
 
   &__card {
     background:
-      linear-gradient(120deg, rgba(227, 181, 125, 0.08), transparent 26%),
-      linear-gradient(162deg, rgba(18, 24, 31, 0.92), rgba(13, 18, 24, 0.88));
-    border: 1px solid rgba(227, 181, 125, 0.3);
-    border-radius: 0.3rem 1.25rem 0.3rem 1.25rem;
-    padding: 4rem;
+      linear-gradient(125deg, rgba(200, 160, 110, 0.05), transparent 28%),
+      linear-gradient(162deg, rgba(14, 18, 24, 0.92), rgba(10, 14, 20, 0.88));
+    border: 1px solid rgba(200, 160, 110, 0.2);
+    border-radius: 2px 14px 2px 14px;
+    padding: 3.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 2.5rem;
+    gap: 2rem;
     position: relative;
     z-index: 1;
-    box-shadow:
-      0 12px 28px rgba(77, 56, 41, 0.2),
-      0 0 0 rgba(147, 197, 253, 0);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     isolation: isolate;
 
     &::before {
       content: "PROFILE";
       position: absolute;
-      top: 1.1rem;
-      left: 1.1rem;
-      font-family: var(--button-font);
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      color: rgba(242, 226, 202, 0.72);
-      border: 1px solid rgba(227, 181, 125, 0.34);
+      top: 0.9rem;
+      left: 0.9rem;
+      font-family: var(--mono-font);
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      color: rgba(220, 210, 196, 0.5);
+      border: 1px solid rgba(200, 160, 110, 0.2);
       border-radius: 999px;
-      padding: 0.18rem 0.5rem;
-      background: rgba(19, 26, 33, 0.8);
+      padding: 0.18rem 0.55rem;
+      background: rgba(10, 14, 20, 0.7);
       z-index: 2;
     }
 
@@ -73,25 +71,25 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(rgba(227, 181, 125, 0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(227, 181, 125, 0.06) 1px, transparent 1px);
-      background-size: 28px 28px;
-      mask-image: linear-gradient(180deg, #000 20%, transparent 100%);
+        linear-gradient(rgba(200, 160, 110, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 160, 110, 0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(180deg, #000 15%, transparent 100%);
       pointer-events: none;
       z-index: 0;
-      opacity: 0.24;
+      opacity: 0.3;
     }
 
     &:hover {
-      transform: translateY(-5px);
+      transform: translateY(-4px);
       box-shadow:
-        0 16px 36px rgba(77, 56, 41, 0.3),
-        0 0 44px rgba(188, 120, 83, 0.24);
-      border-color: rgba(227, 181, 125, 0.44);
+        0 20px 48px rgba(0, 0, 0, 0.35),
+        0 0 36px rgba(200, 130, 60, 0.12);
+      border-color: rgba(200, 160, 110, 0.32);
     }
 
     @include breakpoint(medium) {
-      padding: 2.5rem;
+      padding: 2.5rem 2rem;
     }
   }
 
@@ -99,24 +97,22 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    max-width: 700px;
+    max-width: 660px;
     position: relative;
     z-index: 1;
   }
 
   &__title {
     color: hsl(var(--primary-400));
-    font-family: var(--header-font);
-    text-shadow:
-      0 0 0 rgba(191, 219, 254, 0),
-      0 0 0 rgba(147, 197, 253, 0);
-    font-size: 3.5rem;
-    font-weight: 700;
+    font-family: var(--display-font);
+    font-style: italic;
+    font-size: 3rem;
+    font-weight: 400;
     letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
 
     @include breakpoint(medium) {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
     }
   }
 
@@ -127,55 +123,38 @@
 
     .aboutMe__card {
       box-shadow:
-        0 12px 28px rgba(77, 56, 41, 0.18),
-        0 0 24px rgba(188, 120, 83, 0.2);
+        0 16px 40px rgba(0, 0, 0, 0.25),
+        0 0 30px rgba(200, 130, 60, 0.1);
     }
 
     .aboutMe__title {
-      text-shadow:
-        0 0 12px rgba(188, 120, 83, 0.22);
-    }
-  }
-
-  &__description {
-    font-size: 1.25rem;
-    line-height: 1.8;
-    color: rgba(232, 224, 211, 0.84);
-    font-weight: 300;
-
-    strong {
-      color: hsl(var(--primary-400));
-      font-weight: 600;
-    }
-
-    @include breakpoint(medium) {
-      font-size: 1.1rem;
+      text-shadow: 0 0 14px rgba(200, 130, 60, 0.15);
     }
   }
 
   &__blocks {
     display: grid;
-    gap: 1.6rem;
+    gap: 1.4rem;
     text-align: left;
   }
 
   &__block {
     display: grid;
-    gap: 0.5rem;
+    gap: 0.4rem;
 
     h3 {
-      font-size: 1rem;
-      letter-spacing: 0.08em;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(227, 181, 125, 0.9);
+      color: hsl(var(--accent-400) / 0.7);
       margin: 0;
-      font-family: var(--button-font);
+      font-family: var(--mono-font);
     }
 
     p {
-      font-size: 1.1rem;
+      font-size: 1rem;
       line-height: 1.75;
-      color: rgba(232, 224, 211, 0.86);
+      color: rgba(220, 210, 196, 0.78);
       margin: 0;
     }
   }
@@ -184,7 +163,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
     width: 100%;
     position: relative;
     z-index: 1;
@@ -192,27 +171,28 @@
 
   &__links {
     display: flex;
-    gap: 1.5rem;
-    margin-top: 0.5rem;
+    gap: 1rem;
+    margin-top: 0.3rem;
   }
 
   &__button {
     position: relative;
-    padding: 1rem 2.5rem;
-    background: rgba(52, 64, 74, 0.16);
-    border: 1px solid rgba(227, 181, 125, 0.28);
+    padding: 0.85rem 2rem;
+    background: rgba(30, 24, 18, 0.5);
+    border: 1px solid rgba(200, 160, 110, 0.22);
     border-radius: 0;
     color: hsl(var(--primary-400));
-    font-weight: 500;
-    letter-spacing: 0.05em;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 0.75rem;
+    font-family: var(--mono-font);
     cursor: pointer;
     transition: all 0.3s ease;
     overflow: hidden;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.65rem;
 
     &::before {
       content: "";
@@ -221,16 +201,16 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(188, 120, 83, 0.2), transparent);
+      background: linear-gradient(135deg, hsl(var(--secondary-300) / 0.15), transparent);
       transform: translateX(-100%);
       transition: transform 0.5s ease;
     }
 
     &:hover {
-      background: rgba(188, 120, 83, 0.16);
-      border-color: rgba(227, 181, 125, 0.45);
+      background: hsl(var(--secondary-300) / 0.1);
+      border-color: hsl(var(--secondary-300) / 0.4);
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(77, 56, 41, 0.2);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 
       &::before {
         transform: translateX(100%);
@@ -243,24 +223,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  background: rgba(52, 64, 74, 0.16);
-  border: 1px solid rgba(227, 181, 125, 0.2);
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 10px;
+  background: rgba(30, 24, 18, 0.5);
+  border: 1px solid rgba(200, 160, 110, 0.15);
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  color: rgba(232, 224, 211, 0.8);
+  color: rgba(255, 255, 255, 0.92);
 
   svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.1rem;
+    height: 1.1rem;
     fill: currentColor;
   }
 
   &:hover {
-    background: rgba(188, 120, 83, 0.2);
-    color: hsl(var(--primary-400));
-    transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background: hsl(var(--accent-400) / 0.12);
+    color: #fff;
+    border-color: hsl(var(--accent-400) / 0.3);
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
   }
 }

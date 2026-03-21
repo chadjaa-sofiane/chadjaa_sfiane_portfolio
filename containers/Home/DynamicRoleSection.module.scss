@@ -1,8 +1,103 @@
+@use "../../styles/mixins" as *;
+
+.heroSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 560px;
+  position: relative;
+}
+
+.heroInner {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.heroLayout {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.heroIllustration {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  justify-content: center;
+}
+
+.heroContent {
+  flex: 1;
+  min-width: 300px;
+}
+
 .roleContent {
   :global(h1) {
-    font-size: clamp(2rem, 4.4vw, 3rem);
-    line-height: 1.14;
-    letter-spacing: -0.015em;
+    font-family: var(--display-font);
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: hsl(var(--primary-400));
+    margin-bottom: 0.6rem;
+  }
+
+  :global(p) {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(220, 210, 196, 0.72);
+    max-width: 480px;
   }
 }
 
+/* Accent line above the title */
+.accentLine {
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, hsl(var(--accent-400)), transparent);
+  margin-bottom: 1.2rem;
+  border-radius: 2px;
+}
+
+/* Eyebrow tag */
+.roleEyebrow {
+  font-family: var(--mono-font);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: hsl(var(--accent-400) / 0.65);
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+@include breakpoint(medium) {
+  .heroLayout {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+
+  .heroContent {
+    text-align: center;
+  }
+
+  .roleContent {
+    :global(p) {
+      margin: 0 auto;
+    }
+  }
+
+  .accentLine {
+    margin: 0 auto 1.2rem;
+  }
+
+  .roleEyebrow {
+    text-align: center;
+  }
+}

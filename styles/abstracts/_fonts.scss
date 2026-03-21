@@ -1,11 +1,12 @@
 @use "../mixins/" as *;
 
 @mixin fonts {
-  --Oldenburg-font: "Fraunces", "Times New Roman", serif;
-  --Sans-font: "Manrope", "Segoe UI", sans-serif;
-
-  --header-font: "Fraunces", "Times New Roman", serif;
-  --button-font: "Syne", "Manrope", sans-serif;
+  --display-font: "Instrument Serif", "Georgia", serif;
+  --Sans-font: "Satoshi", "Segoe UI", sans-serif;
+  --header-font: "Cabinet Grotesk", "Satoshi", sans-serif;
+  --button-font: "Cabinet Grotesk", "Satoshi", sans-serif;
+  --mono-font: "JetBrains Mono", "Fira Code", monospace;
+  --Oldenburg-font: "Instrument Serif", "Georgia", serif;
 
   --fs-2xl: 5rem;
   --fs-xl: 4rem;

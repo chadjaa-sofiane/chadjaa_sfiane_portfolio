@@ -1,16 +1,22 @@
 @mixin colors {
-  --primary-400: 40 38% 92%;
-  --primary-300: 164 26% 68%;
-  --primary-200: 205 20% 26%;
-  --primary-100: 212 24% 10%;
-  // secondary colors
-  --secondary-400: 28 58% 35%;
-  --secondary-300: 28 66% 58%;
-  --secondary-200: 25 45% 70%;
-  --secondary-100: 27 56% 88%;
+  // Primary palette — warm ivory to deep navy
+  --primary-400: 38 30% 90%;
+  --primary-300: 168 22% 62%;
+  --primary-200: 210 18% 24%;
+  --primary-100: 216 28% 9%;
 
-  // Projects Redesign Theme (Dark Slate + Ember)
-  --projects-bg: 214 23% 11%;
-  --projects-card-bg: 215 21% 15%;
-  --projects-accent: 28 66% 58%;
+  // Secondary — warm copper / amber accent
+  --secondary-400: 24 62% 32%;
+  --secondary-300: 24 70% 54%;
+  --secondary-200: 22 50% 66%;
+  --secondary-100: 26 60% 86%;
+
+  // Accent — electric teal for focal points
+  --accent-400: 172 66% 50%;
+  --accent-300: 172 52% 62%;
+
+  // Projects Redesign Theme
+  --projects-bg: 218 26% 10%;
+  --projects-card-bg: 218 22% 14%;
+  --projects-accent: 24 70% 54%;
 }

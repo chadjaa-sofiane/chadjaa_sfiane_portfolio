@@ -15,62 +15,60 @@ body {
   overflow-x: clip;
   color: hsl(var(--primary-400));
   background:
-    radial-gradient(circle at 14% 12%, rgba(209, 138, 82, 0.17) 0%, transparent 38%),
-    radial-gradient(circle at 86% 84%, rgba(94, 165, 142, 0.13) 0%, transparent 40%),
-    linear-gradient(160deg, #0e1318 0%, #131a21 52%, #0f151c 100%);
+    radial-gradient(ellipse 80% 50% at 10% 8%, rgba(200, 130, 60, 0.10) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 88% 85%, rgba(50, 160, 140, 0.08) 0%, transparent 50%),
+    linear-gradient(168deg, #0a0d12 0%, #0e1319 48%, #0b0f14 100%);
   background-attachment: fixed;
   background-size: cover;
 }
 
+/* Subtle dot-grid texture */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background-image:
-    radial-gradient(rgba(228, 191, 145, 0.12) 1px, transparent 1px),
-    radial-gradient(rgba(100, 176, 151, 0.1) 1px, transparent 1px);
-  background-position: 0 0, 16px 16px;
-  background-size: 32px 32px;
-  opacity: 0.16;
+    radial-gradient(rgba(200, 160, 110, 0.08) 1px, transparent 1px);
+  background-position: 0 0;
+  background-size: 28px 28px;
+  opacity: 0.22;
   pointer-events: none;
   z-index: -1;
 }
 
+/* Grain noise overlay */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.35s ease, background 0.35s ease;
+  z-index: 9999;
+  opacity: 0.032;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px;
 }
 
-body[data-season="winter"]::after {
-  opacity: 0.2;
-  background:
-    radial-gradient(circle at 22% 24%, rgba(98, 174, 198, 0.16) 0%, transparent 42%),
-    radial-gradient(circle at 80% 72%, rgba(61, 124, 144, 0.13) 0%, transparent 44%);
+/* Season-adaptive ambient glow */
+body[data-season="winter"] {
+  box-shadow: inset 0 0 200px rgba(70, 140, 180, 0.06);
 }
 
-body[data-season="spring"]::after {
-  opacity: 0.16;
-  background:
-    radial-gradient(circle at 20% 24%, rgba(229, 150, 123, 0.16) 0%, transparent 42%),
-    radial-gradient(circle at 82% 76%, rgba(199, 136, 109, 0.14) 0%, transparent 46%);
+body[data-season="spring"] {
+  box-shadow: inset 0 0 200px rgba(200, 130, 100, 0.06);
 }
 
-body[data-season="autumn"]::after {
-  opacity: 0.2;
-  background:
-    radial-gradient(circle at 20% 24%, rgba(180, 95, 54, 0.17) 0%, transparent 40%),
-    radial-gradient(circle at 82% 76%, rgba(140, 72, 43, 0.14) 0%, transparent 44%);
+body[data-season="autumn"] {
+  box-shadow: inset 0 0 200px rgba(160, 80, 40, 0.08);
 }
 
 html {
   @include breakpoint(medium) {
     // scroll-snap-type: none;
   }
+  scrollbar-width: thin;
+  scrollbar-color: rgba(200, 160, 110, 0.18) transparent;
 }
 
 a {
@@ -84,4 +82,25 @@ a {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 160, 110, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 160, 110, 0.35);
+}
+
+/* Selection */
+::selection {
+  background: hsl(var(--secondary-300) / 0.3);
+  color: hsl(var(--primary-400));
 }

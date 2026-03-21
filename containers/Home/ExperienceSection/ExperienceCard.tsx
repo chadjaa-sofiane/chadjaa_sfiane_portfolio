@@ -71,9 +71,9 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                               scale: 1,
                               opacity: 1,
                               boxShadow:
-                                  "0 0 0 6px rgba(163, 230, 53, 0.34), 0 0 28px rgba(234, 179, 8, 0.42), 0 0 44px rgba(163, 230, 53, 0.22)",
+                                  "0 0 0 5px rgba(45, 180, 160, 0.25), 0 0 22px rgba(200, 130, 60, 0.3), 0 0 36px rgba(45, 180, 160, 0.15)",
                           }
-                        : { scale: 1, opacity: 1, boxShadow: "0 0 0 4px rgba(167, 139, 250, 0.15), 0 0 15px rgba(167, 139, 250, 0.3)" }
+                        : { scale: 1, opacity: 1, boxShadow: "0 0 0 3px rgba(200, 160, 110, 0.1), 0 0 12px rgba(200, 160, 110, 0.15)" }
                 }
                 transition={{
                     duration: reduceMotion ? 0.01 : 0.22,
@@ -89,16 +89,16 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                 animate={
                     isInView
                         ? {
-                              scale: reduceMotion ? 1 : 1.03,
-                              backgroundColor: "rgba(255, 255, 255, 0.1)",
-                              borderColor: "rgba(163, 230, 53, 0.75)",
+                              scale: reduceMotion ? 1 : 1.02,
+                              backgroundColor: "rgba(200, 130, 60, 0.04)",
+                              borderColor: "rgba(45, 180, 160, 0.5)",
                               boxShadow:
-                                  "0 0 0 1px rgba(234, 179, 8, 0.75), 0 0 30px rgba(163, 230, 53, 0.24), 0 18px 42px rgba(3, 7, 18, 0.42)",
+                                  "0 0 0 1px rgba(200, 130, 60, 0.3), 0 0 24px rgba(45, 180, 160, 0.15), 0 14px 36px rgba(0, 0, 0, 0.35)",
                           }
                         : {
                               scale: 1,
-                              backgroundColor: "rgba(255, 255, 255, 0.03)",
-                              borderColor: "rgba(255, 255, 255, 0.05)",
+                              backgroundColor: "rgba(255, 255, 255, 0.02)",
+                              borderColor: "rgba(200, 160, 110, 0.08)",
                               boxShadow: "none",
                           }
                 }
@@ -111,10 +111,10 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                     reduceMotion
                         ? undefined
                         : {
-                              y: -6,
+                              y: -5,
                               boxShadow:
-                                  "0 0 0 1px rgba(132, 204, 22, 0.95), 0 0 34px rgba(163, 230, 53, 0.28), 0 22px 44px rgba(3, 7, 18, 0.38)",
-                              borderColor: "rgba(132, 204, 22, 0.95)",
+                                  "0 0 0 1px rgba(45, 180, 160, 0.6), 0 0 28px rgba(45, 180, 160, 0.2), 0 18px 40px rgba(0, 0, 0, 0.35)",
+                              borderColor: "rgba(45, 180, 160, 0.65)",
                           }
                 }
                 whileTap={reduceMotion ? undefined : { scale: 0.998 }}
