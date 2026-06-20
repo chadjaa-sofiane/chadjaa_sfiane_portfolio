@@ -2,6 +2,38 @@ import { Card } from "@components/Card";
 import styles from "./ProjectsField.module.scss";
 import { cardProps } from "@components/Card"
 import { Title3 } from "@components/core/Typography";
+import { motion, useReducedMotion } from "framer-motion";
+
+const cardsVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.06,
+      delayChildren: 0.04,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: (reduceMotion: boolean) => ({
+    opacity: 0,
+    y: reduceMotion ? 0 : 24,
+    scale: reduceMotion ? 1 : 0.96,
+    rotateX: reduceMotion ? 0 : 5,
+    transformPerspective: 1000,
+  }),
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotateX: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.25, 1, 0.5, 1],
+    },
+  },
+};
+
 
 const ProjectsCards = ({
   projects,
@@ -16,29 +48,46 @@ const ProjectsCards = ({
   pinPrivate?: boolean;
   highlightPrivate?: boolean;
 }) => {
+  const reduceMotion = useReducedMotion() ?? false;
   const orderedProjects = pinPrivate
     ? [...projects].sort(
         (a, b) => (b.isPrivate ? 1 : 0) - (a.isPrivate ? 1 : 0)
       )
     : projects;
   return (
-    <div className={styles["projects__cards__field"]}>
+    <motion.div
+      className={styles["projects__cards__field"]}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.12 }}
+      variants={cardsVariants}
+    >
       {
         orderedProjects?.map((project: cardProps) => (
-          <Card
+          <motion.div
             key={project.id}
-            {...project}
-            showImage={showImages}
-            cardClassName={
+            className={`${styles["projects__cards__item"]} ${
               highlightPrivate && project.isPrivate
                 ? styles["projects__card--wide"]
-                : undefined
-            }
-          />
+                : ""
+            }`}
+            custom={reduceMotion}
+            variants={cardVariants}
+          >
+            <Card
+              {...project}
+              showImage={showImages}
+              cardClassName={
+                highlightPrivate && project.isPrivate
+                  ? styles["projects__card--wide"]
+                  : undefined
+              }
+            />
+          </motion.div>
         ))
       }
       {(!projects || projects.length === 0) && <EmptyProjectsCards label={emptyLabel} />}
-    </div>
+    </motion.div>
   );
 };
 

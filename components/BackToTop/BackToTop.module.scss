@@ -2,8 +2,8 @@
   &__wrapper {
     position: fixed;
     width: max-content;
-    bottom: 2em;
-    right: 2em;
+    bottom: 6.2rem;
+    right: 2.5rem;
     padding: 0.75em;
     display: grid;
     border: 0.1em solid rgba(227, 181, 125, 0.3);
@@ -24,6 +24,16 @@
     &:hover {
       background-color: rgba(236, 214, 185, 0.98);
       scale: 1.02;
+    }
+
+    @media (max-width: 768px) {
+      bottom: 5.2rem;
+      right: 1.5rem;
+    }
+
+    @media (max-width: 480px) {
+      bottom: 2rem;
+      right: 1.5rem;
     }
   }
 }
