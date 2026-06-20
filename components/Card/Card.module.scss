@@ -6,15 +6,20 @@
     max-width: 420px;
     min-height: 530px;
     background: linear-gradient(160deg, rgba(22, 27, 31, 0.95) 0%, rgba(17, 22, 26, 0.95) 100%);
-    border: 1px solid rgba(101, 73, 49, 0.28);
+    border: 1px solid rgba(101, 73, 49, 0.22);
     border-radius: 0.25rem 1rem 0.25rem 1rem;
     overflow: hidden;
-    transition: transform 0.26s ease, box-shadow 0.26s ease, border-color 0.26s ease;
+    transition:
+      transform 0.38s cubic-bezier(0.33, 1, 0.68, 1),
+      box-shadow 0.38s cubic-bezier(0.33, 1, 0.68, 1),
+      border-color 0.32s ease,
+      filter 0.35s ease;
     position: relative;
     cursor: pointer;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    will-change: transform;
 
     &::before {
       content: '';
@@ -26,7 +31,7 @@
         transparent 40%
       );
       opacity: 0;
-      transition: opacity 0.35s;
+      transition: opacity 0.4s ease;
       z-index: 0;
     }
 
@@ -37,22 +42,29 @@
       top: 0;
       width: 72px;
       height: 72px;
-      background: linear-gradient(135deg, rgba(227, 181, 125, 0.2), transparent 72%);
+      background: linear-gradient(135deg, rgba(227, 181, 125, 0.18), transparent 72%);
       pointer-events: none;
+      transition: opacity 0.3s ease;
     }
 
     &:hover {
-      transform: translateY(-6px);
-      border-color: rgba(184, 104, 67, 0.48);
+      transform: translateY(-8px) scale(1.012);
+      border-color: rgba(184, 104, 67, 0.5);
       box-shadow:
-        0 18px 28px rgba(77, 56, 41, 0.25),
-        10px 10px 0 rgba(96, 63, 40, 0.12);
+        0 20px 40px rgba(0, 0, 0, 0.35),
+        0 8px 16px rgba(77, 56, 41, 0.2),
+        0 0 0 1px rgba(184, 104, 67, 0.08);
 
       &::before {
         opacity: 1;
       }
+
+      &::after {
+        opacity: 1.4;
+      }
     }
   }
+
 
   &__wrapper--no-image {
     min-height: 380px;
@@ -205,22 +217,51 @@
   &__detailsButton {
     margin-top: auto;
     align-self: flex-start;
-    padding: 0.44rem 0.85rem !important;
+    padding: 0.44rem 0.95rem !important;
     border-radius: 0 !important;
     font-size: 0.72rem !important;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    border-color: rgba(96, 67, 44, 0.45) !important;
+    border-color: rgba(96, 67, 44, 0.4) !important;
     color: hsl(var(--primary-400)) !important;
-    background: rgba(197, 152, 112, 0.22) !important;
-    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease !important;
+    background: rgba(197, 152, 112, 0.18) !important;
+    transition:
+      transform 0.28s cubic-bezier(0.33, 1, 0.68, 1),
+      background-color 0.28s ease,
+      border-color 0.28s ease,
+      letter-spacing 0.28s ease !important;
+    position: relative;
+    overflow: hidden;
+
+    /* Shine sweep on hover */
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.08),
+        transparent
+      );
+      transition: left 0.5s ease;
+    }
 
     &:hover {
-      transform: translateY(-1px);
-      background: rgba(184, 104, 67, 0.2) !important;
+      transform: translateY(-2px);
+      background: rgba(184, 104, 67, 0.22) !important;
       border-color: rgba(184, 104, 67, 0.55) !important;
+      letter-spacing: 0.1em;
+
+      &::after {
+        left: 120%;
+      }
     }
   }
+
 
   &__modal {
     &__container {
