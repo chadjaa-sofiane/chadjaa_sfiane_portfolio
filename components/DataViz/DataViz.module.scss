@@ -1,0 +1,206 @@
+@use "../../styles/mixins" as *;
+
+/* ─── Stat tiles ──────────────────────────────────────────────────────────── */
+
+.tiles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 0.7rem;
+}
+
+/* Surface borrowed from .dutyCard in ExperienceSection.module.scss */
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  padding: 0.75rem 0.85rem;
+  min-width: 0;
+  background: rgba(16, 20, 26, 0.7);
+  border: 1px solid rgba(200, 160, 110, 0.1);
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: rgba(200, 160, 110, 0.22);
+  }
+
+  &__value {
+    font-family: var(--header-font);
+    font-size: 1.55rem;
+    font-weight: 600;
+    line-height: 1.05;
+    color: hsl(var(--primary-400));
+  }
+
+  &__unit {
+    font-family: var(--mono-font);
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgba(220, 210, 196, 0.6);
+    margin-left: 0.2rem;
+  }
+
+  &__label {
+    font-family: var(--mono-font);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(220, 210, 196, 0.55);
+  }
+}
+
+/* ─── Sparkline ───────────────────────────────────────────────────────────── */
+
+.sparkline {
+  width: 100%;
+  height: 26px;
+  display: block;
+  overflow: visible;
+
+  &__line {
+    stroke: hsl(var(--viz-series-1));
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &__area {
+    fill: hsl(var(--viz-series-1) / 0.12);
+    stroke: none;
+  }
+}
+
+/* ─── Architecture mini-map ───────────────────────────────────────────────── */
+
+.archMap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+
+  &__svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    font-size: 8px;
+
+    @include breakpoint(medium) {
+      font-size: 9.5px;
+    }
+  }
+
+  &__caption {
+    font-family: var(--mono-font);
+    font-size: 0.62rem;
+    line-height: 1.5;
+    color: rgba(220, 210, 196, 0.5);
+  }
+}
+
+.archDrawing {
+  margin: 0;
+  width: 100%;
+
+  picture, img { display: block; width: 100%; }
+  img { height: auto; }
+  figcaption {
+    margin-top: 1rem;
+    color: hsl(var(--primary-400) / 0.6);
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+}
+
+.edge {
+  stroke: hsl(var(--viz-rail) / 0.35);
+  stroke-width: 1;
+  fill: none;
+
+  &--async {
+    stroke-dasharray: 3 3;
+  }
+}
+
+.edgeLabel {
+  font-family: var(--mono-font);
+  font-size: inherit;
+  fill: rgba(220, 210, 196, 0.45);
+}
+
+.nodeGlow {
+  fill: none;
+  stroke-width: 3;
+  stroke-opacity: 0.18;
+}
+
+.nodeMark {
+  fill: #0d1117;
+  stroke-width: 2;
+}
+
+.nodeLabel {
+  font-family: var(--mono-font);
+  font-size: inherit;
+  fill: rgba(220, 210, 196, 0.72);
+}
+
+/* Identity is carried by shape as well as hue, so the map stays readable
+   without colour vision. */
+.kind--service {
+  stroke: hsl(var(--viz-series-1));
+  background-color: hsl(var(--viz-series-1));
+}
+.kind--datastore,
+.kind--queue {
+  stroke: hsl(var(--viz-series-2));
+  background-color: hsl(var(--viz-series-2));
+}
+.kind--external,
+.kind--client,
+.kind--gateway {
+  stroke: hsl(var(--viz-series-3));
+  background-color: hsl(var(--viz-series-3));
+}
+
+/* ─── Legend ──────────────────────────────────────────────────────────────── */
+
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 100px;
+    background: hsl(var(--secondary-300) / 0.1);
+    font-family: var(--mono-font);
+    font-size: 0.6rem;
+    letter-spacing: 0.04em;
+    color: rgba(220, 210, 196, 0.72);
+  }
+
+  &__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sparkline__line,
+  .edge {
+    animation: none !important;
+    transition: none !important;
+  }
+}

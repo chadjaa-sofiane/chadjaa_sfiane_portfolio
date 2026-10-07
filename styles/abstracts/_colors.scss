@@ -15,6 +15,17 @@
   --accent-400: 172 66% 50%;
   --accent-300: 172 52% 62%;
 
+  // Data-visualisation marks.
+  // Deliberately NOT the brand accents: --accent-400 is too light and
+  // --primary-300 too desaturated to work as fills against the dark card
+  // surface. The brand tokens stay in use for chrome (glows, rails, rules);
+  // these are only for data marks.
+  --viz-series-1: 172 82% 36%; // service
+  --viz-series-2: 24 70% 46%;  // datastore
+  --viz-series-3: 258 60% 58%; // external / client
+  --viz-rail: 38 20% 62%;      // edges and grid, used at low alpha
+  --viz-surface: 210 18% 8%;   // ring / gap colour behind marks
+
   // Projects Redesign Theme
   --projects-bg: 218 26% 10%;
   --projects-card-bg: 218 22% 14%;

@@ -1,103 +1,140 @@
-@use "../../styles/mixins" as *;
-
-.heroSection {
-  width: 100%;
+.hero {
+  position: relative;
+  // Same measure and gutter as the header's Container so the edges line up.
+  width: min(100%, 82rem);
+  min-height: 100svh;
+  margin: 0 auto;
+  // The bottom padding keeps the diorama clear of the fixed contact widget.
+  padding: 6.5rem 2rem 4rem;
   display: flex;
   flex-direction: column;
+  --hero-rule: hsl(var(--primary-400) / 0.1);
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid hsl(var(--accent-400));
+    outline-offset: 4px;
+  }
+}
+
+.layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
   align-items: center;
-  min-height: 560px;
+  gap: clamp(1rem, 3vw, 3rem);
+}
+
+/* ── Intro ─────────────────────────────────────────────────────────────── */
+
+.intro {
   position: relative;
-}
+  z-index: 1;
+  min-width: 0;
 
-.heroInner {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
+  h1 {
+    margin: 0 0 1.6rem;
+    font-family: var(--header-font);
+    font-size: clamp(3.4rem, 6.2vw, 6.4rem);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
 
-.heroLayout {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  flex-wrap: wrap;
-}
-
-.heroIllustration {
-  flex: 1;
-  min-width: 280px;
-  display: flex;
-  justify-content: center;
-}
-
-.heroContent {
-  flex: 1;
-  min-width: 300px;
-}
-
-.roleContent {
-  :global(h1) {
-    font-family: var(--display-font);
-    font-size: clamp(2.2rem, 5vw, 3.4rem);
-    font-weight: 400;
-    font-style: italic;
-    line-height: 1.12;
-    letter-spacing: -0.02em;
-    color: hsl(var(--primary-400));
-    margin-bottom: 0.6rem;
-  }
-
-  :global(p) {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: rgba(220, 210, 196, 0.72);
-    max-width: 480px;
-  }
-}
-
-/* Accent line above the title */
-.accentLine {
-  width: 48px;
-  height: 2px;
-  background: linear-gradient(90deg, hsl(var(--accent-400)), transparent);
-  margin-bottom: 1.2rem;
-  border-radius: 2px;
-}
-
-/* Eyebrow tag */
-.roleEyebrow {
-  font-family: var(--mono-font);
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: hsl(var(--accent-400) / 0.65);
-  margin-bottom: 0.8rem;
-  display: block;
-}
-
-@include breakpoint(medium) {
-  .heroLayout {
-    flex-direction: column-reverse;
-    gap: 2rem;
-  }
-
-  .heroContent {
-    text-align: center;
-  }
-
-  .roleContent {
-    :global(p) {
-      margin: 0 auto;
+    em {
+      display: block;
+      font-family: var(--display-font);
+      font-weight: 400;
+      letter-spacing: -0.01em;
     }
+    em span { color: hsl(var(--accent-400)); }
   }
+}
 
-  .accentLine {
-    margin: 0 auto 1.2rem;
-  }
+.pitch {
+  max-width: 30ch;
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  line-height: 1.5;
+  color: hsl(var(--primary-400) / 0.75);
+  text-wrap: pretty;
+}
 
-  .roleEyebrow {
-    text-align: center;
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.2rem;
+}
+
+.primaryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 48px;
+  padding: 0 1.35rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: transform 160ms ease-out, background-color 160ms ease, border-color 160ms ease;
+}
+
+.primaryLink {
+  background: hsl(var(--accent-300));
+  color: hsl(var(--primary-100));
+}
+
+/* ── Stage ─────────────────────────────────────────────────────────────── */
+
+.stage {
+  position: relative;
+  min-width: 0;
+  // Whatever the viewport leaves after the header.
+  height: clamp(400px, calc(100svh - 11rem), 860px);
+}
+
+/* Light pool behind the diorama: a soft accent glow and a floor ellipse. */
+.halo {
+  position: absolute;
+  inset: 4% 2% 0;
+  pointer-events: none;
+  background:
+    radial-gradient(42% 36% at 50% 46%, hsl(var(--accent-400) / 0.13), transparent 70%),
+    radial-gradient(46% 12% at 50% 86%, hsl(var(--accent-400) / 0.12), transparent 70%);
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(88%, 720px);
+    aspect-ratio: 1;
+    border: 1px solid hsl(var(--primary-400) / 0.06);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
   }
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .primaryLink:hover { transform: translateY(-2px); background: hsl(var(--accent-400)); }
+}
+
+@media (max-width: 64rem) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .stage { height: clamp(340px, 82vw, 640px); }
+  .intro h1 { font-size: clamp(3.2rem, 11vw, 5.4rem); }
+  .hero { min-height: auto; }
+}
+
+@media (max-width: 45rem) {
+  .hero { padding: 6rem 1rem 1rem; }
+  .actions { margin-top: 1.8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryLink { transition: none; }
+  .primaryLink:hover { transform: none; }
 }

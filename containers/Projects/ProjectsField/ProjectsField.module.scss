@@ -6,39 +6,39 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-bottom: 10em;
-    padding: 4rem 2rem 1rem;
+    margin-bottom: 3rem;
+    padding: 2.5rem 0 1rem;
     position: relative;
-    border-radius: 0.25rem;
-    isolation: isolate;
-    overflow: hidden;
-    background: linear-gradient(160deg, rgba(10, 16, 22, 0.9) 0%, rgba(14, 20, 26, 0.92) 100%);
-    border: 1px solid rgba(114, 156, 145, 0.26);
-    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
-    clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+    scroll-margin-top: 5rem;
 
-    &::before {
+    /* Decorative top line */
+    &::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(96, 164, 142, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(96, 164, 142, 0.08) 1px, transparent 1px);
-      background-size: 30px 30px;
-      opacity: 0.38;
+      top: 0.55rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(10rem, 36vw);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(227, 181, 125, 0.58), transparent);
       pointer-events: none;
       z-index: 0;
     }
 
-    &::after {
+    /* Subtle ambient glow behind the section */
+    &::before {
       content: "";
       position: absolute;
-      top: 0;
+      top: -4rem;
       left: 50%;
       transform: translateX(-50%);
-      width: min(74%, 620px);
-      height: 100%;
-      background: radial-gradient(ellipse at center, rgba(96, 164, 142, 0.16) 0%, rgba(96, 164, 142, 0) 68%);
+      width: 60%;
+      height: 280px;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(184, 104, 67, 0.04) 0%,
+        transparent 70%
+      );
       pointer-events: none;
       z-index: 0;
     }
@@ -56,14 +56,22 @@
     }
 
     @include breakpoint(small) {
-      padding: 2.3rem 1rem 0.6rem;
-      margin-bottom: 8em;
-      clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+      padding: 2rem 0 0.6rem;
+      margin-bottom: 2rem;
     }
   }
 
   &__field--lab {
-    margin-top: 6em;
+    margin-top: 0;
+
+    /* Override the ambient glow for lab to be teal-tinted */
+    &::before {
+      background: radial-gradient(
+        ellipse at center,
+        rgba(50, 160, 140, 0.035) 0%,
+        transparent 70%
+      );
+    }
   }
 
   &__tabs {
@@ -85,6 +93,18 @@
     }
   }
 
+  &__featured {
+    width: 100%;
+    max-width: 1020px;
+    margin: 2.2rem auto 0;
+    display: flex;
+    scroll-margin-top: 6rem;
+
+    @include breakpoint(medium) {
+      margin-top: 1.6rem;
+    }
+  }
+
   &__cards {
     &__field {
       margin-top: 3rem;
@@ -98,35 +118,64 @@
       position: relative;
       z-index: 1;
 
+      /* A 420px card design has no business being two-up at 720px; the grid
+         previously stayed 2-column all the way down to 22.5rem. */
       @include breakpoint(medium) {
-        gap: 1.8rem;
+        grid-template-columns: 1fr;
+        gap: 1.6rem;
       }
 
       @include breakpoint(small) {
-        grid-template-columns: 1fr;
         gap: 1.4rem;
         margin-top: 2rem;
       }
     }
 
-    &__card--wide {
-      grid-column: 1 / -1;
-      max-width: 100%;
-      min-height: 420px;
+    &__item {
+      width: 100%;
+      display: flex;
+      min-width: 0;
+      transition: filter 0.35s ease;
+    }
+
+    /* When hovering over the cards grid, dim siblings */
+    &__field:hover &__item:not(:hover) {
+      filter: brightness(0.72) saturate(0.7);
     }
 
     &__empty {
       display: grid;
       place-items: center;
       width: 100%;
-      height: 12em;
-      background: linear-gradient(135deg, rgba(18, 25, 31, 0.95), rgba(24, 33, 40, 0.95));
+      min-height: 12em;
+      grid-column: 1 / -1;
+      background: linear-gradient(
+        135deg,
+        rgba(18, 25, 31, 0.95),
+        rgba(24, 33, 40, 0.95)
+      );
       border-radius: 1.5em;
-      border: 1px dashed rgba(227, 181, 125, 0.42);
+      border: 1px dashed rgba(227, 181, 125, 0.3);
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(200, 160, 110, 0.04),
+          transparent 60%
+        );
+        pointer-events: none;
+      }
 
       h3 {
-        color: hsl(var(--primary-400) / 0.75);
+        color: hsl(var(--primary-400) / 0.6);
         font-weight: 500;
+        font-style: italic;
+        letter-spacing: 0.02em;
       }
     }
   }

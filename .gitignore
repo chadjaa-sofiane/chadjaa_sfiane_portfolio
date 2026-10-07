@@ -36,3 +36,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# generated 3D build intermediates (scripts/build-hero-3d.mjs)
+/.cache/
+__pycache__/

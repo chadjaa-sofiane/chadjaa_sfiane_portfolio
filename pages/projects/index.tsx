@@ -1,7 +1,9 @@
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { cardProps } from "@components/Card"
-import { client, urlFor } from "@services/sanity";
+import { client } from "@services/sanity";
+import { cardImageUrl } from "@services/sanityImage";
+import { GalleryImage } from "@components/Card/types";
 import { Suspense } from "react"
 import dynamic from "next/dynamic"
 
@@ -36,19 +38,26 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const projects = data.map((project: any) => {
-      let imageSrc = null;
-      try {
-        if (project.image) {
-          imageSrc = urlFor(project.image).url();
-        }
-      } catch (err) {
-        console.error(`Error generating image URL for project ${project._id}:`, err);
-      }
+      const imageSrc = cardImageUrl(project.image);
+
+      // The gallery arrives as raw Sanity image objects; resolve each to a CDN
+      // URL and drop entries whose asset failed to resolve.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const gallery: GalleryImage[] = (project.gallery ?? [])
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .map((entry: any) => {
+          const src = cardImageUrl(entry?.image, 1200);
+          return src
+            ? { src, alt: entry?.alt ?? "", caption: entry?.caption ?? "" }
+            : null;
+        })
+        .filter(Boolean) as GalleryImage[];
 
       return {
         ...project,
         id: project._id,
         imageSrc,
+        gallery,
       };
     });
 

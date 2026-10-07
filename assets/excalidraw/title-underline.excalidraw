@@ -1,0 +1,93 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "id": "sketch-101",
+      "type": "rectangle",
+      "x": 0,
+      "y": 0,
+      "width": 220,
+      "height": 14,
+      "angle": 0,
+      "strokeColor": "transparent",
+      "backgroundColor": "transparent",
+      "fillStyle": "hachure",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 101,
+      "version": 2,
+      "versionNonce": 1806605984,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791393741954,
+      "link": null,
+      "locked": false,
+      "index": "a0"
+    },
+    {
+      "id": "sketch-102",
+      "type": "line",
+      "x": 4,
+      "y": 9,
+      "width": 212,
+      "height": 4,
+      "angle": 0,
+      "strokeColor": "#ffffff",
+      "backgroundColor": "transparent",
+      "fillStyle": "hachure",
+      "strokeWidth": 3,
+      "strokeStyle": "solid",
+      "roughness": 2.2,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 2
+      },
+      "seed": 102,
+      "version": 2,
+      "versionNonce": 1661475680,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1791393741954,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          66,
+          -3
+        ],
+        [
+          146,
+          -1
+        ],
+        [
+          212,
+          -4
+        ]
+      ],
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": null,
+      "elbowed": false,
+      "index": "a1",
+      "lastCommittedPoint": null
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#121a21"
+  },
+  "files": {}
+}

@@ -1,17 +1,20 @@
 import { useEffect, useRef } from "react";
+import { useReducedMotion } from "framer-motion";
 import MLIllustrationSvg from "@svg/machine_learning.svg";
 import { gsap } from "gsap";
 import { SectionIllustration } from "@components/Section";
 
-const MLIllustration = () => {
+const MLIllustration = ({ active = true, onComplete }: { active?: boolean; onComplete?: () => void }) => {
+    const reduceMotion = useReducedMotion();
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const { current } = ref;
-        if (!current) return;
+        if (!current || !active || reduceMotion) return;
 
         const ctx = gsap.context(() => {
             const tl = gsap.timeline({
+                onComplete,
                 defaults: {
                     duration: 0.78,
                     ease: "power3.out",
@@ -29,17 +32,11 @@ const MLIllustration = () => {
             if (botHead) tl.from(botHead, { opacity: 0, y: -14 }, "-=0.42");
             if (charger) tl.from(charger, { opacity: 0, x: -8 }, "-=0.42");
 
-            gsap.to(current, {
-                y: -6,
-                duration: 4.5,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true,
-            });
+            tl.duration(2.3);
         }, ref);
 
         return () => ctx.revert();
-    }, []);
+    }, [active, reduceMotion, onComplete]);
 
     return (
         <SectionIllustration ref={ref}>

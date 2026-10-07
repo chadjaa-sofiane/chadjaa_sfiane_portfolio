@@ -1,17 +1,20 @@
 import { useEffect, useRef } from "react";
+import { useReducedMotion } from "framer-motion";
 import BackendIllustration from "@svg/backend_illustration.svg";
 import { gsap } from "gsap";
 import { SectionIllustration } from "@components/Section";
 
-const BackEndIllustration = () => {
+const BackEndIllustration = ({ active = true, onComplete }: { active?: boolean; onComplete?: () => void }) => {
+  const reduceMotion = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const { current } = ref;
-    if (!current) return;
+    if (!current || !active || reduceMotion) return;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
+        onComplete,
         defaults: {
           duration: 0.78,
           ease: "power3.out",
@@ -93,17 +96,11 @@ const BackEndIllustration = () => {
         if (laptop) tl.from(laptop, { opacity: 0, y: 12, x: -14 }, "-=0.5");
       }
 
-      gsap.to(current, {
-        y: -6,
-        duration: 4.6,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
+      tl.duration(2.3);
     }, ref);
 
     return () => ctx.revert();
-  }, []);
+  }, [active, reduceMotion, onComplete]);
 
   return (
     <SectionIllustration ref={ref}>

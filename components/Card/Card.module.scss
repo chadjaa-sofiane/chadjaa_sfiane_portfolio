@@ -6,15 +6,23 @@
     max-width: 420px;
     min-height: 530px;
     background: linear-gradient(160deg, rgba(22, 27, 31, 0.95) 0%, rgba(17, 22, 26, 0.95) 100%);
-    border: 1px solid rgba(101, 73, 49, 0.28);
-    border-radius: 0.25rem 1rem 0.25rem 1rem;
+    // The visible edge is the hand-drawn .card__outline; this border only
+    // reserves the space so --private/--featured can still colour it.
+    border: 1px solid transparent;
+    // Concentric with the drawn outline (Excalidraw's 32px corner, inset 3px).
+    border-radius: 34px;
     overflow: hidden;
-    transition: transform 0.26s ease, box-shadow 0.26s ease, border-color 0.26s ease;
+    transition:
+      transform 0.38s cubic-bezier(0.33, 1, 0.68, 1),
+      box-shadow 0.38s cubic-bezier(0.33, 1, 0.68, 1),
+      border-color 0.32s ease,
+      filter 0.35s ease;
     position: relative;
     cursor: pointer;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    will-change: transform;
 
     &::before {
       content: '';
@@ -26,33 +34,20 @@
         transparent 40%
       );
       opacity: 0;
-      transition: opacity 0.35s;
+      transition: opacity 0.4s ease;
       z-index: 0;
     }
 
-    &::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 72px;
-      height: 72px;
-      background: linear-gradient(135deg, rgba(227, 181, 125, 0.2), transparent 72%);
-      pointer-events: none;
-    }
-
     &:hover {
-      transform: translateY(-6px);
-      border-color: rgba(184, 104, 67, 0.48);
-      box-shadow:
-        0 18px 28px rgba(77, 56, 41, 0.25),
-        10px 10px 0 rgba(96, 63, 40, 0.12);
+      transform: translateY(-6px) rotate(-0.4deg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 
       &::before {
         opacity: 1;
       }
     }
   }
+
 
   &__wrapper--no-image {
     min-height: 380px;
@@ -79,59 +74,245 @@
     }
   }
 
-  &__image {
-    &__field {
+  /* A wide regular card: same outline and hover, just no fixed height. */
+  &__wrapper--featured {
+    max-width: none;
+    min-height: 0;
+    border-color: transparent;
+    box-shadow: none;
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
+
+  &__featured {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding: 1.5rem;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    min-width: 0;
+
+    @include breakpoint-up(medium) {
+      display: grid;
+      /* minmax(0, ...) rather than 1fr: grid items default to min-width auto, so
+         a wide SVG or a long unbroken tag would blow the track out and then be
+         silently clipped by the wrapper's overflow: hidden. */
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      grid-template-areas:
+        "head head"
+        "main side";
+      gap: 1.3rem 2.2rem;
+      padding: 2rem;
+      align-items: stretch;
+    }
+
+    h4 {
+      font-size: 1.55rem;
+      font-family: var(--header-font);
+      font-weight: 600;
+      color: hsl(var(--primary-400));
+      margin: 0;
+      letter-spacing: 0;
+      line-height: 1.25;
+      text-transform: none;
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(232, 224, 211, 0.85);
+      margin: 0;
+      letter-spacing: 0.01em;
+    }
+
+    &__head {
+      grid-area: head;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      min-width: 0;
+    }
+
+    &__main {
+      grid-area: main;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 1rem;
+      min-width: 0;
+
+      /* The shared details button pins itself with margin-top: auto. In a
+         stretched column next to a taller visuals column that opens a large
+         dead gap above it, so the text column packs from the top instead. */
+      .card__detailsButton {
+        margin-top: 0.5rem;
+      }
+
+      > ul,
+      > p {
+        width: 100%;
+      }
+    }
+
+    &__side {
+      grid-area: side;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      min-width: 0;
+    }
+  }
+
+  &__stack {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+
+    &__item {
+      font-size: 0.68rem;
+      padding: 0.24rem 0.6rem;
+      border-radius: 100px;
+      background: hsl(var(--secondary-300) / 0.08);
+      border: 1px solid hsl(var(--secondary-300) / 0.18);
+      color: hsl(var(--secondary-200));
+      font-family: var(--mono-font);
+      letter-spacing: 0.03em;
+    }
+  }
+
+  &__gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  &__drawing {
+    display: block;
+
+    img { display: block; width: 100%; height: auto; }
+  }
+
+  &__figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    min-width: 0;
+
+    &__frame {
       position: relative;
       width: 100%;
-      height: 230px;
+      aspect-ratio: 16 / 9;
+      border-radius: 6px;
       overflow: hidden;
+      border: 1px solid rgba(200, 160, 110, 0.12);
 
       img {
-        width: 100%;
-        height: 100%;
         object-fit: cover;
-        transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
       }
+    }
 
-      &::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to bottom, transparent 52%, rgba(24, 17, 13, 0.82));
-      }
+    &__caption {
+      font-family: var(--mono-font);
+      font-size: 0.62rem;
+      line-height: 1.55;
+      color: rgba(220, 210, 196, 0.5);
     }
   }
 
-  &__image__placeholder {
+  /* Hand-drawn card edge (public/sketches/card-outline.svg). Used as a mask
+     rather than an <img> so the stroke colour can transition on hover. */
+  &__outline {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: hsl(var(--primary-400) / 0.26);
+    -webkit-mask: url("/sketches/card-outline.svg") 0 0 / 100% 100% no-repeat;
+    mask: url("/sketches/card-outline.svg") 0 0 / 100% 100% no-repeat;
+    transition: background-color 0.3s ease;
+  }
+
+  &__wrapper:hover &__outline {
+    background: hsl(var(--secondary-300) / 0.75);
+  }
+
+  /* Excalidraw window frame with the screenshot behind its screen. The
+     drawing is 420x260; the screen box is positioned inline by CardImage. */
+  &__sketch {
     position: relative;
-    width: 100%;
-    height: 230px;
-    background:
-      linear-gradient(160deg, rgba(18, 23, 28, 0.98), rgba(12, 16, 20, 0.95));
-    overflow: hidden;
+    z-index: 1;
+    margin: 1rem 1rem 0;
+    aspect-ratio: 420 / 260;
 
-    &::before {
-      content: "";
+    &__screen {
       position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(120, 120, 120, 0.12) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(120, 120, 120, 0.08) 1px, transparent 1px);
-      background-size: 26px 26px;
-      opacity: 0.4;
+      overflow: hidden;
+      border-radius: 0 0 14px 14px;
+      background: #10161b;
     }
 
-    &::after {
-      content: "";
+    &__layer {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 20%, rgba(196, 164, 120, 0.2), transparent 60%);
-      opacity: 0.6;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
     }
   }
 
-  &__wrapper:hover &__image__field img {
-    transform: scale(1.07);
+  &__image {
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  &__title {
+    position: relative;
+    padding-bottom: 0.35rem;
+  }
+
+  /* Scribbled underline that draws itself in on hover. */
+  &__scribble {
+    position: absolute;
+    left: 0;
+    bottom: -0.2rem;
+    width: min(100%, 11rem);
+    height: 0.55rem;
+    background: hsl(var(--secondary-300));
+    -webkit-mask: url("/sketches/title-underline.svg") 0 0 / 100% 100% no-repeat;
+    mask: url("/sketches/title-underline.svg") 0 0 / 100% 100% no-repeat;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  &__wrapper:hover &__scribble {
+    clip-path: inset(0 0 0 0);
+  }
+
+  &__wrapper:hover &__image {
+    transform: scale(1.04);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__wrapper:hover {
+      transform: none;
+    }
+
+    &__image,
+    &__scribble {
+      transition: none;
+    }
   }
 
   &__content {
@@ -202,25 +383,67 @@
     z-index: 2;
   }
 
+  &__badge--inline {
+    position: static;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(189, 160, 112, 0.6);
+    color: rgba(228, 210, 176, 0.92);
+    background: rgba(28, 24, 20, 0.8);
+    white-space: nowrap;
+  }
+
   &__detailsButton {
     margin-top: auto;
     align-self: flex-start;
-    padding: 0.44rem 0.85rem !important;
+    padding: 0.44rem 0.95rem !important;
     border-radius: 0 !important;
     font-size: 0.72rem !important;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    border-color: rgba(96, 67, 44, 0.45) !important;
+    border-color: rgba(96, 67, 44, 0.4) !important;
     color: hsl(var(--primary-400)) !important;
-    background: rgba(197, 152, 112, 0.22) !important;
-    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease !important;
+    background: rgba(197, 152, 112, 0.18) !important;
+    transition:
+      transform 0.28s cubic-bezier(0.33, 1, 0.68, 1),
+      background-color 0.28s ease,
+      border-color 0.28s ease,
+      letter-spacing 0.28s ease !important;
+    position: relative;
+    overflow: hidden;
+
+    /* Shine sweep on hover */
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.08),
+        transparent
+      );
+      transition: left 0.5s ease;
+    }
 
     &:hover {
-      transform: translateY(-1px);
-      background: rgba(184, 104, 67, 0.2) !important;
+      transform: translateY(-2px);
+      background: rgba(184, 104, 67, 0.22) !important;
       border-color: rgba(184, 104, 67, 0.55) !important;
+      letter-spacing: 0.1em;
+
+      &::after {
+        left: 120%;
+      }
     }
   }
+
 
   &__modal {
     &__container {
@@ -240,6 +463,10 @@
         font-weight: 600;
         margin-bottom: 0.5rem;
       }
+    }
+
+    @include breakpoint(small) {
+      &__container { padding: 1.5rem 1.1rem; }
     }
 
     &__header {

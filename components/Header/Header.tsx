@@ -8,7 +8,9 @@ const Header = () => {
       <div className={styles["header__wrapper"]}>
         <Container>
           <div className={styles["header__container"]}>
-            <div className={styles["logo"]}>softfolio</div>
+            <div className={styles["logo"]}>
+              Chadjaa<span>.</span>
+            </div>
             <NavBar />
           </div>
         </Container>

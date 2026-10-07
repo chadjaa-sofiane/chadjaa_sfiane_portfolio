@@ -1,163 +1,83 @@
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Section } from "@components/Section";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight, Download } from "lucide-react";
 import TwitterIcon from "@svg/twitter.svg";
 import LinkedInIcon from "@svg/linked_in.svg";
 import GithubIcon from "@svg/github.svg";
+import { useSectionsProgress } from "@components/SectionsProgress";
+import HomeSection from "../HomeSection/HomeSection";
 import styles from "./AboutMe.module.scss";
 
-import { useSectionsProgress } from "@components/SectionsProgress";
+const principles = [
+  {
+    title: "What I do",
+    body: "Full-stack development for fintech, real-time products and high-reliability systems: work where mistakes are expensive.",
+  },
+  {
+    title: "How I work",
+    body: "Async-first, thorough in discovery, and comfortable flying solo or partnering with design. Most production work is under NDA, including payment platforms, IoT device control, and internal tools at scale.",
+  },
+  {
+    title: "What I'm looking for",
+    body: "Freelance and contract projects, especially new builds or scale-ups that need to be done right from day one.",
+  },
+];
 
-const downloadCv = () => {
-  const a: HTMLAnchorElement = document.createElement("a");
-  a.href = "/resume.pdf";
-  a.download = "chadjaa_sofiane_resume";
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-};
+const socials = [
+  { href: "https://github.com/chadjaa-sofiane", label: "GitHub", Icon: GithubIcon },
+  { href: "https://www.linkedin.com/in/sofiane-chadjaa/", label: "LinkedIn", Icon: LinkedInIcon },
+  { href: "https://twitter.com/ChadjaaSofiane", label: "X", Icon: TwitterIcon },
+];
 
 const AboutMe = () => {
   const { ref } = useSectionsProgress();
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const reduceMotion = useReducedMotion();
+  const reveal = (i: number) => ({
+    initial: { opacity: 0, y: reduceMotion ? 0 : 18 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: reduceMotion ? 0 : 0.55, delay: reduceMotion ? 0 : i * 0.08, ease: [0.22, 1, 0.36, 1] },
+  });
 
   return (
-    <Section ref={ref} variant="dark">
-      <div
-        className={`${styles["aboutMe"]} ${isInView ? styles["aboutMe--inView"] : ""}`}
-        id="about"
-      >
-        <div className={styles["aboutMe__background"]} />
-
-        <motion.div
-          ref={containerRef}
-          className={styles["aboutMe__wrapper"]}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <div className={styles["aboutMe__card"]}>
-            <motion.div
-              className={styles["aboutMe__content"]}
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-            >
-              <h2 className={styles["aboutMe__title"]}>
-                About Chadjaa Sofiane
-              </h2>
-              <div className={styles["aboutMe__blocks"]}>
-                <div className={styles["aboutMe__block"]}>
-                  <h3>What I do</h3>
-                  <p>
-                    Full-stack developer focused on fintech, real-time products,
-                    and high-reliability systems - work where mistakes are expensive.
-                  </p>
-                </div>
-                <div className={styles["aboutMe__block"]}>
-                  <h3>How I work</h3>
-                  <p>
-                    Async-first, thorough in discovery, and comfortable flying solo
-                    or partnering with design. Most production work is under NDA,
-                    including payment platforms, IoT device control, and internal tools at scale.
-                  </p>
-                </div>
-                <div className={styles["aboutMe__block"]}>
-                  <h3>What I'm looking for</h3>
-                  <p>
-                    Freelance and contract projects - especially new builds or scale-ups
-                    that need to be done right from day one.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className={styles["aboutMe__actions"]}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              <button
-                className={styles["aboutMe__button"]}
-                onClick={downloadCv}
-              >
-                <span>Download Resume</span>
-                <DownloadIcon />
-              </button>
-
-              <div className={styles["aboutMe__links"]}>
-                <Twitter />
-                <LinkedIn />
-                <GitHub />
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
+    <HomeSection
+      ref={ref}
+      id="about"
+      index="03"
+      label="About"
+      title={<>Calm engineering for <em>high-stakes</em> products.</>}
+    >
+      <div className={styles.principles}>
+        {principles.map((item, i) => (
+          <motion.div key={item.title} className={styles.principle} {...reveal(i)}>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </motion.div>
+        ))}
       </div>
-    </Section>
+
+      <motion.div className={styles.cta} {...reveal(1)}>
+        <div className={styles.ctaText}>
+          <p className={styles.status}><span aria-hidden="true" />Available for freelance &amp; contract work</p>
+          <p className={styles.ctaTitle}>Have something that needs to be <em>done right?</em></p>
+        </div>
+        <div className={styles.ctaActions}>
+          <a className={styles.primary} href="mailto:chadjaasofiane@gmail.com">
+            chadjaasofiane@gmail.com <ArrowUpRight size={18} aria-hidden="true" />
+          </a>
+          <div className={styles.secondary}>
+            <a href="/resume.pdf" download="chadjaa_sofiane_resume" className={styles.resume}>
+              <Download size={16} aria-hidden="true" /> Resume
+            </a>
+            {socials.map(({ href, label, Icon }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className={styles.icon}>
+                <Icon />
+              </a>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </HomeSection>
   );
 };
-
-const Twitter = () => {
-  return (
-    <a
-      href="https://twitter.com/ChadjaaSofiane"
-      target="_blank"
-      rel="noopener noreferrer"
-      className={styles["icon"]}
-      aria-label="X Profile"
-    >
-      <TwitterIcon />
-    </a>
-  );
-};
-
-const LinkedIn = () => {
-  return (
-    <a
-      href="https://www.linkedin.com/in/sofiane-chadjaa/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className={styles["icon"]}
-      aria-label="LinkedIn Profile"
-    >
-      <LinkedInIcon />
-    </a>
-  );
-};
-
-const GitHub = () => {
-  return (
-    <a
-      href="https://github.com/chadjaa-sofiane"
-      target="_blank"
-      rel="noopener noreferrer"
-      className={styles["icon"]}
-      aria-label="GitHub Profile"
-    >
-      <GithubIcon />
-    </a>
-  );
-};
-
-const DownloadIcon = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
 
 export default AboutMe;

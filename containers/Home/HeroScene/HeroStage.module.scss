@@ -1,0 +1,67 @@
+.stage {
+  position: absolute;
+  inset: 0;
+}
+
+.posters,
+.canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.posters {
+  transition: opacity 500ms ease;
+}
+.postersHidden { opacity: 0; }
+
+.poster {
+  object-fit: contain;
+  opacity: 0;
+  transform: translateY(10px) scale(0.985);
+  transition:
+    opacity 380ms ease,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.posterActive {
+  opacity: 1;
+  transform: none;
+}
+
+.canvas {
+  opacity: 0;
+  transition: opacity 500ms ease;
+
+  canvas {
+    display: block;
+    touch-action: pan-y;
+    cursor: grab;
+
+    &:active { cursor: grabbing; }
+  }
+}
+
+.hint {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid hsl(var(--primary-400) / 0.1);
+  border-radius: 999px;
+  background: hsl(214 26% 9% / 0.6);
+  backdrop-filter: blur(6px);
+  font-family: var(--mono-font);
+  font-size: 0.65rem;
+  color: hsl(var(--primary-400) / 0.55);
+  pointer-events: none;
+
+  @media (hover: none) { display: none; }
+}
+.canvasReady { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .poster { transform: none; transition: opacity 200ms linear; }
+}

@@ -1,43 +1,46 @@
-import React from "react";
-import Snow from "./Snow/Snow";
-import styles from "./SeasonalEffects.module.scss";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import SeasonCanvas from "./SeasonCanvas";
 
-// Define available seasons
-export type Season = "winter" | "spring" | "autumn" | "none";
+export type ActiveSeason = "winter" | "spring" | "summer" | "autumn";
+export type Season = ActiveSeason | "none";
 
-interface SeasonalEffectsProps {
-    season?: Season;
-    onSeasonChange?: React.Dispatch<React.SetStateAction<Season>>;
-}
+const SEASONS: ActiveSeason[] = ["winter", "spring", "summer", "autumn"];
 
-const seasonOptions: Array<{ label: string; value: Season }> = [
-    { label: "Winter", value: "winter" },
-    { label: "Spring", value: "spring" },
-    { label: "Autumn", value: "autumn" },
-    { label: "Off", value: "none" },
-];
+/** Meteorological seasons, northern hemisphere: Dec-Feb is winter, and so on. */
+export const seasonFor = (date: Date): ActiveSeason => SEASONS[Math.floor(((date.getMonth() + 1) % 12) / 3)];
 
-const SeasonalEffects: React.FC<SeasonalEffectsProps> = ({
-    season = "none",
-    onSeasonChange = () => null,
-}) => {
-    return (
-        <>
-            {season !== "none" ? <Snow season={season} /> : null}
-            <div className={styles["seasonSwitch"]}>
-                {seasonOptions.map((option) => (
-                    <button
-                        key={option.value}
-                        type="button"
-                        className={`${styles["seasonSwitch__button"]} ${season === option.value ? styles["seasonSwitch__button--active"] : ""}`}
-                        onClick={() => onSeasonChange(option.value)}
-                    >
-                        {option.label}
-                    </button>
-                ))}
-            </div>
-        </>
-    );
+/**
+ * Picks the season from today's date. `?season=winter|spring|summer|autumn|none`
+ * overrides it, which is handy for previewing. Nothing renders for visitors who
+ * prefer reduced motion.
+ */
+export const useSeason = (): Season => {
+  const [season, setSeason] = useState<Season>("none");
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("season");
+    const valid = requested && ([...SEASONS, "none"] as string[]).includes(requested);
+    setSeason(valid ? (requested as Season) : seasonFor(new Date()));
+  }, []);
+  return season;
+};
+
+const SeasonalEffects = ({ season }: { season: Season }) => {
+  const reduceMotion = useReducedMotion();
+  return (
+    <AnimatePresence>
+      {season !== "none" && !reduceMotion ? (
+        <motion.div
+          key={season}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { duration: 1.2, delay: 0.8 } }}
+          exit={{ opacity: 0 }}
+        >
+          <SeasonCanvas season={season} />
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
+  );
 };
 
 export default SeasonalEffects;

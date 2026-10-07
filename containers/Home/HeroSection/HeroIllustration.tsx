@@ -1,14 +1,16 @@
 import { useEffect, useRef } from "react";
+import { useReducedMotion } from "framer-motion";
 import HeroIllustrationSvg from "@svg/hero_illustration.svg";
 import { gsap } from "gsap";
 import { SectionIllustration } from "@components/Section";
 
-const HeroIllustration = () => {
+const HeroIllustration = ({ active = true, onComplete }: { active?: boolean; onComplete?: () => void }) => {
+  const reduceMotion = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const { current } = ref;
-    if (!current) return;
+    if (!current || !active || reduceMotion) return;
 
     const ctx = gsap.context(() => {
       const bg = current.querySelector("#hero_illustration_svg__background");
@@ -22,6 +24,7 @@ const HeroIllustration = () => {
       );
 
       const tl = gsap.timeline({
+        onComplete,
         defaults: { duration: 0.72, ease: "power3.out" },
       });
 
@@ -33,27 +36,11 @@ const HeroIllustration = () => {
       if (person) tl.from(person, { x: -42, opacity: 0 }, "-=0.34");
       if (laptop) tl.from(laptop, { x: 12, opacity: 0 }, "-=0.36");
 
-      gsap.to(current, {
-        y: -7,
-        duration: 4.6,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
-
-      if (monitor) {
-        gsap.to(monitor, {
-          filter: "drop-shadow(0 0 10px rgba(106, 224, 255, 0.28))",
-          duration: 3.8,
-          ease: "sine.inOut",
-          yoyo: true,
-          repeat: -1,
-        });
-      }
+      tl.duration(2.3);
     }, ref);
 
     return () => ctx.revert();
-  }, []);
+  }, [active, reduceMotion, onComplete]);
 
   return (
     <SectionIllustration ref={ref}>
