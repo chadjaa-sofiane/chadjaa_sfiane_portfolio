@@ -1,254 +1,163 @@
-import React, { useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
+import React, { useCallback, useEffect, useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { X } from "lucide-react";
+import { splitName } from "./splitName";
 import { Experience } from "./types";
-import styles from "./ExperienceSection.module.scss";
+import styles from "./ExperienceDetailOverlay.module.scss";
 
 interface ExperienceDetailOverlayProps {
-    experience: Experience;
-    onClose: () => void;
+  experience: Experience;
+  onClose: () => void;
 }
 
-const ExperienceDetailOverlay: React.FC<ExperienceDetailOverlayProps> = ({
-    experience,
-    onClose,
-}) => {
-    const showLogo = Boolean(experience.logo) && !experience.company.includes("USTO");
-    // Handle Escape key
-    const handleKeyDown = useCallback(
-        (e: KeyboardEvent) => {
-            if (e.key === "Escape") {
-                onClose();
-            }
-        },
-        [onClose]
-    );
+/** Mono section marker, the same "01 Label" pattern as the home sections. */
+const Marker = ({ index, label }: { index: number; label: string }) => (
+  <h3 className={styles.marker}>
+    <span>{String(index).padStart(2, "0")}</span>
+    {label}
+  </h3>
+);
 
-    // Lock scroll and add keyboard listener
-    useEffect(() => {
-        document.body.style.overflow = "hidden";
-        document.addEventListener("keydown", handleKeyDown);
+const Chips = ({ items }: { items: string[] }) =>
+  items.length ? (
+    <ul className={styles.chips}>
+      {items.map((item) => <li key={item}>{item}</li>)}
+    </ul>
+  ) : null;
 
-        return () => {
-            document.body.style.overflow = "";
-            document.removeEventListener("keydown", handleKeyDown);
-        };
-    }, [handleKeyDown]);
+const ExperienceDetailOverlay: React.FC<ExperienceDetailOverlayProps> = ({ experience, onClose }) => {
+  const reduceMotion = useReducedMotion();
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const { name, org } = splitName(experience.company);
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.2,
-            },
-        },
-        exit: {
-            opacity: 0,
-            transition: { duration: 0.3 },
-        },
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    },
+    [onClose],
+  );
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKeyDown);
+    closeRef.current?.focus();
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleKeyDown);
     };
+  }, [handleKeyDown]);
 
-    const itemVariants = {
-        hidden: { opacity: 0, y: 30 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.5, ease: "easeOut" },
-        },
-    };
+  const ease = [0.22, 1, 0.36, 1];
+  const list = {
+    hidden: {},
+    visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.06, delayChildren: reduceMotion ? 0 : 0.15 } },
+  };
+  const item = {
+    hidden: { opacity: 0, y: reduceMotion ? 0 : 14 },
+    visible: { opacity: 1, y: 0, transition: { duration: reduceMotion ? 0 : 0.45, ease } },
+  };
 
-    const slideVariants = {
-        hidden: { x: "100%" },
-        visible: {
-            x: 0,
-            transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
-        },
-        exit: {
-            x: "100%",
-            transition: { duration: 0.4, ease: [0.55, 0.06, 0.68, 0.19] },
-        },
-    };
+  const sections = [
+    experience.duties.length > 0 && "duties",
+    experience.achievements.length > 0 && "achievements",
+    experience.systems.length > 0 && "systems",
+  ].filter(Boolean) as string[];
+  const indexOf = (id: string) => sections.indexOf(id) + 1;
 
-    return (
-        <motion.div
-            className={styles.overlayBackdrop}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={onClose}
-        >
-            <motion.div
-                className={styles.overlayContent}
-                variants={slideVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                onClick={(e) => e.stopPropagation()}
-            >
-                {/* Close Button */}
-                <button
-                    className={styles.closeButton}
-                    onClick={onClose}
-                    aria-label="Close details"
-                >
-                    <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M18 6L6 18M6 6l12 12"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
-                </button>
+  return (
+    <motion.div
+      className={styles.backdrop}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      onClick={onClose}
+    >
+      <motion.aside
+        className={styles.drawer}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="experience-detail-title"
+        initial={{ x: reduceMotion ? 0 : "100%", opacity: reduceMotion ? 0 : 1 }}
+        animate={{ x: 0, opacity: 1, transition: { duration: reduceMotion ? 0.2 : 0.5, ease } }}
+        exit={{ x: reduceMotion ? 0 : "100%", opacity: reduceMotion ? 0 : 1, transition: { duration: 0.35, ease: [0.55, 0.06, 0.68, 0.19] } }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className={styles.topBar}>
+          <span className={styles.period}>{experience.period}</span>
+          <button ref={closeRef} type="button" className={styles.close} onClick={onClose} aria-label="Close details">
+            <X size={18} aria-hidden="true" />
+          </button>
+        </div>
 
-                {/* Header */}
-                <motion.div
-                    className={styles.detailHeader}
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    <motion.span className={styles.detailPeriod} variants={itemVariants}>
-                        {experience.period}
-                    </motion.span>
-                    <motion.div className={styles.detailCompanyRow} variants={itemVariants}>
-                        {showLogo ? (
-                            <div className={styles.detailCompanyMeta}>
-                                <img
-                                    src={experience.logo as string}
-                                    alt={`${experience.company} logo`}
-                                    className={styles.detailCompanyLogo}
-                                    loading="lazy"
-                                />
-                            </div>
-                        ) : null}
-                        <h2 className={styles.detailCompany}>{experience.company}</h2>
-                    </motion.div>
-                    <motion.p className={styles.detailRole} variants={itemVariants}>
-                        {experience.role}
-                    </motion.p>
-                    <motion.p className={styles.detailSummary} variants={itemVariants}>
-                        {experience.summary}
-                    </motion.p>
-                </motion.div>
+        <motion.div variants={list} initial="hidden" animate="visible">
+          <motion.header className={styles.header} variants={item}>
+            <div className={styles.nameRow}>
+              {experience.logo ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={experience.logo} alt="" className={styles.logo} />
+              ) : (
+                <span className={styles.logoFallback} aria-hidden="true">{name.charAt(0)}</span>
+              )}
+              <h2 id="experience-detail-title" className={styles.name}>{name}</h2>
+            </div>
+            <p className={styles.role}>{org ? `${experience.role} · ${org}` : experience.role}</p>
+            <p className={styles.summary}>{experience.summary}</p>
+          </motion.header>
 
-                {/* Duties Section */}
-                <motion.section
-                    className={styles.detailSection}
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    <motion.h3 className={styles.sectionHeading} variants={itemVariants}>
-                        <span className={styles.headingIcon}>💼</span>
-                        Key Responsibilities
-                    </motion.h3>
-                    <div className={styles.dutiesGrid}>
-                        {experience.duties.map((duty) => (
-                            <motion.div
-                                key={duty.id}
-                                className={styles.dutyCard}
-                                variants={itemVariants}
-                            >
-                                <h4 className={styles.dutyTitle}>{duty.title}</h4>
-                                <p className={styles.dutyDescription}>{duty.description}</p>
-                                <div className={styles.techList}>
-                                    {duty.technologies.map((tech) => (
-                                        <span key={tech} className={styles.techBadge}>
-                                            {tech}
-                                        </span>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.section>
+          {experience.duties.length > 0 && (
+            <motion.section className={styles.section} variants={item}>
+              <Marker index={indexOf("duties")} label="Responsibilities" />
+              <ol className={styles.ledger}>
+                {experience.duties.map((duty) => (
+                  <li key={duty.id}>
+                    <h4>{duty.title}</h4>
+                    <p>{duty.description}</p>
+                    <Chips items={duty.technologies} />
+                  </li>
+                ))}
+              </ol>
+            </motion.section>
+          )}
 
-                {/* Achievements Section */}
-                <motion.section
-                    className={styles.detailSection}
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    <motion.h3 className={styles.sectionHeading} variants={itemVariants}>
-                        <span className={styles.headingIcon}>🏆</span>
-                        Key Achievements
-                    </motion.h3>
-                    <div className={styles.achievementsGrid}>
-                        {experience.achievements.map((achievement) => (
-                            <motion.div
-                                key={achievement.id}
-                                className={styles.achievementCard}
-                                variants={itemVariants}
-                            >
-                                <h4 className={styles.achievementTitle}>
-                                    {achievement.title}
-                                </h4>
-                                <p className={styles.achievementDescription}>
-                                    {achievement.description}
-                                </p>
-                                <div className={styles.impactBadge}>
-                                    <span className={styles.impactIcon}>⚡</span>
-                                    {achievement.impact}
-                                </div>
-                                <div className={styles.techList}>
-                                    {achievement.technologies.map((tech) => (
-                                        <span key={tech} className={styles.techBadge}>
-                                            {tech}
-                                        </span>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.section>
+          {experience.achievements.length > 0 && (
+            <motion.section className={styles.section} variants={item}>
+              <Marker index={indexOf("achievements")} label="Achievements" />
+              <ol className={styles.ledger}>
+                {experience.achievements.map((achievement) => (
+                  <li key={achievement.id}>
+                    <h4>{achievement.title}</h4>
+                    <p>{achievement.description}</p>
+                    {achievement.impact && <p className={styles.impact}>{achievement.impact}</p>}
+                    <Chips items={achievement.technologies} />
+                  </li>
+                ))}
+              </ol>
+            </motion.section>
+          )}
 
-                {/* Systems Section */}
-                {experience.systems.length > 0 && (
-                    <motion.section
-                        className={styles.detailSection}
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="visible"
-                    >
-                        <motion.h3 className={styles.sectionHeading} variants={itemVariants}>
-                            <span className={styles.headingIcon}>🔧</span>
-                            Systems & Platforms
-                        </motion.h3>
-                        <div className={styles.systemsGrid}>
-                            {experience.systems.map((system) => (
-                                <motion.div
-                                    key={system.name}
-                                    className={styles.systemCard}
-                                    variants={itemVariants}
-                                >
-                                    <h4 className={styles.systemName}>{system.name}</h4>
-                                    <p className={styles.systemDescription}>
-                                        {system.description}
-                                    </p>
-                                    <ul className={styles.responsibilitiesList}>
-                                        {system.responsibilities.map((resp, idx) => (
-                                            <li key={idx}>{resp}</li>
-                                        ))}
-                                    </ul>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </motion.section>
-                )}
-            </motion.div>
+          {experience.systems.length > 0 && (
+            <motion.section className={styles.section} variants={item}>
+              <Marker index={indexOf("systems")} label="Systems" />
+              <ol className={styles.ledger}>
+                {experience.systems.map((system) => (
+                  <li key={system.name}>
+                    <h4>{system.name}</h4>
+                    <p>{system.description}</p>
+                    {system.responsibilities.length > 0 && (
+                      <ul className={styles.points}>
+                        {system.responsibilities.map((point) => <li key={point}>{point}</li>)}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </motion.section>
+          )}
         </motion.div>
-    );
+      </motion.aside>
+    </motion.div>
+  );
 };
 
 export default ExperienceDetailOverlay;

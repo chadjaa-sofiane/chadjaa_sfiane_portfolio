@@ -14,7 +14,10 @@ const CardContent = () => {
             }`}
         >
             <div className={styles["card__header"]}>
-                <Title4> {title} </Title4>
+                <div className={styles["card__title"]}>
+                    <Title4> {title} </Title4>
+                    <span className={styles["card__scribble"]} aria-hidden="true" />
+                </div>
                 <div className={styles["card__meta"]}>
                     {isPrivate && <span className={styles["card__badge--bottom"]}>Private</span>}
                     <ProjectIcon type={type} />

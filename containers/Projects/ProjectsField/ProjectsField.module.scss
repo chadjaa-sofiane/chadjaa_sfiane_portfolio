@@ -6,9 +6,10 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-bottom: 10em;
+    margin-bottom: 3rem;
     padding: 2.5rem 0 1rem;
     position: relative;
+    scroll-margin-top: 5rem;
 
     /* Decorative top line */
     &::after {
@@ -56,12 +57,12 @@
 
     @include breakpoint(small) {
       padding: 2rem 0 0.6rem;
-      margin-bottom: 8em;
+      margin-bottom: 2rem;
     }
   }
 
   &__field--lab {
-    margin-top: 6em;
+    margin-top: 0;
 
     /* Override the ambient glow for lab to be teal-tinted */
     &::before {
@@ -92,6 +93,18 @@
     }
   }
 
+  &__featured {
+    width: 100%;
+    max-width: 1020px;
+    margin: 2.2rem auto 0;
+    display: flex;
+    scroll-margin-top: 6rem;
+
+    @include breakpoint(medium) {
+      margin-top: 1.6rem;
+    }
+  }
+
   &__cards {
     &__field {
       margin-top: 3rem;
@@ -105,12 +118,14 @@
       position: relative;
       z-index: 1;
 
+      /* A 420px card design has no business being two-up at 720px; the grid
+         previously stayed 2-column all the way down to 22.5rem. */
       @include breakpoint(medium) {
-        gap: 1.8rem;
+        grid-template-columns: 1fr;
+        gap: 1.6rem;
       }
 
       @include breakpoint(small) {
-        grid-template-columns: 1fr;
         gap: 1.4rem;
         margin-top: 2rem;
       }
@@ -126,12 +141,6 @@
     /* When hovering over the cards grid, dim siblings */
     &__field:hover &__item:not(:hover) {
       filter: brightness(0.72) saturate(0.7);
-    }
-
-    &__card--wide {
-      grid-column: 1 / -1;
-      max-width: 100%;
-      min-height: 420px;
     }
 
     &__empty {

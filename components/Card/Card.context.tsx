@@ -23,7 +23,13 @@ const CardContext = createContext<CardContextState>({
     link: "",
     githubUrl: "",
     type: "",
-    description: ""
+    description: "",
+    featured: false,
+    priority: 0,
+    techStack: [],
+    metrics: [],
+    architecture: undefined,
+    gallery: []
 })
 
 const CardContextProvider = ({ children, ...rest }: CardContextProps) => {

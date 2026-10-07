@@ -39,21 +39,14 @@ const ProjectsCards = ({
   projects,
   showImages = true,
   emptyLabel = "No projects available yet",
-  pinPrivate = false,
-  highlightPrivate = false,
 }: {
   projects: cardProps[];
   showImages?: boolean;
   emptyLabel?: string;
-  pinPrivate?: boolean;
-  highlightPrivate?: boolean;
 }) => {
   const reduceMotion = useReducedMotion() ?? false;
-  const orderedProjects = pinPrivate
-    ? [...projects].sort(
-        (a, b) => (b.isPrivate ? 1 : 0) - (a.isPrivate ? 1 : 0)
-      )
-    : projects;
+  // Ordering lives in ProjectsField so there is exactly one sort in play.
+  const orderedProjects = projects;
   return (
     <motion.div
       className={styles["projects__cards__field"]}
@@ -66,23 +59,11 @@ const ProjectsCards = ({
         orderedProjects?.map((project: cardProps) => (
           <motion.div
             key={project.id}
-            className={`${styles["projects__cards__item"]} ${
-              highlightPrivate && project.isPrivate
-                ? styles["projects__card--wide"]
-                : ""
-            }`}
+            className={styles["projects__cards__item"]}
             custom={reduceMotion}
             variants={cardVariants}
           >
-            <Card
-              {...project}
-              showImage={showImages}
-              cardClassName={
-                highlightPrivate && project.isPrivate
-                  ? styles["projects__card--wide"]
-                  : undefined
-              }
-            />
+            <Card {...project} showImage={showImages} />
           </motion.div>
         ))
       }

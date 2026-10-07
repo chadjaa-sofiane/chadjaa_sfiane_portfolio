@@ -43,6 +43,10 @@
   color: hsl(var(--primary-400));
   transition: color 0.3s ease;
 
+  span {
+    color: hsl(var(--accent-400));
+  }
+
   &:hover {
     color: hsl(var(--accent-400));
   }

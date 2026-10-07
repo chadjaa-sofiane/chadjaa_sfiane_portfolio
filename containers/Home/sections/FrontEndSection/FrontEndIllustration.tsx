@@ -1,14 +1,16 @@
 import { useEffect, useRef } from "react";
+import { useReducedMotion } from "framer-motion";
 import FrontendIllustration from "@svg/froneend_illustration.svg";
 import { gsap } from "gsap";
 import { SectionIllustration } from "@components/Section";
 
-const FrontEndIllustration = () => {
+const FrontEndIllustration = ({ active = true, onComplete }: { active?: boolean; onComplete?: () => void }) => {
+    const reduceMotion = useReducedMotion();
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const { current } = ref;
-        if (!current) return;
+        if (!current || !active || reduceMotion) return;
 
         const ctx = gsap.context(() => {
             const girl = current.querySelector("#froneend_illustration_svg__girl");
@@ -17,6 +19,7 @@ const FrontEndIllustration = () => {
             const c2 = current.querySelector("#froneend_illustration_svg__canvas_2");
             const flower = current.querySelector("#froneend_illustration_svg__flower");
             const tl = gsap.timeline({
+                onComplete,
                 defaults: { duration: 0.78, ease: "power3.out" }
             });
 
@@ -26,17 +29,11 @@ const FrontEndIllustration = () => {
             if (girl) tl.from(girl, { opacity: 0, y: -12 }, "-=0.36");
             if (flower) tl.from(flower, { opacity: 0, scale: 0.94, transformOrigin: "50% 50%" }, "-=0.36");
 
-            gsap.to(current, {
-                y: -6,
-                duration: 4.4,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true,
-            });
+            tl.duration(2.3);
         }, ref);
 
         return () => ctx.revert();
-    }, []);
+    }, [active, reduceMotion, onComplete]);
 
     return (
         <SectionIllustration ref={ref}>

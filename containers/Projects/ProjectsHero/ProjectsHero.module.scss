@@ -1,0 +1,109 @@
+.hero {
+  // Same measure and gutter as the home hero and the header.
+  width: min(100%, 82rem);
+  margin: 0 auto;
+  padding: 6.5rem 2rem 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(1rem, 3vw, 3rem);
+}
+
+.intro {
+  min-width: 0;
+
+  h1 {
+    margin: 0 0 1.4rem;
+    font-family: var(--header-font);
+    font-size: clamp(3.2rem, 6vw, 6rem);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+
+    em {
+      display: block;
+      font-family: var(--display-font);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    em span { color: hsl(var(--accent-400)); }
+  }
+}
+
+.pitch {
+  max-width: 30ch;
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  line-height: 1.5;
+  color: hsl(var(--primary-400) / 0.75);
+  text-wrap: pretty;
+}
+
+.stage {
+  position: relative;
+  min-width: 0;
+  height: clamp(380px, calc(100svh - 12rem), 760px);
+}
+
+.halo {
+  position: absolute;
+  inset: 4% 2% 0;
+  pointer-events: none;
+  background:
+    radial-gradient(42% 36% at 50% 46%, hsl(var(--accent-400) / 0.13), transparent 70%),
+    radial-gradient(46% 12% at 50% 86%, hsl(var(--accent-400) / 0.12), transparent 70%);
+}
+
+.poster {
+  object-fit: contain;
+  transition: opacity 500ms ease;
+}
+.posterHidden { opacity: 0; }
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 500ms ease;
+
+  canvas {
+    display: block;
+    touch-action: pan-y;
+    cursor: grab;
+  }
+}
+.canvasReady { opacity: 1; }
+
+.caption {
+  position: absolute;
+  left: 50%;
+  bottom: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid hsl(var(--primary-400) / 0.1);
+  border-radius: 999px;
+  background: hsl(214 26% 9% / 0.6);
+  backdrop-filter: blur(6px);
+  font-family: var(--mono-font);
+  font-size: 0.68rem;
+  white-space: nowrap;
+  color: hsl(var(--primary-400) / 0.6);
+  transform: translateX(-50%);
+  pointer-events: none;
+
+  strong { color: hsl(var(--accent-300)); font-weight: 600; }
+}
+
+@media (max-width: 64rem) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .stage { height: clamp(340px, 86vw, 620px); }
+}
+
+@media (max-width: 45rem) {
+  .hero { padding: 6rem 1rem 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .poster, .canvas { transition: none; }
+}
